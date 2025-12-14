@@ -705,13 +705,15 @@
             transform: scale(1);
         }
 
-        .mockup-fullscreen .laptop-mockup-3d {
+        .mockup-fullscreen .laptop-mockup-3d,
+        .mockup-fullscreen .phone-mockup-3d {
             transform: rotateX(5deg) rotateY(0deg) rotateZ(0deg) scale(1.2);
             width: 100%;
             max-width: 100%;
         }
 
-        .mockup-fullscreen .laptop-mockup {
+        .mockup-fullscreen .laptop-mockup,
+        .mockup-fullscreen .phone-mockup {
             max-width: 100%;
         }
 
@@ -752,6 +754,138 @@
             height: 4px;
             background: rgba(139, 92, 246, 0.3);
             border-radius: 0 0 4px 4px;
+        }
+
+        /* Mobile Phone Mockup */
+        .phone-mockup {
+            width: 100%;
+            max-width: 300px;
+            position: relative;
+            margin: 0;
+            flex-shrink: 0;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .phone-mockup-3d {
+            transform: rotateX(15deg) rotateY(-15deg) rotateZ(5deg);
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: brightness(1);
+        }
+
+        .phone-mockup-3d:hover {
+            transform: rotateX(10deg) rotateY(-20deg) rotateZ(3deg) scale(1.08) translateY(-10px);
+            filter: brightness(1.15) drop-shadow(0 20px 40px rgba(139, 92, 246, 0.4));
+        }
+
+        .phone-frame {
+            background: linear-gradient(135deg, #1a1a24 0%, #0f0f15 100%);
+            border-radius: 30px;
+            padding: 12px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 
+                        0 0 60px rgba(139, 92, 246, 0.4),
+                        inset 0 2px 4px rgba(255, 255, 255, 0.1),
+                        0 20px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            transform: translateZ(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .phone-mockup-3d:hover .phone-frame {
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 1), 
+                        0 0 80px rgba(139, 92, 246, 0.6),
+                        0 0 120px rgba(139, 92, 246, 0.3),
+                        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+                        0 30px 60px rgba(0, 0, 0, 0.7);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .phone-screen {
+            width: 100%;
+            aspect-ratio: 9 / 19.5;
+            background: #000;
+            border-radius: 22px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+            min-height: 500px;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .phone-mockup-3d:hover .phone-screen {
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7),
+                        0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .phone-screen-content {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background: #000;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .phone-mockup-3d:hover .phone-screen-content {
+            transform: scale(1.02);
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 25px;
+            background: #000;
+            border-radius: 0 0 15px 15px;
+            z-index: 10;
+        }
+
+        /* Overview Screen Layout */
+        .feature-subscreen[data-feature="overview"] {
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            padding: 4rem;
+        }
+
+        .overview-screen {
+            display: contents;
+        }
+
+        .overview-intro {
+            grid-column: 1;
+            grid-row: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-self: center;
+        }
+
+        .overview-mockups {
+            grid-column: 2;
+            grid-row: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 2rem;
+            align-items: end;
+            align-self: center;
+        }
+
+        .overview-mockups .laptop-mockup {
+            max-width: 100%;
+            grid-column: auto;
+            grid-row: auto;
+        }
+
+        .overview-mockups .phone-mockup {
+            grid-column: 1 / -1;
+            justify-self: center;
+            max-width: 250px;
         }
 
         .feature-info {
@@ -1560,6 +1694,29 @@
                 align-items: center;
             }
 
+            .feature-subscreen[data-feature="overview"] {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+                gap: 2rem;
+            }
+
+            .overview-intro {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .overview-mockups {
+                grid-column: 1;
+                grid-row: 2;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+
+            .overview-mockups .phone-mockup {
+                grid-column: 1;
+                max-width: 200px;
+            }
+
             .laptop-mockup {
                 max-width: 100%;
                 grid-column: 1;
@@ -1668,8 +1825,59 @@
         <div class="project-detail-content" style="width: 100%; height: 100%; max-width: 100%;">
             <!-- Feature Subscreens -->
             <div class="feature-subscreens" id="featureSubscreens">
+                <!-- Feature 0: Overview -->
+                <div class="feature-subscreen active" data-feature="overview">
+                    <div class="overview-screen">
+                        <div class="overview-intro">
+                            <h2 style="font-size: 3rem; color: var(--text-color); margin-bottom: 1.5rem; text-shadow: 0 0 30px rgba(139, 92, 246, 0.4);">Unified Data Collection System</h2>
+                            <p style="font-size: 1.3rem; line-height: 2; color: var(--text-secondary); margin-bottom: 2rem;">
+                                A comprehensive, open-source platform designed to streamline data collection, management, and reporting 
+                                for humanitarian organizations. Built with the needs of NGOs, international organizations, and field teams 
+                                in mind, this system enables teams to work more efficiently, make data-driven decisions, and improve 
+                                collaboration across organizational levels.
+                            </p>
+                            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary);">
+                                The platform consists of three main interfaces: a powerful backoffice for administrators, a public-facing 
+                                website for data submission, and native mobile applications for field teams working in remote locations.
+                            </p>
+                        </div>
+                        <div class="overview-mockups">
+                            <div class="laptop-mockup">
+                                <div class="laptop-mockup-3d">
+                                    <div class="laptop-frame">
+                                        <div class="laptop-screen">
+                                            <img src="features/backoffice.jpg" alt="Backoffice" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5CYWNrb2ZmaWNlPC90ZXh0Pjx0ZXh0IHg9Ijk2MCIgeT0iNjIwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5Y2EzYWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNjcmVlbnNob3QgcGxhY2Vob2xkZXI8L3RleHQ+PC9zdmc+';">
+                                        </div>
+                                    </div>
+                                    <div class="laptop-base"></div>
+                                </div>
+                            </div>
+                            <div class="laptop-mockup">
+                                <div class="laptop-mockup-3d">
+                                    <div class="laptop-frame">
+                                        <div class="laptop-screen">
+                                            <img src="features/public-website.jpg" alt="Public Website" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5QdWJsaWMgV2Vic2l0ZTwvdGV4dD48dGV4dCB4PSI5NjAiIHk9IjYyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TY3JlZW5zaG90IHBsYWNlaG9sZGVyPC90ZXh0Pjwvc3ZnPg==';">
+                                        </div>
+                                    </div>
+                                    <div class="laptop-base"></div>
+                                </div>
+                            </div>
+                            <div class="phone-mockup">
+                                <div class="phone-mockup-3d">
+                                    <div class="phone-frame">
+                                        <div class="phone-notch"></div>
+                                        <div class="phone-screen">
+                                            <img src="features/mobile-app.jpg" alt="Mobile App" class="phone-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iMjMwMCIgZmlsbD0iIzI0MjQzMCIgcng9IjIwIi8+PHRleHQgeD0iNTQwIiB5PSIxMTgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Nb2JpbGUgQXBwPC90ZXh0Pjx0ZXh0IHg9IjU0MCIgeT0iMTI1MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TY3JlZW5zaG90IHBsYWNlaG9sZGVyPC90ZXh0Pjwvc3ZnPg==';">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Feature 1: Form Builder -->
-                <div class="feature-subscreen active" data-feature="form-builder">
+                <div class="feature-subscreen" data-feature="form-builder">
                     <div class="laptop-mockup">
                         <div class="laptop-mockup-3d">
                             <div class="laptop-frame">
@@ -1788,12 +1996,13 @@
 
             <!-- Feature Navigation -->
             <div class="feature-nav" id="featureNav">
-                <button class="feature-nav-button active" data-feature-index="0">Form Builder</button>
-                <button class="feature-nav-button" data-feature-index="1">Multi-Language</button>
-                <button class="feature-nav-button" data-feature-index="2">Analytics</button>
-                <button class="feature-nav-button" data-feature-index="3">Mobile</button>
-                <button class="feature-nav-button" data-feature-index="4">Security</button>
-                <button class="feature-nav-button" data-feature-index="5">Communication</button>
+                <button class="feature-nav-button active" data-feature-index="0">Overview</button>
+                <button class="feature-nav-button" data-feature-index="1">Form Builder</button>
+                <button class="feature-nav-button" data-feature-index="2">Multi-Language</button>
+                <button class="feature-nav-button" data-feature-index="3">Analytics</button>
+                <button class="feature-nav-button" data-feature-index="4">Mobile</button>
+                <button class="feature-nav-button" data-feature-index="5">Security</button>
+                <button class="feature-nav-button" data-feature-index="6">Communication</button>
             </div>
         </div>
     </section>
@@ -2108,7 +2317,7 @@
         }
 
         // Feature Subscreens Navigation
-        const features = ['form-builder', 'multi-language', 'analytics', 'mobile', 'security', 'communication'];
+        const features = ['overview', 'form-builder', 'multi-language', 'analytics', 'mobile', 'security', 'communication'];
         let currentFeatureIndex = 0;
 
         function showFeature(index) {
@@ -2163,10 +2372,13 @@
             
             // Clone the mockup
             const clonedMockup = mockupElement.cloneNode(true);
-            clonedMockup.querySelector('.laptop-mockup-3d').style.transform = 'rotateX(5deg) rotateY(0deg) rotateZ(0deg) scale(1.2)';
+            const mockup3d = clonedMockup.querySelector('.laptop-mockup-3d, .phone-mockup-3d');
+            if (mockup3d) {
+                mockup3d.style.transform = 'rotateX(5deg) rotateY(0deg) rotateZ(0deg) scale(1.2)';
+            }
             
             // Clear previous content
-            const existingMockup = content.querySelector('.laptop-mockup');
+            const existingMockup = content.querySelector('.laptop-mockup, .phone-mockup');
             if (existingMockup) {
                 existingMockup.remove();
             }
@@ -2185,9 +2397,9 @@
             document.body.style.overflow = '';
         }
 
-        // Add click handlers to laptop mockups
+        // Add click handlers to laptop and phone mockups
         function attachMockupClickHandlers() {
-            document.querySelectorAll('.laptop-mockup').forEach(mockup => {
+            document.querySelectorAll('.laptop-mockup, .phone-mockup').forEach(mockup => {
                 // Remove existing handler if any
                 const newMockup = mockup.cloneNode(true);
                 mockup.parentNode.replaceChild(newMockup, mockup);
@@ -2306,10 +2518,13 @@
             
             // Clone the mockup
             const clonedMockup = mockupElement.cloneNode(true);
-            clonedMockup.querySelector('.laptop-mockup-3d').style.transform = 'rotateX(5deg) rotateY(0deg) rotateZ(0deg) scale(1.2)';
+            const mockup3d = clonedMockup.querySelector('.laptop-mockup-3d, .phone-mockup-3d');
+            if (mockup3d) {
+                mockup3d.style.transform = 'rotateX(5deg) rotateY(0deg) rotateZ(0deg) scale(1.2)';
+            }
             
             // Clear previous content
-            const existingMockup = content.querySelector('.laptop-mockup');
+            const existingMockup = content.querySelector('.laptop-mockup, .phone-mockup');
             if (existingMockup) {
                 existingMockup.remove();
             }
@@ -2328,9 +2543,9 @@
             document.body.style.overflow = '';
         }
 
-        // Add click handlers to laptop mockups
+        // Add click handlers to laptop and phone mockups
         function attachMockupClickHandlers() {
-            document.querySelectorAll('.laptop-mockup').forEach(mockup => {
+            document.querySelectorAll('.laptop-mockup, .phone-mockup').forEach(mockup => {
                 // Remove existing handler if any
                 const newMockup = mockup.cloneNode(true);
                 mockup.parentNode.replaceChild(newMockup, mockup);
