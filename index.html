@@ -516,17 +516,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr;
             opacity: 0;
             transform: translateX(100%);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
-            padding: 4rem 2rem 8rem;
+            padding: 4rem;
             box-sizing: border-box;
             z-index: 1;
+            gap: 3rem;
+            align-items: end;
         }
 
         .feature-subscreen.active {
@@ -544,10 +545,25 @@
         /* Laptop Mockup */
         .laptop-mockup {
             width: 100%;
-            max-width: 1400px;
+            max-width: 600px;
             position: relative;
-            margin: 0 auto 2rem;
+            margin: 0;
             flex-shrink: 0;
+            grid-column: 1;
+            grid-row: 1;
+            align-self: end;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .laptop-mockup-3d {
+            transform: rotateX(60deg) rotateY(-25deg) rotateZ(5deg);
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .laptop-mockup-3d:hover {
+            transform: rotateX(55deg) rotateY(-20deg) rotateZ(3deg) scale(1.05);
         }
 
         .laptop-frame {
@@ -556,9 +572,11 @@
             padding: 15px;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 
                         0 0 60px rgba(139, 92, 246, 0.4),
-                        inset 0 2px 4px rgba(255, 255, 255, 0.1);
+                        inset 0 2px 4px rgba(255, 255, 255, 0.1),
+                        0 20px 40px rgba(0, 0, 0, 0.5);
             position: relative;
             border: 1px solid rgba(139, 92, 246, 0.2);
+            transform: translateZ(20px);
         }
 
         .laptop-screen {
@@ -614,8 +632,11 @@
             height: 20px;
             background: linear-gradient(135deg, #0f0f15 0%, #1a1a24 50%, #0f0f15 100%);
             border-radius: 0 0 20px 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6),
+                        0 15px 50px rgba(0, 0, 0, 0.4);
             position: relative;
+            transform: translateZ(0px) rotateX(-5deg);
+            transform-origin: top;
         }
 
         .laptop-base::before {
@@ -631,23 +652,29 @@
         }
 
         .feature-info {
-            margin-top: 2rem;
-            text-align: center;
-            max-width: 900px;
+            grid-column: 2;
+            grid-row: 1;
+            align-self: center;
+            text-align: left;
+            max-width: 100%;
+            padding: 2rem;
             flex-shrink: 0;
         }
 
         .feature-info h3 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             color: var(--text-color);
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+            font-weight: 800;
+            line-height: 1.2;
         }
 
         .feature-info p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
-            line-height: 1.8;
+            line-height: 2;
+            max-width: 600px;
         }
 
         /* Feature Navigation */
@@ -1441,21 +1468,38 @@
                 padding: 5rem 1rem 1rem;
             }
 
+            .feature-subscreen {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+                padding: 2rem 1rem;
+                align-items: center;
+            }
+
             .laptop-mockup {
                 max-width: 100%;
+                grid-column: 1;
+                grid-row: 1;
+                align-self: center;
+            }
+
+            .laptop-mockup-3d {
+                transform: rotateX(50deg) rotateY(-20deg) rotateZ(3deg) scale(0.9);
             }
 
             .feature-info {
-                margin-top: 1.5rem;
+                grid-column: 1;
+                grid-row: 2;
+                margin-top: 2rem;
                 padding: 0 1rem;
+                text-align: center;
             }
 
             .feature-info h3 {
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
 
             .feature-info p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .feature-nav {
@@ -1577,12 +1621,14 @@
                 <!-- Feature 2: Multi-Language -->
                 <div class="feature-subscreen" data-feature="multi-language">
                     <div class="laptop-mockup">
-                        <div class="laptop-frame">
-                            <div class="laptop-screen">
-                                <img src="features/multi-language.jpg" alt="Multi-Language Support" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5NdWx0aS1MYW5ndWFnZTwvdGV4dD48dGV4dCB4PSI5NjAiIHk9IjYyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TY3JlZW5zaG90IHBsYWNlaG9sZGVyPC90ZXh0Pjwvc3ZnPg==';">
+                        <div class="laptop-mockup-3d">
+                            <div class="laptop-frame">
+                                <div class="laptop-screen">
+                                    <img src="features/multi-language.jpg" alt="Multi-Language Support" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5NdWx0aS1MYW5ndWFnZTwvdGV4dD48dGV4dCB4PSI5NjAiIHk9IjYyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TY3JlZW5zaG90IHBsYWNlaG9sZGVyPC90ZXh0Pjwvc3ZnPg==';">
+                                </div>
                             </div>
+                            <div class="laptop-base"></div>
                         </div>
-                        <div class="laptop-base"></div>
                     </div>
                     <div class="feature-info">
                         <h3>🌍 Multi-Language Support</h3>
@@ -1595,12 +1641,14 @@
                 <!-- Feature 3: Analytics -->
                 <div class="feature-subscreen" data-feature="analytics">
                     <div class="laptop-mockup">
-                        <div class="laptop-frame">
-                            <div class="laptop-screen">
-                                <img src="features/analytics.jpg" alt="Advanced Analytics" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5BbmFseXRpY3M8L3RleHQ+PHRleHQgeD0iOTYwIiB5PSI2MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzljYTNhZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2NyZWVuc2hvdCBwbGFjZWhvbGRlcjwvdGV4dD48L3N2Zz4=';">
+                        <div class="laptop-mockup-3d">
+                            <div class="laptop-frame">
+                                <div class="laptop-screen">
+                                    <img src="features/analytics.jpg" alt="Advanced Analytics" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5BbmFseXRpY3M8L3RleHQ+PHRleHQgeD0iOTYwIiB5PSI2MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzljYTNhZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2NyZWVuc2hvdCBwbGFjZWhvbGRlcjwvdGV4dD48L3N2Zz4=';">
+                                </div>
                             </div>
+                            <div class="laptop-base"></div>
                         </div>
-                        <div class="laptop-base"></div>
                     </div>
                     <div class="feature-info">
                         <h3>📊 Advanced Analytics</h3>
@@ -1613,12 +1661,14 @@
                 <!-- Feature 4: Mobile Access -->
                 <div class="feature-subscreen" data-feature="mobile">
                     <div class="laptop-mockup">
-                        <div class="laptop-frame">
-                            <div class="laptop-screen">
-                                <img src="features/mobile.jpg" alt="Mobile Access" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Nb2JpbGUgQWNjZXNzPC90ZXh0Pjx0ZXh0IHg9Ijk2MCIgeT0iNjIwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5Y2EzYWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNjcmVlbnNob3QgcGxhY2Vob2xkZXI8L3RleHQ+PC9zdmc+';">
+                        <div class="laptop-mockup-3d">
+                            <div class="laptop-frame">
+                                <div class="laptop-screen">
+                                    <img src="features/mobile.jpg" alt="Mobile Access" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Nb2JpbGUgQWNjZXNzPC90ZXh0Pjx0ZXh0IHg9Ijk2MCIgeT0iNjIwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5Y2EzYWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNjcmVlbnNob3QgcGxhY2Vob2xkZXI8L3RleHQ+PC9zdmc+';">
+                                </div>
                             </div>
+                            <div class="laptop-base"></div>
                         </div>
-                        <div class="laptop-base"></div>
                     </div>
                     <div class="feature-info">
                         <h3>📱 Mobile Access</h3>
@@ -1630,12 +1680,14 @@
                 <!-- Feature 5: Security -->
                 <div class="feature-subscreen" data-feature="security">
                     <div class="laptop-mockup">
-                        <div class="laptop-frame">
-                            <div class="laptop-screen">
-                                <img src="features/security.jpg" alt="Enterprise Security" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5TZWN1cml0eTwvdGV4dD48dGV4dCB4PSI5NjAiIHk9IjYyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TY3JlZW5zaG90IHBsYWNlaG9sZGVyPC90ZXh0Pjwvc3ZnPg==';">
+                        <div class="laptop-mockup-3d">
+                            <div class="laptop-frame">
+                                <div class="laptop-screen">
+                                    <img src="features/security.jpg" alt="Enterprise Security" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5TZWN1cml0eTwvdGV4dD48dGV4dCB4PSI5NjAiIHk9IjYyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TY3JlZW5zaG90IHBsYWNlaG9sZGVyPC90ZXh0Pjwvc3ZnPg==';">
+                                </div>
                             </div>
+                            <div class="laptop-base"></div>
                         </div>
-                        <div class="laptop-base"></div>
                     </div>
                     <div class="feature-info">
                         <h3>🔐 Enterprise Security</h3>
@@ -1647,12 +1699,14 @@
                 <!-- Feature 6: Communication -->
                 <div class="feature-subscreen" data-feature="communication">
                     <div class="laptop-mockup">
-                        <div class="laptop-frame">
-                            <div class="laptop-screen">
-                                <img src="features/communication.jpg" alt="Smart Communication" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Db21tdW5pY2F0aW9uPC90ZXh0Pjx0ZXh0IHg9Ijk2MCIgeT0iNjIwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5Y2EzYWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNjcmVlbnNob3QgcGxhY2Vob2xkZXI8L3RleHQ+PC9zdmc+';">
+                        <div class="laptop-mockup-3d">
+                            <div class="laptop-frame">
+                                <div class="laptop-screen">
+                                    <img src="features/communication.jpg" alt="Smart Communication" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Db21tdW5pY2F0aW9uPC90ZXh0Pjx0ZXh0IHg9Ijk2MCIgeT0iNjIwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5Y2EzYWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNjcmVlbnNob3QgcGxhY2Vob2xkZXI8L3RleHQ+PC9zdmc+';">
+                                </div>
                             </div>
+                            <div class="laptop-base"></div>
                         </div>
-                        <div class="laptop-base"></div>
                     </div>
                     <div class="feature-info">
                         <h3>💬 Smart Communication</h3>
