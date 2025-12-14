@@ -24,7 +24,6 @@ async function loadPartials() {
     await Promise.all([
         loadPartial('partials/background.html', '#background-container'),
         loadPartial('partials/navigation.html', '#navigation-container'),
-        loadPartial('partials/screen-indicator.html', '#screen-indicator-container'),
         loadPartial('partials/hero.html', '#hero-container'),
         loadPartial('partials/project-details.html', '#project-details-container'),
         loadPartial('partials/about.html', '#about-container'),

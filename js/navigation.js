@@ -307,13 +307,22 @@ function showScreen(index, updateUrl = true) {
     if (screens[index] === 'databank-details') {
         setTimeout(() => {
             if (typeof showFeature === 'function') {
-                showFeature(0);
+                // Check if URL has a specific feature path
+                const path = window.location.pathname;
+                const match = path.match(/^\/project\/(.+)$/);
+                if (match && typeof getFeatureFromUrl === 'function') {
+                    const featureIndex = getFeatureFromUrl();
+                    if (featureIndex !== null) {
+                        showFeature(featureIndex, false); // Don't update URL, we're initializing from it
+                    } else {
+                        showFeature(0, false);
+                    }
+                } else {
+                    showFeature(0, false);
+                }
             }
         }, 100);
     }
-
-    // Update screen indicators
-    updateScreenIndicators(index);
 
     // Update nav links
     updateNavLinks(index);
@@ -325,22 +334,29 @@ function showScreen(index, updateUrl = true) {
         document.title = `${title} - Haytham Alsoufi`;
 
         // Use History API for http/https protocols
-        const path = screenToPath[screenName] || '/';
-        window.history.pushState({ screen: screenName, index: index }, title, path);
+        let path = screenToPath[screenName] || '/';
+        
+        // For databank-details, preserve current feature path if navigating to this screen
+        // (but don't preserve if navigating away from it)
+        if (screenName === 'databank-details' && currentScreenIndex === index) {
+            const currentPath = window.location.pathname;
+            if (currentPath.startsWith('/project/') && currentPath !== '/project') {
+                path = currentPath; // Preserve the feature path
+            }
+        }
+        
+        // Get current feature index if on databank-details
+        let featureIndex = null;
+        if (screenName === 'databank-details' && typeof window.currentFeatureIndex !== 'undefined') {
+            featureIndex = window.currentFeatureIndex;
+        }
+        
+        window.history.pushState({ 
+            screen: screenName, 
+            index: index,
+            featureIndex: featureIndex 
+        }, title, path);
     }
-}
-
-function updateScreenIndicators(activeIndex) {
-    const indicator = document.getElementById('screenIndicator');
-    if (!indicator) return;
-    
-    indicator.innerHTML = '';
-    screens.forEach((screen, index) => {
-        const dot = document.createElement('div');
-        dot.className = 'screen-dot' + (index === activeIndex ? ' active' : '');
-        dot.addEventListener('click', () => goToScreen(index));
-        indicator.appendChild(dot);
-    });
 }
 
 function updateNavLinks(activeIndex) {
@@ -370,6 +386,12 @@ function goToScreenByName(screenName, updateUrl = true) {
 function getScreenFromUrl() {
     // Use pathname for http/https protocols
     const path = window.location.pathname;
+    
+    // Check if path matches /project/:feature pattern
+    if (path.startsWith('/project/')) {
+        return screens.indexOf('databank-details');
+    }
+    
     const screenName = pathToScreen[path] || 'home';
     return screens.indexOf(screenName);
 }
@@ -391,11 +413,30 @@ window.addEventListener('popstate', (e) => {
     if (e.state && e.state.index !== undefined) {
         currentScreenIndex = e.state.index;
         showScreen(e.state.index, false); // Don't update URL, we're already there
+        
+        // If on databank-details screen, also handle feature navigation
+        if (screens[e.state.index] === 'databank-details' && e.state.featureIndex !== undefined) {
+            if (typeof showFeature === 'function') {
+                setTimeout(() => {
+                    showFeature(e.state.featureIndex, false);
+                }, 100);
+            }
+        }
     } else {
         // Fallback: read from current URL
         const index = getScreenFromUrl();
         currentScreenIndex = index;
         showScreen(index, false);
+        
+        // If on databank-details screen, check for feature in URL
+        if (screens[index] === 'databank-details' && typeof getFeatureFromUrl === 'function') {
+            setTimeout(() => {
+                const featureIndex = getFeatureFromUrl();
+                if (featureIndex !== null && typeof showFeature === 'function') {
+                    showFeature(featureIndex, false);
+                }
+            }, 100);
+        }
     }
 });
 
@@ -438,10 +479,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set initial state for browser history
     const screenName = screens[initialIndex];
-    const path = screenToPath[screenName] || '/';
+    // Preserve the current path if it includes a feature (for databank-details)
+    let path = window.location.pathname;
+    if (screenName === 'databank-details') {
+        // If current path has a feature, keep it; otherwise use base path
+        if (!path.startsWith('/project/') || path === '/project') {
+            path = screenToPath[screenName] || '/project';
+        }
+    } else {
+        path = screenToPath[screenName] || '/';
+    }
     const title = document.querySelector(`nav a[data-screen="${screenName}"]`)?.textContent || 'Portfolio';
-    window.history.replaceState({ screen: screenName, index: initialIndex }, title, path);
-    console.log('[DEBUG] Set history state:', { screen: screenName, index: initialIndex, path });
+    
+    // Get feature index if on databank-details with a feature path
+    let featureIndex = null;
+    if (screenName === 'databank-details' && typeof getFeatureFromUrl === 'function') {
+        featureIndex = getFeatureFromUrl();
+    }
+    
+    window.history.replaceState({ 
+        screen: screenName, 
+        index: initialIndex,
+        featureIndex: featureIndex 
+    }, title, path);
+    console.log('[DEBUG] Set history state:', { screen: screenName, index: initialIndex, path, featureIndex });
 
     // On mobile, ensure only the initial section is visible
     const isMobile = window.innerWidth <= 768;
@@ -481,6 +542,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show the correct screen (don't update URL since we just set it)
     console.log('[DEBUG] Calling showScreen with index:', initialIndex);
     showScreen(initialIndex, false);
+    
+    // If on databank-details screen, check for feature in URL
+    if (screens[initialIndex] === 'databank-details' && typeof getFeatureFromUrl === 'function') {
+        setTimeout(() => {
+            const featureIndex = getFeatureFromUrl();
+            if (featureIndex !== null && typeof showFeature === 'function') {
+                showFeature(featureIndex, false); // Don't update URL, we're initializing from it
+            }
+        }, 150);
+    }
+    
     console.log('[DEBUG] Navigation initialization complete');
 });
 

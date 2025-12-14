@@ -16,10 +16,14 @@
         localStorage.setItem('theme', theme);
         
         // Update icon (show the theme you'll switch to, not current theme)
+        const sunIcon = themeIcon.querySelector('.icon-sun');
+        const moonIcon = themeIcon.querySelector('.icon-moon');
         if (theme === 'light') {
-            themeIcon.textContent = '🌙';
+            if (sunIcon) sunIcon.style.display = 'none';
+            if (moonIcon) moonIcon.style.display = 'block';
         } else {
-            themeIcon.textContent = '☀️';
+            if (sunIcon) sunIcon.style.display = 'block';
+            if (moonIcon) moonIcon.style.display = 'none';
         }
     };
 

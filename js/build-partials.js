@@ -12,7 +12,6 @@ const indexOutput = path.join(__dirname, '..', 'index.html');
 const partials = {
     'background': fs.readFileSync(path.join(partialsDir, 'background.html'), 'utf8'),
     'navigation': fs.readFileSync(path.join(partialsDir, 'navigation.html'), 'utf8'),
-    'screen-indicator': fs.readFileSync(path.join(partialsDir, 'screen-indicator.html'), 'utf8'),
     'hero': fs.readFileSync(path.join(partialsDir, 'hero.html'), 'utf8'),
     'project-details': fs.readFileSync(path.join(partialsDir, 'project-details.html'), 'utf8'),
     'about': fs.readFileSync(path.join(partialsDir, 'about.html'), 'utf8'),

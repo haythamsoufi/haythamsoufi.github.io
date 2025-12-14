@@ -10,13 +10,27 @@ layout: default
 </div>
 
 <style>
+:root {
+  --home-nav-offset: clamp(80px, 12vh, 150px);
+}
+
+.home {
+  padding-top: calc(var(--home-nav-offset) + 1.5rem);
+}
+
+@media (max-width: 768px) {
+  .home {
+    padding-top: calc(var(--home-nav-offset) + 3rem);
+  }
+}
+
 .hero {
   text-align: center;
   padding: 4rem 2rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border-radius: 20px;
-  margin: 2rem 0;
+  margin: 0 0 2rem;
 }
 
 .hero h1 {
