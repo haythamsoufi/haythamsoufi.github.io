@@ -75,12 +75,47 @@ function closeMockupFullscreen() {
     document.body.style.overflow = '';
 }
 
+// Adjust mockup screen aspect ratio based on image
+function adjustMockupAspectRatio(mockupElement) {
+    const screenContent = mockupElement.querySelector('.laptop-screen-content, .phone-screen-content');
+    const screen = mockupElement.querySelector('.laptop-screen, .phone-screen');
+    
+    if (!screenContent || !screen) return;
+    
+    const img = new Image();
+    img.onload = function() {
+        const imageAspectRatio = img.naturalWidth / img.naturalHeight;
+        // Set the screen's aspect ratio to match the image
+        screen.style.aspectRatio = `${imageAspectRatio} / 1`;
+        // Use contain to show full image without cropping
+        if (screenContent) {
+            screenContent.style.objectFit = 'contain';
+        }
+    };
+    img.onerror = function() {
+        // If image fails to load, use default aspect ratio
+        if (screen.classList.contains('laptop-screen')) {
+            screen.style.aspectRatio = '16 / 10';
+        } else if (screen.classList.contains('phone-screen')) {
+            screen.style.aspectRatio = '9 / 19.5';
+        }
+    };
+    // Set image source
+    img.src = screenContent.src || screenContent.getAttribute('src');
+}
+
 // Add click handlers to laptop and phone mockups
 function attachMockupClickHandlers() {
     document.querySelectorAll('.laptop-mockup, .phone-mockup').forEach(mockup => {
+        // Adjust aspect ratio for this mockup
+        adjustMockupAspectRatio(mockup);
+        
         // Remove existing handler if any
         const newMockup = mockup.cloneNode(true);
         mockup.parentNode.replaceChild(newMockup, mockup);
+        
+        // Adjust aspect ratio for the new mockup
+        adjustMockupAspectRatio(newMockup);
         
         newMockup.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -104,9 +139,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close on background click
     const fullscreen = document.getElementById('mockupFullscreen');
+    const content = fullscreen ? fullscreen.querySelector('.mockup-fullscreen-content') : null;
+    
     if (fullscreen) {
         fullscreen.addEventListener('click', (e) => {
-            if (e.target.id === 'mockupFullscreen') {
+            // Close if clicking on the backdrop (not on content or its children, and not on close button)
+            const isCloseButton = e.target.closest('#mockupCloseButton');
+            const isContent = e.target.closest('.mockup-fullscreen-content');
+            
+            if (!isCloseButton && !isContent) {
                 closeMockupFullscreen();
             }
         });

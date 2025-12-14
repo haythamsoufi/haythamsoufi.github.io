@@ -35,34 +35,37 @@
     <div class="screens-container">
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" role="region" aria-label="Home">
         <div class="hero-content">
-            <div class="hero-left">
-                <h1>Hi, I'm Haytham Alsoufi</h1>
-                <p class="typing-text" id="typing-text">Data Collection & Analysis | Vibe Code | Graphic & UI/UX Designer</p>
-            
-                <div class="hero-main-info">
-                    <h2>Full-Stack Developer & Designer</h2>
+            <div class="hero-intro">
+                <div class="hero-greeting">
+                    <span class="greeting-text">Hello, I'm</span>
+                    <h1 class="hero-name">Haytham Alsoufi</h1>
+                    <h2 class="hero-subtitle">Data Passionate & Humanitarian</h2>
+                </div>
+                <p class="typing-text" id="typing-text">Data Collection | Data Systems | Data Visualization | Vibe Coding</p>
+                <div class="hero-description">
                     <p>
-                        I'm a passionate <span class="highlight">full-stack developer</span> and <span class="highlight">designer</span> who loves building solutions that make a real impact. 
-                        With expertise in <span class="highlight">data collection systems</span>, modern web development, and user experience design, I combine 
-                        technical skills with creative vision to create meaningful digital experiences.
+                        I'm a passionate <span class="highlight">data systems specialist</span> and <span class="highlight">humanitarian professional</span> who loves creating solutions that drive positive change.
+                        With expertise in <span class="highlight">data collection systems</span>, information management, and humanitarian data analysis, I combine
+                        technical skills with field experience to support global humanitarian responses.
                     </p>
                     <p>
-                        I believe in <span class="highlight">"vibe coding"</span> - building with passion, creativity, and a focus on what truly matters. 
-                        Whether it's developing complex data management platforms or crafting beautiful user interfaces, 
-                        I approach every project with enthusiasm and attention to detail.
+                        I believe in the power of data to drive positive change, especially in humanitarian contexts.
+                        Whether it's producing impactful reports for international organizations, ensuring data quality in conflict zones,
+                        or creating interactive dashboards that inform global decision-making, I approach every project with enthusiasm and attention to detail.
                     </p>
                 </div>
-                </div>
+            </div>
 
-            <div class="hero-right">
-                <div class="recent-project">
-                    <h2>Recent Project</h2>
-                    <h3>Unified Data Collection System</h3>
-                    <p>
-                        A comprehensive, open-source platform designed to streamline data collection, management, and reporting 
-                        for humanitarian organizations. Built with the needs of NGOs, international organizations, and field teams 
+            <div class="hero-main">
+
+                <div class="hero-project">
+                    <div class="project-label">Featured Project</div>
+                    <h3 class="project-title">Unified Data Collection System</h3>
+                    <p class="project-description">
+                        A comprehensive, open-source platform designed to streamline data collection, management, and reporting
+                        for humanitarian organizations. Built with the needs of NGOs, international organizations, and field teams
                         in mind, this system enables teams to work more efficiently and make data-driven decisions.
                     </p>
                     <div class="project-features-preview">
@@ -71,9 +74,12 @@
                         <span class="feature-badge">Analytics</span>
                         <span class="feature-badge">Mobile Apps</span>
                     </div>
-                <a href="#" class="project-cta" data-screen="databank-details">
-                        🚀 Explore Project
-                </a>
+                    <a href="#" class="project-cta" data-screen="databank-details" aria-label="Explore Unified Data Collection System project">
+                        <span>Explore Project</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -269,28 +275,84 @@
     <!-- About Section -->
     <section id="about" class="about">
         <h2 class="section-title fade-in">About Me</h2>
+        <div class="about-intro fade-in" style="margin-bottom: 3rem; text-align: center; color: var(--text-secondary); max-width: 800px; margin-left: auto; margin-right: auto;">
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                I'm a data systems professional and humanitarian worker with extensive experience in data collection,
+                analysis, and visualization. Currently working as an Officer for Federation-wide Data Collection and
+                Analysis at the International Federation of Red Cross and Red Crescent Societies (IFRC) in Geneva, Switzerland.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                With a background in mechanical engineering and hands-on experience in information management,
+                I bridge the gap between technical expertise and humanitarian needs. My work spans from field data
+                collection in conflict zones to creating interactive dashboards that inform global humanitarian responses.
+            </p>
+        </div>
         <div class="about-content">
-            <div class="about-text fade-in" style="color: var(--text-secondary);">
-                <p>
-                    I'm a passionate developer and designer with experience in data collection systems, 
-                    full-stack development, and UI/UX design. I love building solutions that make a difference 
-                    and am always eager to learn new technologies and tackle challenging problems.
-                </p>
-                <p>
-                    When I'm not coding, you can find me exploring new design trends, contributing to open-source 
-                    projects, or working on creative side projects. I believe in continuous learning and the 
-                    power of "vibe coding" - building with passion and creativity.
-                </p>
+            <div class="about-text fade-in">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.5rem; text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);">Core Expertise</h3>
+                <ul style="list-style: none; line-height: 2.5;">
+                    <li style="margin-bottom: 0.8rem;">📊 Data Visualization & Analysis</li>
+                    <li style="margin-bottom: 0.8rem;">🎨 Graphic Design & UI/UX</li>
+                    <li style="margin-bottom: 0.8rem;">🔧 Information Management Systems</li>
+                    <li style="margin-bottom: 0.8rem;">🌍 Geospatial Data Analysis</li>
+                    <li style="margin-bottom: 0.8rem;">✨ Full-stack Development</li>
+                </ul>
             </div>
             <div class="about-text fade-in">
-                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.5rem; text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);">What I Do</h3>
-                <ul style="list-style: none; line-height: 2.5;">
-                    <li style="margin-bottom: 0.8rem;">✨ Full-stack development</li>
-                    <li style="margin-bottom: 0.8rem;">🎨 UI/UX Design</li>
-                    <li style="margin-bottom: 0.8rem;">📊 Data collection & analysis</li>
-                    <li style="margin-bottom: 0.8rem;">🚀 Open-source contributions</li>
-                    <li style="margin-bottom: 0.8rem;">✍️ Technical writing</li>
-                </ul>
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.5rem; text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);">Professional Highlights</h3>
+                <div style="margin-top: 1rem;">
+                    <h4 style="color: var(--text-color); margin-bottom: 0.5rem; font-size: 1.1rem;">🌐 Languages</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary);">
+                        <li style="margin-bottom: 0.3rem;">• English (Professional)</li>
+                        <li style="margin-bottom: 0.3rem;">• Arabic (Native/Bilingual)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="about-text fade-in">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; font-size: 1.5rem; text-shadow: 0 0 20px rgba(139, 92, 246, 0.3);">Professional Experience</h3>
+                <div style="margin-top: 1rem; position: relative;">
+                    <div style="position: relative; padding-left: 2rem; margin-bottom: 2rem;">
+                        <div style="position: absolute; left: 0; top: 0.5rem; width: 8px; height: 8px; background: var(--gradient-1); border-radius: 50%; box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);"></div>
+                        <div style="border-left: 2px solid var(--primary-color); opacity: 0.3; position: absolute; left: 3px; top: 1rem; height: calc(100% - 1rem);"></div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.1rem; font-weight: 600;">International Federation of Red Cross and Red Crescent Societies</h4>
+                        <div style="margin-bottom: 0.8rem;">
+                            <div style="font-weight: 600; color: var(--text-color); font-size: 1rem; margin-bottom: 0.2rem;">Officer, Federation-wide Data Collection and Analysis</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">July 2023 - Present • Geneva, Switzerland</div>
+                        </div>
+                        <div style="margin-bottom: 0.8rem;">
+                            <div style="font-weight: 600; color: var(--text-color); font-size: 1rem; margin-bottom: 0.2rem;">Data Analyst Intern</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">January 2022 - June 2023 • Geneva, Switzerland</div>
+                        </div>
+                    </div>
+
+                    <div style="position: relative; padding-left: 2rem; margin-bottom: 2rem;">
+                        <div style="position: absolute; left: 0; top: 0.5rem; width: 8px; height: 8px; background: var(--gradient-1); border-radius: 50%; box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);"></div>
+                        <div style="border-left: 2px solid var(--primary-color); opacity: 0.3; position: absolute; left: 3px; top: 1rem; height: calc(100% - 1rem);"></div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.1rem; font-weight: 600;">Syrian Arab Red Crescent (SARC)</h4>
+                        <div style="margin-bottom: 0.8rem;">
+                            <div style="font-weight: 600; color: var(--text-color); font-size: 1rem; margin-bottom: 0.2rem;">Information Management Assistant</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">November 2018 - January 2022 • Syria</div>
+                        </div>
+                        <div style="margin-bottom: 0.8rem;">
+                            <div style="font-weight: 600; color: var(--text-color); font-size: 1rem; margin-bottom: 0.2rem;">Nutrition Assistant</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">June 2017 - November 2018 • Syria</div>
+                        </div>
+                    </div>
+
+                    <div style="position: relative; padding-left: 2rem; margin-bottom: 1rem;">
+                        <div style="position: absolute; left: 0; top: 0.5rem; width: 8px; height: 8px; background: var(--gradient-1); border-radius: 50%; box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);"></div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 0.5rem; font-size: 1.1rem; font-weight: 600;">Freelance Graphic Designer</h4>
+                        <div style="margin-bottom: 0.5rem;">
+                            <div style="font-weight: 600; color: var(--text-color); font-size: 1rem; margin-bottom: 0.2rem;">Mostaql.com | مستقل</div>
+                            <div style="color: var(--text-secondary); font-size: 0.9rem;">May 2016 - December 2021 • Syria</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-text fade-in" style="text-align: center; margin-top: 2rem;">
+                <p style="color: var(--text-secondary); font-style: italic;">
+                    "I believe in the power of data to drive positive change, especially in humanitarian contexts."
+                </p>
             </div>
         </div>
     </section>

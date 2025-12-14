@@ -19,28 +19,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Create animated particles
+// Create static particles (no animation)
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
     if (!particlesContainer) return;
-    
-    const particleCount = 50;
+
+    const particleCount = 30; // Reduced count for static particles
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
-        
-        const size = Math.random() * 5 + 2;
+
+        const size = Math.random() * 4 + 1; // Smaller particles
         const left = Math.random() * 100;
-        const delay = Math.random() * 20;
-        const duration = Math.random() * 10 + 15;
-        
+        const top = Math.random() * 100;
+
         particle.style.width = size + 'px';
         particle.style.height = size + 'px';
         particle.style.left = left + '%';
-        particle.style.animationDelay = delay + 's';
-        particle.style.animationDuration = duration + 's';
-        
+        particle.style.top = top + '%';
+
         particlesContainer.appendChild(particle);
     }
 }
@@ -65,6 +63,11 @@ function typeWriter(element, text, speed = 100) {
     
     type();
 }
+
+// Initialize static particles on load
+document.addEventListener('DOMContentLoaded', () => {
+    createParticles();
+});
 
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {

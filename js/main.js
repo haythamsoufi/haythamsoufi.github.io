@@ -50,65 +50,133 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Prevent default scroll behavior - horizontal wheel navigation
+// Horizontal wheel navigation - only prevent default for horizontal scrolling
+let lastWheelNavigationTime = 0;
+const wheelNavigationCooldown = 600; // Minimum time between navigations (ms)
+
 document.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    const databankActive = document.getElementById('databank-details')?.classList.contains('active');
+    // Only handle horizontal scrolling (deltaX) or when horizontal is dominant
+    // Allow vertical scrolling (deltaY) to work normally
+    const isHorizontalScroll = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+    const horizontalThreshold = 30; // Increased threshold to require more deliberate scrolling
     
-    if (databankActive) {
-        // Navigate features when on databank screen
-        if (e.deltaX > 0 || (e.deltaX === 0 && e.deltaY > 0)) {
-            nextFeature();
+    // Check cooldown to prevent rapid multiple navigations
+    const now = Date.now();
+    if (isHorizontalScroll && Math.abs(e.deltaX) > horizontalThreshold && (now - lastWheelNavigationTime) > wheelNavigationCooldown) {
+        e.preventDefault();
+        lastWheelNavigationTime = now;
+        
+        const databankActive = document.getElementById('databank-details')?.classList.contains('active');
+        
+        if (databankActive) {
+            // Navigate features when on databank screen
+            if (e.deltaX > 0) {
+                nextFeature();
+            } else {
+                prevFeature();
+            }
         } else {
-            prevFeature();
-        }
-    } else {
-        // Navigate main screens otherwise
-        if (e.deltaX > 0 || (e.deltaX === 0 && e.deltaY > 0)) {
-            nextScreen();
-        } else {
-            prevScreen();
+            // Navigate main screens otherwise
+            if (e.deltaX > 0) {
+                nextScreen();
+            } else {
+                prevScreen();
+            }
         }
     }
+    // If vertical scrolling (deltaY is dominant), don't prevent default - allow normal scrolling
 }, { passive: false });
 
-// Touch swipe support - horizontal
+// Touch swipe support - distinguish horizontal vs vertical swipes
 let touchStartX = 0;
+let touchStartY = 0;
 let touchEndX = 0;
+let touchEndY = 0;
+let lastSwipeTime = 0;
+let isSwipeProcessing = false;
+const swipeCooldown = 800; // Minimum time between swipes (ms)
+const swipeThreshold = 100; // Increased threshold - requires more deliberate swipe
 
 document.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+    // Reset if enough time has passed since last swipe
+    const now = Date.now();
+    if (now - lastSwipeTime > swipeCooldown) {
+        isSwipeProcessing = false;
+    }
+    
+    if (!isSwipeProcessing) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }
 }, { passive: true });
 
 document.addEventListener('touchend', (e) => {
+    // Don't process if we're already handling a swipe
+    if (isSwipeProcessing) {
+        return;
+    }
+    
     touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
     handleSwipe();
 }, { passive: true });
 
 function handleSwipe() {
-    const swipeThreshold = 50;
-    const diff = touchStartX - touchEndX;
+    // Prevent multiple rapid swipes
+    const now = Date.now();
+    if (isSwipeProcessing || (now - lastSwipeTime) < swipeCooldown) {
+        return;
+    }
     
-    if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
+    const diffX = touchStartX - touchEndX;
+    const diffY = touchStartY - touchEndY;
+    const absDiffX = Math.abs(diffX);
+    const absDiffY = Math.abs(diffY);
+    
+    // Only trigger navigation if horizontal movement is greater than vertical
+    // This prevents vertical scrolling from triggering horizontal navigation
+    // Also require horizontal movement to be at least 2x the vertical movement for more precision
+    if (absDiffX > swipeThreshold && absDiffX > absDiffY && absDiffX > absDiffY * 1.5) {
+        isSwipeProcessing = true;
+        lastSwipeTime = now;
+        
+        if (diffX > 0) {
             // Swipe left - next screen
-            nextScreen();
+            const databankActive = document.getElementById('databank-details')?.classList.contains('active');
+            if (databankActive) {
+                nextFeature();
+            } else {
+                nextScreen();
+            }
         } else {
             // Swipe right - previous screen
-            prevScreen();
+            const databankActive = document.getElementById('databank-details')?.classList.contains('active');
+            if (databankActive) {
+                prevFeature();
+            } else {
+                prevScreen();
+            }
         }
+        
+        // Reset processing flag after a delay
+        setTimeout(() => {
+            isSwipeProcessing = false;
+        }, swipeCooldown);
     }
+    // If vertical movement is dominant, allow normal scrolling (don't prevent default)
 }
 
 // Initialize on load
 window.addEventListener('load', () => {
-    createParticles();
     // Screen navigation is handled by navigation.js based on URL
     // showScreen is called from navigation.js after reading the URL
-    
-    // Optional: Uncomment for typing effect
-    // const typingText = document.getElementById('typing-text');
-    // const text = typingText.textContent;
-    // typeWriter(typingText, text, 50);
+
+    // Typing effect for hero text
+    const typingText = document.getElementById('typing-text');
+    if (typingText) {
+        const text = typingText.textContent;
+        typeWriter(typingText, text, 50);
+    }
 });
+
 

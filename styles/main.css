@@ -69,7 +69,7 @@
                         radial-gradient(ellipse at bottom left, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
                         var(--bg-color);
             background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-            animation: gradientShift 20s ease infinite;
+            /* animation removed */
             transition: background 0.5s ease;
         }
 
@@ -105,7 +105,7 @@
             position: absolute;
             background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
             border-radius: 50%;
-            animation: float 20s infinite;
+            /* animation removed */
             box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
             transition: background 0.5s ease, box-shadow 0.5s ease;
         }
@@ -252,7 +252,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--text-color);
             padding: 0;
             position: absolute;
             overflow: hidden;
@@ -274,29 +274,23 @@
             /* Use relative path from CSS file (styles/) to root directory */
             /* Fallback gradient will show if image fails to load */
             background-color: var(--bg-color);
-            background-image: 
-                linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(99, 102, 241, 0.15) 50%, rgba(236, 72, 153, 0.15) 100%),
-                url('../wallpaper.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background: linear-gradient(135deg,
+                #0f0f23 0%,
+                #1a1a2e 25%,
+                #16213e 50%,
+                #0f0f23 75%,
+                #1a1a2e 100%);
             z-index: -2;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.2) 0%, rgba(10, 10, 15, 0.7) 70%);
-            z-index: -1;
             transition: background 0.5s ease;
         }
 
-        [data-theme="light"] .hero::after {
-            background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.1) 0%, rgba(255, 255, 255, 0.5) 70%);
+        [data-theme="light"] .hero::before {
+            background: linear-gradient(135deg,
+                #f9fafb 0%,
+                #ffffff 25%,
+                #f3f4f6 50%,
+                #ffffff 75%,
+                #f9fafb 100%);
         }
 
         .hero::after {
@@ -307,7 +301,7 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
+            /* animation removed */
             z-index: -1;
             transition: background 0.5s ease;
         }
@@ -316,10 +310,7 @@
             background: radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+        /* @keyframes rotate removed - background animation eliminated */
 
         .hero-content {
             position: relative;
@@ -423,10 +414,20 @@
             transition: all 0.3s ease;
         }
 
+        [data-theme="light"] .feature-badge {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.2);
+        }
+
         .feature-badge:hover {
             background: rgba(139, 92, 246, 0.25);
             border-color: rgba(139, 92, 246, 0.5);
             transform: translateY(-2px);
+        }
+
+        [data-theme="light"] .feature-badge:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.4);
         }
 
         .recent-project .project-cta {
@@ -435,6 +436,82 @@
             font-size: 0.95rem;
             text-transform: none;
             letter-spacing: 0.3px;
+        }
+
+        /* Hero Project Styles */
+        .hero-project {
+            background: rgba(26, 26, 36, 0.85);
+            backdrop-filter: blur(30px) saturate(180%);
+            border-radius: 32px;
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow), var(--glow);
+            animation: fadeInUp 1.4s;
+            transition: background 0.5s ease, border-color 0.5s ease;
+        }
+
+        [data-theme="light"] .hero-project {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .project-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .greeting-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            padding-top: 2rem;
+            display: block;
+        }
+
+        .hero-name {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 1s;
+            line-height: 1.2;
+            position: relative;
+            display: block;
+            background-color: transparent !important;
+            background-image: linear-gradient(135deg, #ffffff 0%, #e5e7eb 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            transition: background-image 0.5s ease;
+            transform: translateZ(0);
+            will-change: background-image;
+        }
+
+        [data-theme="light"] .hero-name {
+            background-image: linear-gradient(135deg, #1f2937 0%, #4b5563 50%, #8b5cf6 100%);
         }
 
         .hero-main-info h2 {
@@ -457,24 +534,24 @@
             font-weight: 600;
         }
 
-        .hero-content h1 {
+        .hero-content h1:not(.hero-name) {
             font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
             animation: fadeInUp 1s;
-            text-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
             background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 50%, #8b5cf6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.3));
             line-height: 1.2;
-            transition: background 0.5s ease, filter 0.5s ease;
+            transition: background 0.5s ease;
+            position: relative;
+            display: inline-block;
+            isolation: isolate;
         }
 
-        [data-theme="light"] .hero-content h1 {
+        [data-theme="light"] .hero-content h1:not(.hero-name) {
             background: linear-gradient(135deg, #1f2937 0%, #4b5563 50%, #8b5cf6 100%);
-            filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.2));
         }
 
         .hero-content .typing-text {
@@ -496,6 +573,24 @@
         @keyframes blink {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
+        }
+
+        .hero-description {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: left;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            animation: fadeInUp 1.3s;
+        }
+
+        .hero-description p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+            text-align: justify;
         }
 
         @keyframes screenGlow {
@@ -756,6 +851,11 @@
             cursor: pointer;
         }
 
+        /* Floating animation for feature subscreen mockups (excluding overview) */
+        .feature-subscreen:not([data-feature="overview"]) .laptop-mockup {
+            animation: float 4s ease-in-out infinite;
+        }
+
         .laptop-mockup-3d {
             transform: rotateX(15deg) rotateY(15deg) rotateZ(-2deg);
             transform-style: preserve-3d;
@@ -819,7 +919,7 @@
                 rgba(139, 92, 246, 0.3) 55%, 
                 transparent 60%, 
                 transparent 100%);
-            animation: screenGlow 1.5s ease-in-out;
+            /* animation removed */
             pointer-events: none;
             z-index: 10;
         }
@@ -1026,6 +1126,11 @@
             cursor: pointer;
         }
 
+        /* Floating animation for feature subscreen phone mockups (excluding overview) */
+        .feature-subscreen:not([data-feature="overview"]) .phone-mockup {
+            animation: float 4s ease-in-out infinite;
+        }
+
         .phone-mockup-3d {
             transform: rotateX(15deg) rotateY(-15deg) rotateZ(5deg);
             transform-style: preserve-3d;
@@ -1089,7 +1194,7 @@
                 rgba(139, 92, 246, 0.3) 55%, 
                 transparent 60%, 
                 transparent 100%);
-            animation: screenGlow 1.5s ease-in-out;
+            /* animation removed */
             pointer-events: none;
             z-index: 10;
         }
@@ -1172,6 +1277,7 @@
         .overview-mockups .phone-mockup {
             position: absolute;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: float 4s ease-in-out infinite;
         }
 
         .overview-mockups .laptop-mockup:first-child {
@@ -1179,6 +1285,8 @@
             bottom: 15%;
             max-width: 400px;
             z-index: 5;
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 0s;
         }
 
         .overview-mockups .laptop-mockup:nth-child(2) {
@@ -1186,6 +1294,8 @@
             bottom: 20%;
             max-width: 400px;
             z-index: 4;
+            animation: float 4.5s ease-in-out infinite;
+            animation-delay: 1.3s;
         }
 
         .overview-mockups .phone-mockup {
@@ -1194,6 +1304,8 @@
             transform: none;
             max-width: 220px;
             z-index: 1;
+            animation: float 3.8s ease-in-out infinite;
+            animation-delay: 0.7s;
         }
 
         /* Ensure overview mockups scale proportionally */
@@ -1607,7 +1719,9 @@
 
         section.active {
             opacity: 1;
-            transform: scale(1) translateX(0);
+            transform: scale(1) translateX(0) !important;
+            left: 0 !important;
+            top: 0 !important;
             z-index: 10;
             pointer-events: auto;
             scroll-snap-align: start;
@@ -1845,7 +1959,7 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            animation: rotate 15s linear infinite;
+            /* animation removed */
         }
 
         .project-card:hover .project-image {
@@ -1869,7 +1983,8 @@
         .project-links {
             display: flex;
             gap: 1rem;
-            margin-top: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
         }
 
         .project-links a {
@@ -2052,7 +2167,7 @@
 
         /* Floating Animation */
         .float {
-            animation: float 6s ease-in-out infinite;
+            /* animation removed */
         }
 
         @keyframes float {
@@ -2081,8 +2196,24 @@
                 font-size: 3rem;
             }
 
+            .hero-subtitle {
+                font-size: 1.4rem;
+                margin: 0.3rem 0 0 0;
+            }
+
             .hero-content .typing-text {
                 font-size: 1.4rem;
+            }
+
+            .hero-description {
+                text-align: center;
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+            }
+
+            .hero-description p {
+                font-size: 0.95rem;
+                text-align: justify;
             }
 
             .hero-main-info {
@@ -2099,7 +2230,8 @@
 
             .recent-project {
                 padding: 2rem;
-                margin-top: 1rem;
+                margin-top: 2rem;
+            padding-top: 1.5rem;
             }
 
             .recent-project h3 {
@@ -2250,3 +2382,4 @@
             }
 
         }
+.hero-subtitle { font-size: 1.8rem; font-weight: 600; margin: 0.5rem 0 0 0; color: var(--primary-color); animation: fadeInUp 1.1s; text-shadow: 0 0 20px rgba(139, 92, 246, 0.3); background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.3; }

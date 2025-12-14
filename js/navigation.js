@@ -2,8 +2,6 @@
 const screens = ['home', 'databank-details', 'about', 'skills', 'projects', 'contact'];
 let currentScreenIndex = 0;
 
-// Detect if we're using file:// protocol (local file)
-const isFileProtocol = window.location.protocol === 'file:';
 
 // Map screen names to URL paths
 const screenToPath = {
@@ -25,35 +23,68 @@ const pathToScreen = {
     '/contact': 'contact'
 };
 
-// Hash-based routing for file:// protocol
-const hashToScreen = {
-    '#home': 'home',
-    '#project': 'databank-details',
-    '#about': 'about',
-    '#skills': 'skills',
-    '#projects': 'projects',
-    '#contact': 'contact'
-};
 
 function showScreen(index, updateUrl = true) {
-    // Get the current screen element first
     const currentScreen = document.getElementById(screens[index]);
+    if (!currentScreen) return;
+
+    const screenName = screens[index];
     
-    // Define scrollableContainers in the function scope so it's accessible everywhere
-    let scrollableContainers = [];
+    // Helper functions for debugging
+    const getRect = (el) => el ? el.getBoundingClientRect() : null;
+    const getComputedStyle = (el) => {
+        if (!el) return null;
+        const style = window.getComputedStyle(el);
+        return {
+            transform: style.transform,
+            opacity: style.opacity,
+            visibility: style.visibility,
+            display: style.display,
+            position: style.position,
+            top: style.top,
+            left: style.left,
+            width: style.width,
+            height: style.height,
+            overflowY: style.overflowY,
+            paddingTop: style.paddingTop,
+            justifyContent: style.justifyContent
+        };
+    };
     
-    // Reset scroll position IMMEDIATELY, even before any class changes
-    // This is critical for sections coming from translateX(100%)
-    if (currentScreen) {
-        // Force immediate scroll reset - even if section is off-screen
-        currentScreen.scrollTop = 0;
-        
-        // Also reset scroll for any nested scrollable containers
-        scrollableContainers = Array.from(currentScreen.querySelectorAll('.feature-subscreens, .screens-container, .project-detail-content, .about-content, .skills-grid, .projects-grid'));
-        scrollableContainers.forEach(container => {
-            container.scrollTop = 0;
-        });
-    }
+    console.log(`[Navigation] Switching to screen: ${screenName} (index: ${index})`);
+    
+    // Helper function to reset scroll position
+    const resetScroll = (element, label = '') => {
+        if (element) {
+            const before = element.scrollTop;
+            element.scrollTop = 0;
+            element.scrollLeft = 0;
+            if (before !== 0 && label) {
+                console.log(`[Scroll Reset] ${label}: ${before} → 0`);
+            }
+        }
+    };
+    
+    const initialRect = getRect(currentScreen);
+    const initialStyle = getComputedStyle(currentScreen);
+    console.log(`[Navigation] Initial state for ${screenName}:`);
+    console.log(`  Scroll: section=${currentScreen.scrollTop}, window=${window.scrollY}`);
+    console.log(`  BoundingRect: top=${initialRect?.top}, left=${initialRect?.left}, width=${initialRect?.width}, height=${initialRect?.height}`);
+    console.log(`  Transform: ${initialStyle?.transform}`);
+    console.log(`  Opacity: ${initialStyle?.opacity}`);
+    console.log(`  PaddingTop: ${initialStyle?.paddingTop}`);
+    console.log(`  JustifyContent: ${initialStyle?.justifyContent}`);
+    
+    // Reset scroll position before any class changes
+    resetScroll(currentScreen, `Before class change - ${screenName}`);
+    
+    // Reset scroll for nested scrollable containers
+    const scrollableContainers = Array.from(currentScreen.querySelectorAll(
+        '.feature-subscreens, .screens-container, .project-detail-content, .about-content, .skills-grid, .projects-grid'
+    ));
+    scrollableContainers.forEach((container, i) => {
+        resetScroll(container, `Container ${i}`);
+    });
     
     // Remove active class from all screens
     document.querySelectorAll('section').forEach((section, i) => {
@@ -63,74 +94,128 @@ function showScreen(index, updateUrl = true) {
         }
     });
 
-    // Add active class to current screen
-    if (currentScreen) {
-        // Reset scroll AGAIN right before adding active class
-        currentScreen.scrollTop = 0;
-        scrollableContainers.forEach(container => {
-            container.scrollTop = 0;
-        });
-        
-        currentScreen.classList.add('active');
-        
-        // Force scroll reset multiple times during animation for About, Skills, and Projects
-        // This ensures scroll stays at 0 even during the slide-in animation
-        if (currentScreen.classList.contains('about') || 
-            currentScreen.id === 'skills' || 
-            currentScreen.classList.contains('projects')) {
-            
-            // Reset immediately after class change
-            requestAnimationFrame(() => {
-                currentScreen.scrollTop = 0;
-            });
-            
-            // Reset very early in animation (10ms)
-            setTimeout(() => {
-                currentScreen.scrollTop = 0;
-            }, 10);
-            
-            // Reset early in animation (50ms)
-            setTimeout(() => {
-                currentScreen.scrollTop = 0;
-            }, 50);
-            
-            // Reset mid-animation (200ms)
-            setTimeout(() => {
-                currentScreen.scrollTop = 0;
-                scrollableContainers.forEach(container => {
-                    container.scrollTop = 0;
-                });
-            }, 200);
-            
-            // Reset late in animation (400ms)
-            setTimeout(() => {
-                currentScreen.scrollTop = 0;
-            }, 400);
-            
-            // Reset after animation completes (850ms - after 0.8s transition)
-            setTimeout(() => {
-                currentScreen.scrollTop = 0;
-                scrollableContainers.forEach(container => {
-                    container.scrollTop = 0;
-                });
-                // Force one more time
-                window.scrollTo(0, 0);
-            }, 850);
-        } else {
-            // For other sections, reset after animation
-            setTimeout(() => {
-                currentScreen.scrollTop = 0;
-                scrollableContainers.forEach(container => {
-                    container.scrollTop = 0;
-                });
-            }, 100);
-        }
-    }
+    // Mark that we're in transition - this prevents scroll during slide-in
+    let isTransitioning = true;
+    console.log(`[Navigation] Transition started for ${screenName}`);
 
-    // Reset body and document scroll position (in case body is scrollable)
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    // Add active class to current screen
+    currentScreen.classList.add('active');
+    console.log(`[Navigation] Added 'active' class to ${screenName}`);
+
+    // Check state immediately after adding active class
+    requestAnimationFrame(() => {
+        const rectAfterActive = getRect(currentScreen);
+        const styleAfterActive = getComputedStyle(currentScreen);
+        const firstChild = currentScreen.firstElementChild;
+        const firstChildRect = firstChild ? getRect(firstChild) : null;
+        console.log(`[Navigation] After adding 'active' class (RAF):`);
+        console.log(`  BoundingRect: top=${rectAfterActive?.top}, left=${rectAfterActive?.left}, width=${rectAfterActive?.width}, height=${rectAfterActive?.height}`);
+        console.log(`  Transform: ${styleAfterActive?.transform}`);
+        console.log(`  Opacity: ${styleAfterActive?.opacity}`);
+        console.log(`  ScrollTop: ${currentScreen.scrollTop}`);
+        if (firstChildRect) {
+            console.log(`  FirstChild BoundingRect: top=${firstChildRect.top}, left=${firstChildRect.left}`);
+        }
+    });
+
+    // Reset scroll using requestAnimationFrame after class change
+    // This ensures reset happens when the section becomes visible
+    requestAnimationFrame(() => {
+        const scrollBefore = currentScreen.scrollTop;
+        resetScroll(currentScreen, `After RAF 1 - ${screenName}`);
+        scrollableContainers.forEach(resetScroll);
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+
+        if (scrollBefore !== 0) {
+            console.log(`[Navigation] Scroll was ${scrollBefore} after adding active class`);
+        }
+
+        // Also reset in the next frame to ensure it sticks
+        requestAnimationFrame(() => {
+            const scrollBefore2 = currentScreen.scrollTop;
+            resetScroll(currentScreen, `After RAF 2 - ${screenName}`);
+            scrollableContainers.forEach(resetScroll);
+            if (scrollBefore2 !== 0) {
+                console.log(`[Navigation] Scroll was ${scrollBefore2} in second RAF`);
+            }
+        });
+    });
+    
+    // Add a passive scroll listener that resets scroll during transition
+    // This ensures scroll stays at 0 while the section slides in, without blocking user interaction
+    let scrollEventCount = 0;
+    const scrollHandler = () => {
+        scrollEventCount++;
+        if (isTransitioning && currentScreen.scrollTop !== 0) {
+            const scrollValue = currentScreen.scrollTop;
+            console.log(`[Scroll Handler] Scroll event #${scrollEventCount}: scrollTop=${scrollValue}, resetting...`);
+            resetScroll(currentScreen, `Scroll handler - ${screenName}`);
+            scrollableContainers.forEach(resetScroll);
+        }
+    };
+    
+    // Use capture phase and passive:false to allow resetting scroll
+    // but only during the transition period
+    currentScreen.addEventListener('scroll', scrollHandler, { capture: true, passive: false });
+    console.log(`[Navigation] Added scroll listener for ${screenName}`);
+    
+    // Reset scroll at strategic points during the 0.8s transition
+    const resetIntervals = [50, 150, 300, 500];
+    resetIntervals.forEach(delay => {
+        setTimeout(() => {
+            if (isTransitioning) {
+                const scrollValue = currentScreen.scrollTop;
+                if (scrollValue !== 0) {
+                    console.log(`[Navigation] Reset at ${delay}ms: scrollTop was ${scrollValue}`);
+                }
+                resetScroll(currentScreen, `${delay}ms reset - ${screenName}`);
+                scrollableContainers.forEach(resetScroll);
+            }
+        }, delay);
+    });
+    
+        // After transition completes, remove the scroll handler and do final reset
+        setTimeout(() => {
+            const finalScrollBefore = currentScreen.scrollTop;
+            isTransitioning = false;
+            currentScreen.removeEventListener('scroll', scrollHandler, { capture: true });
+            console.log(`[Navigation] Transition ended for ${screenName}. Scroll events caught: ${scrollEventCount}`);
+            
+            // Check final positioning (for debugging only)
+            const rect = getRect(currentScreen);
+            if (rect && (rect.left < -10 || rect.left > 10)) {
+                console.log(`[Navigation] WARNING: Section still positioned incorrectly at left=${rect.left}`);
+            }
+            
+            // Final reset to ensure we're at the top
+            resetScroll(currentScreen, `Final reset - ${screenName}`);
+            scrollableContainers.forEach(resetScroll);
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        
+        // Log final state
+        const finalRect = getRect(currentScreen);
+        const finalStyle = getComputedStyle(currentScreen);
+        const firstChild = currentScreen.firstElementChild;
+        const firstChildRect = firstChild ? getRect(firstChild) : null;
+        const isVisible = finalRect && finalRect.top >= 0 && finalRect.top < window.innerHeight;
+        
+        console.log(`[Navigation] Final state for ${screenName}:`);
+        console.log(`  Scroll: section=${currentScreen.scrollTop}, window=${window.scrollY}`);
+        console.log(`  BoundingRect: top=${finalRect?.top}, left=${finalRect?.left}, width=${finalRect?.width}, height=${finalRect?.height}`);
+        console.log(`  Transform: ${finalStyle?.transform}`);
+        console.log(`  Opacity: ${finalStyle?.opacity}`);
+        console.log(`  PaddingTop: ${finalStyle?.paddingTop}`);
+        console.log(`  JustifyContent: ${finalStyle?.justifyContent}`);
+        if (firstChildRect) {
+            console.log(`  FirstChild BoundingRect: top=${firstChildRect.top}, left=${firstChildRect.left}, width=${firstChildRect.width}`);
+        }
+        console.log(`  IsVisible: ${isVisible} (viewport height: ${window.innerHeight})`);
+        console.log(`  Scroll events caught: ${scrollEventCount}`);
+    }, 850);
 
     // If showing databank-details screen, initialize features
     if (screens[index] === 'databank-details') {
@@ -152,16 +237,10 @@ function showScreen(index, updateUrl = true) {
         const screenName = screens[index];
         const title = document.querySelector(`nav a[data-screen="${screenName}"]`)?.textContent || 'Portfolio';
         document.title = `${title} - Haytham Alsoufi`;
-        
-        if (isFileProtocol) {
-            // Use hash-based routing for file:// protocol
-            const hash = Object.keys(hashToScreen).find(key => hashToScreen[key] === screenName) || '#home';
-            window.location.hash = hash;
-        } else {
-            // Use History API for http/https protocols
-            const path = screenToPath[screenName] || '/';
-            window.history.pushState({ screen: screenName, index: index }, title, path);
-        }
+
+        // Use History API for http/https protocols
+        const path = screenToPath[screenName] || '/';
+        window.history.pushState({ screen: screenName, index: index }, title, path);
     }
 }
 
@@ -203,17 +282,10 @@ function goToScreenByName(screenName, updateUrl = true) {
 
 // Get current screen from URL
 function getScreenFromUrl() {
-    if (isFileProtocol) {
-        // Use hash for file:// protocol
-        const hash = window.location.hash || '#home';
-        const screenName = hashToScreen[hash] || 'home';
-        return screens.indexOf(screenName);
-    } else {
-        // Use pathname for http/https protocols
-        const path = window.location.pathname;
-        const screenName = pathToScreen[path] || 'home';
-        return screens.indexOf(screenName);
-    }
+    // Use pathname for http/https protocols
+    const path = window.location.pathname;
+    const screenName = pathToScreen[path] || 'home';
+    return screens.indexOf(screenName);
 }
 
 function nextScreen() {
@@ -229,44 +301,28 @@ function prevScreen() {
 }
 
 // Handle browser back/forward buttons
-if (isFileProtocol) {
-    // Hash change event for file:// protocol
-    window.addEventListener('hashchange', () => {
+window.addEventListener('popstate', (e) => {
+    if (e.state && e.state.index !== undefined) {
+        currentScreenIndex = e.state.index;
+        showScreen(e.state.index, false); // Don't update URL, we're already there
+    } else {
+        // Fallback: read from current URL
         const index = getScreenFromUrl();
         currentScreenIndex = index;
-        showScreen(index, false); // Don't update URL, we're already there
-    });
-} else {
-    // Popstate event for http/https protocols
-    window.addEventListener('popstate', (e) => {
-        if (e.state && e.state.index !== undefined) {
-            currentScreenIndex = e.state.index;
-            showScreen(e.state.index, false); // Don't update URL, we're already there
-        } else {
-            // Fallback: read from current URL
-            const index = getScreenFromUrl();
-            currentScreenIndex = index;
-            showScreen(index, false);
-        }
-    });
-}
+        showScreen(index, false);
+    }
+});
 
 // Navigation event listeners
 document.addEventListener('DOMContentLoaded', () => {
     // Update navigation links to use proper hrefs
     document.querySelectorAll('a[data-screen]').forEach(link => {
         const screenName = link.getAttribute('data-screen');
-        
-        if (isFileProtocol) {
-            // Use hash for file:// protocol
-            const hash = Object.keys(hashToScreen).find(key => hashToScreen[key] === screenName) || '#home';
-            link.href = hash;
-        } else {
-            // Use path for http/https protocols
-            const path = screenToPath[screenName] || '/';
-            link.href = path;
-        }
-        
+
+        // Use path for http/https protocols
+        const path = screenToPath[screenName] || '/';
+        link.href = path;
+
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const index = screens.indexOf(screenName);
@@ -279,18 +335,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize from URL on page load
     const initialIndex = getScreenFromUrl();
     currentScreenIndex = initialIndex;
-    
-    if (!isFileProtocol) {
-        // Set initial state for browser history (only for http/https)
-        const screenName = screens[initialIndex];
-        const path = screenToPath[screenName] || '/';
-        const title = document.querySelector(`nav a[data-screen="${screenName}"]`)?.textContent || 'Portfolio';
-        window.history.replaceState({ screen: screenName, index: initialIndex }, title, path);
-    } else if (!window.location.hash) {
-        // Set initial hash for file:// protocol if none exists
-        window.location.hash = '#home';
-    }
-    
+
+    // Set initial state for browser history
+    const screenName = screens[initialIndex];
+    const path = screenToPath[screenName] || '/';
+    const title = document.querySelector(`nav a[data-screen="${screenName}"]`)?.textContent || 'Portfolio';
+    window.history.replaceState({ screen: screenName, index: initialIndex }, title, path);
+
     // Show the correct screen (don't update URL since we just set it)
     showScreen(initialIndex, false);
 });
