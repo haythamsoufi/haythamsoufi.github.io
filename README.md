@@ -1,68 +1,88 @@
 # Portfolio Website
 
-This folder contains all files for the GitHub Pages portfolio website.
+A modern, single-page portfolio website with URL routing support.
 
-## Files Overview
+## 🚀 Quick Start
 
-### HTML Portfolio (Single Page)
-- **`index.html`** - Complete single-page portfolio with animations and fancy design
-  - Ready to deploy directly to GitHub Pages
-  - Includes hero section, about, skills, projects, and contact sections
-  - Features detailed DataBank project section
+### Option 1: Local Server (Recommended)
 
-### GitHub Profile README
-- **`github-profile-README.md`** - Template for GitHub profile README
-  - Copy to a repository named exactly your GitHub username
-  - Displays on your GitHub profile page
+For the best experience with URL routing, use a local server:
 
-### Jekyll Site (Alternative)
-- **`_config.yml`** - Jekyll site configuration
-- **`index.md`** - Home page
-- **`databank.md`** - DataBank project details page
-- **`about.md`** - About page
-- **`skills.md`** - Skills page
-- **`projects.md`** - Projects page
-- **`contact.md`** - Contact page
-- **`Gemfile`** - Ruby dependencies
-- **`_layouts/`** - Custom layouts
+```bash
+# Using Node.js
+node server.js
 
-### Documentation
-- **`GITHUB_PORTFOLIO_SETUP.md`** - Setup guide for GitHub Pages
-- **`JEKYLL_SETUP.md`** - Setup guide for Jekyll
-- **`README-JEKYLL.md`** - Jekyll-specific README
+# Then open http://localhost:3000 in your browser
+```
 
-## Quick Deploy Options
+### Option 2: Python Server
 
-### Option 1: HTML Portfolio (Recommended - Easiest)
-1. Create repository: `yourusername.github.io`
-2. Copy `index.html` to the repository root
-3. Enable GitHub Pages in repository settings
-4. Done! Site is live at `https://yourusername.github.io`
+```bash
+# Python 3
+python -m http.server 8000
 
-### Option 2: Jekyll Site
-1. Install Jekyll: `gem install jekyll bundler`
-2. Run `bundle install` in this folder
-3. Test locally: `bundle exec jekyll serve`
-4. Push all files to `yourusername.github.io` repository
-5. GitHub Pages will auto-deploy
+# Then open http://localhost:8000 in your browser
+```
 
-### Option 3: GitHub Profile README
-1. Create repository named exactly your GitHub username
-2. Copy `github-profile-README.md` content to `README.md`
-3. Replace `YOUR_USERNAME` with your actual username
-4. It will appear on your GitHub profile automatically
+### Option 3: VS Code Live Server
 
-## Customization
+If you're using VS Code, install the "Live Server" extension and click "Go Live" in the status bar.
 
-- Edit `index.html` for the HTML portfolio
-- Edit `.md` files for Jekyll site content
-- Update `_config.yml` for Jekyll site settings
-- Customize colors, content, and links as needed
+### Option 4: Direct File Access
 
-## Next Steps
+You can also open `index.html` directly in your browser, but URL routing will use hash-based URLs (e.g., `file:///path/to/index.html#about`) instead of clean paths.
 
-1. Choose your preferred option (HTML or Jekyll)
-2. Customize with your information
-3. Deploy to GitHub Pages
-4. Share your portfolio!
+## 📁 Project Structure
 
+```
+portfolio/
+├── index.html              # Main HTML file
+├── styles/
+│   └── main.css            # All styles
+├── js/
+│   ├── navigation.js       # Screen navigation & URL routing
+│   ├── features.js         # Feature subscreen navigation
+│   ├── animations.js       # Animations
+│   ├── mockups.js          # Mockup modal
+│   └── main.js             # Main initialization
+├── partials/               # HTML partials/components
+└── server.js               # Simple local development server
+```
+
+## 🔗 URL Routes
+
+The website supports the following routes:
+
+- `/` - Home
+- `/project` - DataBank Project
+- `/about` - About
+- `/skills` - Skills
+- `/projects` - Projects
+- `/contact` - Contact
+
+## 🛠️ Development
+
+### Running Locally
+
+1. Start the local server:
+   ```bash
+   node server.js
+   ```
+
+2. Open your browser to `http://localhost:3000`
+
+3. Navigate between sections - URLs will update automatically!
+
+### Features
+
+- ✅ Modular CSS and JavaScript
+- ✅ HTML partials for reusable components
+- ✅ URL routing with browser history support
+- ✅ Works with file:// protocol (hash-based routing)
+- ✅ Works with http/https (clean URL routing)
+
+## 📝 Notes
+
+- When using `file://` protocol, URLs will use hash fragments (e.g., `#about`)
+- When using a local server, URLs will use clean paths (e.g., `/about`)
+- The server configuration files (`.htaccess`, `_redirects`, `vercel.json`) are included for deployment
