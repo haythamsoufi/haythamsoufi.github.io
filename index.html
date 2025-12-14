@@ -464,6 +464,13 @@
             position: relative;
             overflow-y: auto;
             justify-content: flex-start;
+            align-items: center;
+        }
+
+        .project-detail-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         /* Feature Subscreens Container */
@@ -696,11 +703,6 @@
             cursor: not-allowed;
         }
 
-        .project-detail-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
         .project-header {
             text-align: center;
             margin-bottom: 4rem;
@@ -808,18 +810,17 @@
         section {
             position: absolute;
             top: 0;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%) scale(0.95) translateX(100%);
             width: 100%;
+            max-width: 1200px;
             height: 100vh;
             padding: 6rem 2rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transform: scale(0.95) translateX(100%);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             overflow-y: auto;
             overflow-x: hidden;
@@ -846,13 +847,13 @@
 
         section.active {
             opacity: 1;
-            transform: scale(1) translateX(0);
+            transform: translateX(-50%) scale(1) translateX(0);
             z-index: 10;
             pointer-events: auto;
         }
 
         section.prev {
-            transform: scale(0.9) translateX(-100%);
+            transform: translateX(-50%) scale(0.9) translateX(-100%);
             opacity: 0;
         }
 
@@ -903,6 +904,8 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             align-items: center;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .about-text {
@@ -915,6 +918,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .skill-card {
@@ -990,6 +995,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .project-card {
@@ -1110,6 +1117,8 @@
         /* Contact Section */
         .contact {
             text-align: center;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .social-links {
@@ -1158,20 +1167,6 @@
             height: 300px;
         }
 
-        /* Footer */
-        footer {
-            background: rgba(10, 10, 15, 0.9);
-            backdrop-filter: blur(20px);
-            color: var(--text-secondary);
-            text-align: center;
-            padding: 2rem;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            border-top: 1px solid var(--border-color);
-        }
 
         /* Navigation Arrows */
         .nav-arrows {
@@ -1507,10 +1502,7 @@
                     <div class="laptop-mockup">
                         <div class="laptop-frame">
                             <div class="laptop-screen">
-                                <img src="features/form-builder.jpg" alt="Form Builder Feature" class="laptop-screen-content" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <div class="laptop-screen-placeholder" style="display: none;">
-                                    <span>Form Builder Screenshot</span>
-                                </div>
+                                <img src="features/form-builder.jpg" alt="Form Builder Feature" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Gb3JtIEJ1aWxkZXI8L3RleHQ+PHRleHQgeD0iOTYwIiB5PSI2MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzljYTNhZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2NyZWVuc2hvdCBwbGFjZWhvbGRlcjwvdGV4dD48L3N2Zz4=';">
                             </div>
                         </div>
                         <div class="laptop-base"></div>
@@ -1528,10 +1520,7 @@
                     <div class="laptop-mockup">
                         <div class="laptop-frame">
                             <div class="laptop-screen">
-                                <img src="features/multi-language.jpg" alt="Multi-Language Support" class="laptop-screen-content" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <div class="laptop-screen-placeholder" style="display: none;">
-                                    <span>Multi-Language Support Screenshot</span>
-                                </div>
+                                <img src="features/multi-language.jpg" alt="Multi-Language Support" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5NdWx0aS1MYW5ndWFnZTwvdGV4dD48dGV4dCB4PSI5NjAiIHk9IjYyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TY3JlZW5zaG90IHBsYWNlaG9sZGVyPC90ZXh0Pjwvc3ZnPg==';">
                             </div>
                         </div>
                         <div class="laptop-base"></div>
@@ -1549,10 +1538,7 @@
                     <div class="laptop-mockup">
                         <div class="laptop-frame">
                             <div class="laptop-screen">
-                                <img src="features/analytics.jpg" alt="Advanced Analytics" class="laptop-screen-content" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <div class="laptop-screen-placeholder" style="display: none;">
-                                    <span>Analytics Dashboard Screenshot</span>
-                                </div>
+                                <img src="features/analytics.jpg" alt="Advanced Analytics" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5BbmFseXRpY3M8L3RleHQ+PHRleHQgeD0iOTYwIiB5PSI2MjAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzljYTNhZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U2NyZWVuc2hvdCBwbGFjZWhvbGRlcjwvdGV4dD48L3N2Zz4=';">
                             </div>
                         </div>
                         <div class="laptop-base"></div>
@@ -1570,10 +1556,7 @@
                     <div class="laptop-mockup">
                         <div class="laptop-frame">
                             <div class="laptop-screen">
-                                <img src="features/mobile.jpg" alt="Mobile Access" class="laptop-screen-content" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <div class="laptop-screen-placeholder" style="display: none;">
-                                    <span>Mobile App Screenshot</span>
-                                </div>
+                                <img src="features/mobile.jpg" alt="Mobile Access" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Nb2JpbGUgQWNjZXNzPC90ZXh0Pjx0ZXh0IHg9Ijk2MCIgeT0iNjIwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5Y2EzYWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNjcmVlbnNob3QgcGxhY2Vob2xkZXI8L3RleHQ+PC9zdmc+';">
                             </div>
                         </div>
                         <div class="laptop-base"></div>
@@ -1590,10 +1573,7 @@
                     <div class="laptop-mockup">
                         <div class="laptop-frame">
                             <div class="laptop-screen">
-                                <img src="features/security.jpg" alt="Enterprise Security" class="laptop-screen-content" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <div class="laptop-screen-placeholder" style="display: none;">
-                                    <span>Security Settings Screenshot</span>
-                                </div>
+                                <img src="features/security.jpg" alt="Enterprise Security" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5TZWN1cml0eTwvdGV4dD48dGV4dCB4PSI5NjAiIHk9IjYyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TY3JlZW5zaG90IHBsYWNlaG9sZGVyPC90ZXh0Pjwvc3ZnPg==';">
                             </div>
                         </div>
                         <div class="laptop-base"></div>
@@ -1610,10 +1590,7 @@
                     <div class="laptop-mockup">
                         <div class="laptop-frame">
                             <div class="laptop-screen">
-                                <img src="features/communication.jpg" alt="Smart Communication" class="laptop-screen-content" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <div class="laptop-screen-placeholder" style="display: none;">
-                                    <span>Communication System Screenshot</span>
-                                </div>
+                                <img src="features/communication.jpg" alt="Smart Communication" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Db21tdW5pY2F0aW9uPC90ZXh0Pjx0ZXh0IHg9Ijk2MCIgeT0iNjIwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5Y2EzYWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNjcmVlbnNob3QgcGxhY2Vob2xkZXI8L3RleHQ+PC9zdmc+';">
                             </div>
                         </div>
                         <div class="laptop-base"></div>
@@ -1821,11 +1798,6 @@
 
     </div>
     <!-- End Screens Container -->
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Haytham Alsoufi. Made with ❤️</p>
-    </footer>
 
     <!-- Screen Navigation & Animations -->
     <script>
