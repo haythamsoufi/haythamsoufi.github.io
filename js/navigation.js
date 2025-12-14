@@ -93,6 +93,9 @@ function showScreen(index, updateUrl = true) {
             section.classList.add('prev');
         }
     });
+    
+    // Check if we're on mobile
+    const isMobile = window.innerWidth <= 768;
 
     // Mark that we're in transition - this prevents scroll during slide-in
     let isTransitioning = true;
@@ -101,6 +104,22 @@ function showScreen(index, updateUrl = true) {
     // Add active class to current screen
     currentScreen.classList.add('active');
     console.log(`[Navigation] Added 'active' class to ${screenName}`);
+
+    // On mobile, explicitly control visibility
+    if (isMobile) {
+        // Hide all sections first
+        document.querySelectorAll('section').forEach(section => {
+            section.style.display = 'none';
+        });
+        // Then show the active section
+        currentScreen.style.display = 'block';
+        // Scroll to top of the page first
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Then scroll to the section
+        setTimeout(() => {
+            currentScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }
 
     // Check state immediately after adding active class
     requestAnimationFrame(() => {
@@ -342,8 +361,55 @@ document.addEventListener('DOMContentLoaded', () => {
     const title = document.querySelector(`nav a[data-screen="${screenName}"]`)?.textContent || 'Portfolio';
     window.history.replaceState({ screen: screenName, index: initialIndex }, title, path);
 
+    // On mobile, ensure only the initial section is visible
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        const initialSection = document.getElementById(screens[initialIndex]);
+        document.querySelectorAll('section').forEach(section => {
+            if (section.id !== screens[initialIndex]) {
+                section.style.display = 'none';
+            } else {
+                section.style.display = 'block';
+            }
+        });
+    }
+
     // Show the correct screen (don't update URL since we just set it)
     showScreen(initialIndex, false);
+});
+
+// Hamburger Menu Functionality
+function initHamburgerMenu() {
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const navMenu = document.getElementById('navMenu');
+
+    if (hamburgerMenu && navMenu) {
+        hamburgerMenu.addEventListener('click', () => {
+            hamburgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburgerMenu.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Initialize hamburger menu when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initHamburgerMenu();
 });
 
 // Export for use in other modules
