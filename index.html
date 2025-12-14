@@ -177,14 +177,21 @@
         /* Hero Section */
         .hero {
             height: 100vh;
+            width: 100vw;
+            max-width: 100vw !important;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            text-align: center;
-            padding: 6rem 2rem 2rem;
-            position: relative;
+            padding: 0;
+            position: absolute;
             overflow: hidden;
+            left: 0 !important;
+            transform: scale(0.95) translateX(100vw);
+        }
+
+        .hero.active {
+            transform: scale(1) translateX(0);
         }
 
         .hero::before {
@@ -199,7 +206,6 @@
             background-position: center;
             background-repeat: no-repeat;
             z-index: -2;
-            opacity: 0.3;
         }
 
         .hero::after {
@@ -209,7 +215,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.3) 0%, rgba(10, 10, 15, 0.9) 70%);
+            background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.2) 0%, rgba(10, 10, 15, 0.7) 70%);
             z-index: -1;
         }
 
@@ -233,8 +239,26 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 900px;
             width: 100%;
+            max-width: 1400px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 0 4rem;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .hero-main-info {
@@ -269,7 +293,7 @@
         }
 
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: 5rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
             animation: fadeInUp 1s;
@@ -279,14 +303,17 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.3));
+            line-height: 1.2;
         }
 
         .hero-content .typing-text {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
+            font-size: 2rem;
+            margin-bottom: 0;
             opacity: 0.95;
             animation: fadeInUp 1.2s;
             min-height: 2.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
         .hero-content .typing-text::after {
@@ -334,7 +361,7 @@
             border: 2px solid rgba(139, 92, 246, 0.5);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 1rem;
+            margin-top: 2rem;
         }
 
         .project-cta::before {
@@ -471,14 +498,17 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
         }
 
         /* Feature Subscreens Container */
         .feature-subscreens {
             position: relative;
             width: 100%;
-            height: 100%;
+            min-height: 70vh;
+            height: 70vh;
             overflow: hidden;
+            margin: 3rem 0;
         }
 
         .feature-subscreen {
@@ -497,6 +527,7 @@
             pointer-events: none;
             padding: 2rem;
             box-sizing: border-box;
+            z-index: 1;
         }
 
         .feature-subscreen.active {
@@ -1314,17 +1345,27 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 2rem;
+                text-align: center;
             }
 
-            .hero-content p {
-                font-size: 1.2rem;
+            .hero-left {
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content .typing-text {
+                font-size: 1.4rem;
             }
 
             .hero-main-info {
                 padding: 2rem;
-                margin-bottom: 1.5rem;
             }
 
             .hero-main-info h2 {
@@ -1453,26 +1494,30 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Hi, I'm Haytham Alsoufi</h1>
-            <p class="typing-text" id="typing-text">Data Collection & Analysis | Vibe Code | Graphic & UI/UX Designer</p>
-            
-            <div class="hero-main-info">
-                <h2>Full-Stack Developer & Designer</h2>
-                <p>
-                    I'm a passionate <span class="highlight">full-stack developer</span> and <span class="highlight">designer</span> who loves building solutions that make a real impact. 
-                    With expertise in <span class="highlight">data collection systems</span>, modern web development, and user experience design, I combine 
-                    technical skills with creative vision to create meaningful digital experiences.
-                </p>
-                <p>
-                    I believe in <span class="highlight">"vibe coding"</span> - building with passion, creativity, and a focus on what truly matters. 
-                    Whether it's developing complex data management platforms or crafting beautiful user interfaces, 
-                    I approach every project with enthusiasm and attention to detail.
-                </p>
+            <div class="hero-left">
+                <h1>Hi, I'm Haytham Alsoufi</h1>
+                <p class="typing-text" id="typing-text">Data Collection & Analysis | Vibe Code | Graphic & UI/UX Designer</p>
             </div>
+            
+            <div class="hero-right">
+                <div class="hero-main-info">
+                    <h2>Full-Stack Developer & Designer</h2>
+                    <p>
+                        I'm a passionate <span class="highlight">full-stack developer</span> and <span class="highlight">designer</span> who loves building solutions that make a real impact. 
+                        With expertise in <span class="highlight">data collection systems</span>, modern web development, and user experience design, I combine 
+                        technical skills with creative vision to create meaningful digital experiences.
+                    </p>
+                    <p>
+                        I believe in <span class="highlight">"vibe coding"</span> - building with passion, creativity, and a focus on what truly matters. 
+                        Whether it's developing complex data management platforms or crafting beautiful user interfaces, 
+                        I approach every project with enthusiasm and attention to detail.
+                    </p>
+                </div>
 
-            <a href="#" class="project-cta" data-screen="databank-details">
-                🚀 Explore Unified Data Collection System
-            </a>
+                <a href="#" class="project-cta" data-screen="databank-details">
+                    🚀 Explore Unified Data Collection System
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1712,6 +1757,14 @@
         <h2 class="section-title fade-in">Skills & Technologies</h2>
         <div class="skills-grid">
             <div class="skill-card fade-in">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">💜 Vibe Coding</h3>
+                <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;">Building with passion and creativity</p>
+                <div class="skill-tags">
+                    <span class="skill-tag" style="background: var(--gradient-3);">Python</span>
+                    <span class="skill-tag" style="background: var(--gradient-2);">React</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
                 <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Frontend</h3>
                 <div class="skill-tags">
                     <span class="skill-tag">React</span>
@@ -1729,6 +1782,15 @@
                     <span class="skill-tag">Node.js</span>
                     <span class="skill-tag">PostgreSQL</span>
                     <span class="skill-tag">REST APIs</span>
+                </div>
+            </div>
+            <div class="skill-card fade-in">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;">📊 Power Platform</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag" style="background: var(--gradient-3); box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);">Power BI</span>
+                    <span class="skill-tag">Power Apps</span>
+                    <span class="skill-tag">Power Automate</span>
+                    <span class="skill-tag">Power Platform</span>
                 </div>
             </div>
             <div class="skill-card fade-in">
@@ -1818,6 +1880,13 @@
             const currentScreen = document.getElementById(screens[index]);
             if (currentScreen) {
                 currentScreen.classList.add('active');
+            }
+
+            // If showing databank-details screen, initialize features
+            if (screens[index] === 'databank-details') {
+                setTimeout(() => {
+                    showFeature(0);
+                }, 100);
             }
 
             // Update navigation arrows
