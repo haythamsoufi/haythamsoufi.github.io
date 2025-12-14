@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<div class="home">
+  <div class="hero">
+    <h1 class="page-heading">{{ page.title }}</h1>
+    {{ content }}
+  </div>
+</div>
+
+<style>
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 20px;
+  margin: 2rem 0;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero a {
+  display: inline-block;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  background: white;
+  color: #667eea;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: transform 0.3s;
+}
+
+.hero a:hover {
+  transform: translateY(-3px);
+}
+</style>
+
