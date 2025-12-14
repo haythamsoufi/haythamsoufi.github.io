@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haytham Alsoufi - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --text-color: #1f2937;
+            --bg-color: #ffffff;
+            --card-bg: #f9fafb;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--bg-color);
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1.2s;
+        }
+
+        .hero-content .cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1.4s;
+        }
+
+        .hero-content .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--card-bg);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--card-bg);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            height: 200px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm [Haytham Alsoufi]</h1>
+            <p>[Your Title/Role] | [Your Specialty]</p>
+            <a href="#contact" class="cta">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    I'm a passionate [your role] with experience in [your expertise]. 
+                    I love building solutions that make a difference and am always 
+                    eager to learn new technologies and tackle challenging problems.
+                </p>
+                <p>
+                    When I'm not coding, you can find me [your hobbies/interests]. 
+                    I believe in continuous learning and contributing to open-source 
+                    projects that help the community.
+                </p>
+            </div>
+            <div class="about-text">
+                <h3>What I Do</h3>
+                <ul style="list-style: none; line-height: 2;">
+                    <li>✅ Full-stack development</li>
+                    <li>✅ Open-source contributions</li>
+                    <li>✅ Technical writing</li>
+                    <li>✅ Mentoring</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Skills & Technologies</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Frontend</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Backend</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>Tools & Others</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Linux</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">🚀</div>
+                <div class="project-content">
+                    <h3>Project Name 1</h3>
+                    <p>Brief description of your project and what it does. Highlight key features and technologies used.</p>
+                    <div class="project-links">
+                        <a href="#">GitHub</a>
+                        <a href="#">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">💡</div>
+                <div class="project-content">
+                    <h3>Project Name 2</h3>
+                    <p>Brief description of your project and what it does. Highlight key features and technologies used.</p>
+                    <div class="project-links">
+                        <a href="#">GitHub</a>
+                        <a href="#">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">🌟</div>
+                <div class="project-content">
+                    <h3>Project Name 3</h3>
+                    <p>Brief description of your project and what it does. Highlight key features and technologies used.</p>
+                    <div class="project-links">
+                        <a href="#">GitHub</a>
+                        <a href="#">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+        <div class="social-links">
+            <a href="mailto:your.email@example.com" class="social-link">Email</a>
+            <a href="https://linkedin.com/in/yourprofile" class="social-link">LinkedIn</a>
+            <a href="https://github.com/yourusername" class="social-link">GitHub</a>
+            <a href="https://twitter.com/yourhandle" class="social-link">Twitter</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 [Haytham Alsoufi]. Made with ❤️</p>
+    </footer>
+
+    <!-- Smooth Scroll -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
