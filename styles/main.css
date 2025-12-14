@@ -244,9 +244,11 @@
 
         /* Theme Toggle Button */
         .theme-toggle {
-            position: fixed;
-            top: 1.2rem;
-            right: 2rem;
+            position: fixed !important;
+            bottom: 1.2rem !important;
+            left: 2rem !important;
+            top: auto !important;
+            right: auto !important;
             z-index: 1001;
             width: 50px;
             height: 50px;
@@ -2218,27 +2220,34 @@
         @media (max-width: 768px) {
             /* Enable scrolling on mobile */
             html, body {
-                overflow: auto;
-                height: auto;
+                overflow: hidden;
+                height: 100vh;
             }
 
             .screens-container {
                 position: relative;
-                height: auto;
-                overflow: visible;
+                height: 100vh;
+                overflow: hidden;
             }
 
             section {
-                position: relative;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
                 transform: none !important;
                 opacity: 0;
                 visibility: hidden;
                 pointer-events: none;
-                height: auto;
+                height: 100vh;
                 min-height: 100vh;
-                overflow: visible;
+                max-height: 100vh;
+                overflow-y: auto;
+                overflow-x: hidden;
                 display: none;
                 padding-top: 8rem;
+                z-index: 1;
             }
 
             /* Show home section by default on mobile as fallback */
@@ -2254,6 +2263,7 @@
                 visibility: visible;
                 pointer-events: auto;
                 display: block !important;
+                z-index: 10;
             }
 
             section.prev {
@@ -2261,10 +2271,31 @@
                 display: none;
             }
 
+            /* Override hero-specific styles on mobile */
+            section#home.hero,
+            section#home.hero.active {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                height: 100vh !important;
+                min-height: 100vh !important;
+                max-height: 100vh !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                transform: none !important;
+                display: flex !important;
+                padding: 8rem 0 2rem !important;
+            }
+
             .project-detail {
-                height: auto;
-                min-height: 100vh;
-                overflow: visible;
+                height: 100vh !important;
+                min-height: 100vh !important;
+                max-height: 100vh !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
                 padding-top: 8rem;
             }
 
@@ -2470,14 +2501,16 @@
             }
 
             .theme-toggle {
-                top: 0.8rem;
-                right: 1rem;
+                position: fixed !important;
+                bottom: 1rem !important;
+                left: 1rem !important;
+                top: auto !important;
+                right: auto !important;
                 width: 45px;
                 height: 45px;
                 font-size: 1.3rem;
                 min-width: 48px;
                 min-height: 48px;
-                position: fixed;
                 z-index: 1001;
             }
 
@@ -2737,27 +2770,34 @@
         @media (max-width: 480px) {
             /* Ensure scrolling works on small mobile */
             html, body {
-                overflow: auto;
-                height: auto;
+                overflow: hidden;
+                height: 100vh;
             }
 
             .screens-container {
                 position: relative;
-                height: auto;
-                overflow: visible;
+                height: 100vh;
+                overflow: hidden;
             }
 
             section {
-                position: relative;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
                 transform: none !important;
                 opacity: 0;
                 visibility: hidden;
                 pointer-events: none;
-                height: auto;
+                height: 100vh;
                 min-height: 100vh;
-                overflow: visible;
+                max-height: 100vh;
+                overflow-y: auto;
+                overflow-x: hidden;
                 display: none;
                 padding-top: 8rem;
+                z-index: 1;
             }
 
             /* Show home section by default on mobile as fallback */
@@ -2773,6 +2813,7 @@
                 visibility: visible;
                 pointer-events: auto;
                 display: block !important;
+                z-index: 10;
             }
 
             section.prev {
@@ -2780,10 +2821,31 @@
                 display: none;
             }
 
+            /* Override hero-specific styles on mobile */
+            section#home.hero,
+            section#home.hero.active {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                height: 100vh !important;
+                min-height: 100vh !important;
+                max-height: 100vh !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+                transform: none !important;
+                display: flex !important;
+                padding: 8rem 0 2rem !important;
+            }
+
             .project-detail {
-                height: auto;
-                min-height: 100vh;
-                overflow: visible;
+                height: 100vh !important;
+                min-height: 100vh !important;
+                max-height: 100vh !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
                 padding-top: 8rem;
             }
 
@@ -2887,11 +2949,14 @@
             }
 
             .theme-toggle {
-                right: 4rem;
+                position: fixed !important;
+                bottom: 1rem !important;
+                left: 1rem !important;
+                top: auto !important;
+                right: auto !important;
                 width: 40px;
                 height: 40px;
                 font-size: 1.1rem;
-                top: 0.7rem;
                 min-width: 48px;
                 min-height: 48px;
             }
@@ -3416,7 +3481,11 @@
             }
 
             .theme-toggle {
-                right: 4rem;
+                position: fixed !important;
+                bottom: 1rem !important;
+                left: 1rem !important;
+                top: auto !important;
+                right: auto !important;
                 min-width: 48px;
                 min-height: 48px;
             }

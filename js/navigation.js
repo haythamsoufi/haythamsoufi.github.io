@@ -25,10 +25,16 @@ const pathToScreen = {
 
 
 function showScreen(index, updateUrl = true) {
+    console.log(`[DEBUG showScreen] Called with index: ${index}, screen: ${screens[index]}`);
     const currentScreen = document.getElementById(screens[index]);
-    if (!currentScreen) return;
+    if (!currentScreen) {
+        console.error(`[DEBUG showScreen] ERROR: Section with id "${screens[index]}" not found!`);
+        console.log(`[DEBUG showScreen] Available sections:`, Array.from(document.querySelectorAll('section')).map(s => s.id));
+        return;
+    }
 
     const screenName = screens[index];
+    console.log(`[DEBUG showScreen] Found section element:`, currentScreen);
     
     // Helper functions for debugging
     const getRect = (el) => el ? el.getBoundingClientRect() : null;
@@ -96,6 +102,8 @@ function showScreen(index, updateUrl = true) {
     
     // Check if we're on mobile
     const isMobile = window.innerWidth <= 768;
+    console.log(`[DEBUG showScreen] Is mobile: ${isMobile}, width: ${window.innerWidth}`);
+    console.log(`[DEBUG showScreen] Current screen: ${screenName}, element:`, currentScreen);
 
     // Mark that we're in transition - this prevents scroll during slide-in
     let isTransitioning = true;
@@ -104,21 +112,62 @@ function showScreen(index, updateUrl = true) {
     // Add active class to current screen
     currentScreen.classList.add('active');
     console.log(`[Navigation] Added 'active' class to ${screenName}`);
+    console.log(`[DEBUG showScreen] Active class added. Classes:`, currentScreen.classList.toString());
 
     // On mobile, explicitly control visibility
     if (isMobile) {
+        console.log(`[DEBUG showScreen] Mobile mode - controlling section visibility`);
+        console.log(`[DEBUG showScreen] All sections before hide:`, Array.from(document.querySelectorAll('section')).map(s => ({
+            id: s.id,
+            display: s.style.display,
+            computedDisplay: window.getComputedStyle(s).display
+        })));
+        
         // Hide all sections first
         document.querySelectorAll('section').forEach(section => {
             section.style.display = 'none';
+            console.log(`[DEBUG showScreen] Hid section: ${section.id}`);
         });
+        
         // Then show the active section
         currentScreen.style.display = 'block';
-        // Scroll to top of the page first
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        // Then scroll to the section
-        setTimeout(() => {
-            currentScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
+        console.log(`[DEBUG showScreen] Set ${screenName} display to block`);
+        
+        // Check computed styles
+        const computedStyle = window.getComputedStyle(currentScreen);
+        console.log(`[DEBUG showScreen] ${screenName} computed styles:`, {
+            display: computedStyle.display,
+            opacity: computedStyle.opacity,
+            visibility: computedStyle.visibility,
+            inlineDisplay: currentScreen.style.display
+        });
+        
+        // Sections are fixed positioned, so just reset their internal scroll
+        currentScreen.scrollTop = 0;
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        
+        // Verify section is visible
+        requestAnimationFrame(() => {
+            const rect = currentScreen.getBoundingClientRect();
+            console.log(`[DEBUG showScreen] Section position (fixed):`, {
+                top: rect.top,
+                left: rect.left,
+                width: rect.width,
+                height: rect.height,
+                windowScrollY: window.scrollY,
+                isVisible: rect.top >= 0 && rect.top < window.innerHeight
+            });
+            
+            // Ensure section scroll is at top
+            if (currentScreen.scrollTop !== 0) {
+                console.log(`[DEBUG showScreen] Resetting section scroll from ${currentScreen.scrollTop} to 0`);
+                currentScreen.scrollTop = 0;
+            }
+        });
+    } else {
+        console.log(`[DEBUG showScreen] Desktop mode - using CSS transforms`);
     }
 
     // Check state immediately after adding active class
@@ -201,6 +250,24 @@ function showScreen(index, updateUrl = true) {
             isTransitioning = false;
             currentScreen.removeEventListener('scroll', scrollHandler, { capture: true });
             console.log(`[Navigation] Transition ended for ${screenName}. Scroll events caught: ${scrollEventCount}`);
+            
+            // Debug: Check final state, especially on mobile
+            const isMobileCheck = window.innerWidth <= 768;
+            if (isMobileCheck) {
+                console.log(`[DEBUG Transition End] Mobile mode - Final state check for ${screenName}`);
+                const allSections = document.querySelectorAll('section');
+                allSections.forEach(section => {
+                    const computed = window.getComputedStyle(section);
+                    console.log(`[DEBUG Transition End] Section ${section.id}:`, {
+                        display: section.style.display,
+                        computedDisplay: computed.display,
+                        opacity: computed.opacity,
+                        visibility: computed.visibility,
+                        hasActive: section.classList.contains('active'),
+                        hasPrev: section.classList.contains('prev')
+                    });
+                });
+            }
             
             // Check final positioning (for debugging only)
             const rect = getRect(currentScreen);
@@ -334,6 +401,14 @@ window.addEventListener('popstate', (e) => {
 
 // Navigation event listeners
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('[DEBUG] DOMContentLoaded - Starting navigation setup');
+    console.log('[DEBUG] Available screens:', screens);
+    console.log('[DEBUG] All sections found:', Array.from(document.querySelectorAll('section')).map(s => ({
+        id: s.id,
+        classes: s.classList.toString(),
+        display: window.getComputedStyle(s).display
+    })));
+    
     // Update navigation links to use proper hrefs
     document.querySelectorAll('a[data-screen]').forEach(link => {
         const screenName = link.getAttribute('data-screen');
@@ -344,15 +419,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         link.addEventListener('click', (e) => {
             e.preventDefault();
+            console.log('[DEBUG] Navigation link clicked:', screenName);
             const index = screens.indexOf(screenName);
+            console.log('[DEBUG] Screen index:', index);
             if (index !== -1) {
                 goToScreen(index);
+            } else {
+                console.error('[DEBUG] Screen not found:', screenName);
             }
         });
     });
 
     // Initialize from URL on page load
+    console.log('[DEBUG] Initializing navigation...');
     const initialIndex = getScreenFromUrl();
+    console.log('[DEBUG] Initial index from URL:', initialIndex, 'Screen:', screens[initialIndex]);
     currentScreenIndex = initialIndex;
 
     // Set initial state for browser history
@@ -360,22 +441,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const path = screenToPath[screenName] || '/';
     const title = document.querySelector(`nav a[data-screen="${screenName}"]`)?.textContent || 'Portfolio';
     window.history.replaceState({ screen: screenName, index: initialIndex }, title, path);
+    console.log('[DEBUG] Set history state:', { screen: screenName, index: initialIndex, path });
 
     // On mobile, ensure only the initial section is visible
     const isMobile = window.innerWidth <= 768;
+    console.log('[DEBUG] Is mobile?', isMobile, 'Window width:', window.innerWidth);
+    
     if (isMobile) {
         const initialSection = document.getElementById(screens[initialIndex]);
+        console.log('[DEBUG] Initial section element:', initialSection);
+        console.log('[DEBUG] All sections:', document.querySelectorAll('section'));
+        
         document.querySelectorAll('section').forEach(section => {
+            const shouldShow = section.id === screens[initialIndex];
+            console.log(`[DEBUG] Section ${section.id}: display = ${shouldShow ? 'block' : 'none'}`);
             if (section.id !== screens[initialIndex]) {
                 section.style.display = 'none';
             } else {
                 section.style.display = 'block';
+                console.log(`[DEBUG] Set ${section.id} to block. Computed display:`, window.getComputedStyle(section).display);
             }
         });
+        
+        // Verify the initial section is visible
+        const checkSection = document.getElementById(screens[initialIndex]);
+        if (checkSection) {
+            const computedStyle = window.getComputedStyle(checkSection);
+            console.log('[DEBUG] Initial section final state:', {
+                id: checkSection.id,
+                display: checkSection.style.display,
+                computedDisplay: computedStyle.display,
+                opacity: computedStyle.opacity,
+                visibility: computedStyle.visibility,
+                hasActiveClass: checkSection.classList.contains('active')
+            });
+        }
     }
 
     // Show the correct screen (don't update URL since we just set it)
+    console.log('[DEBUG] Calling showScreen with index:', initialIndex);
     showScreen(initialIndex, false);
+    console.log('[DEBUG] Navigation initialization complete');
 });
 
 // Hamburger Menu Functionality
