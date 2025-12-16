@@ -238,11 +238,6 @@
 
         /* Theme Toggle Button */
         .theme-toggle {
-            position: fixed !important;
-            bottom: 1.2rem !important;
-            left: 2rem !important;
-            top: auto !important;
-            right: auto !important;
             z-index: 1001;
             width: 50px;
             height: 50px;
@@ -261,11 +256,52 @@
             line-height: 1;
         }
 
+        /* Desktop theme toggle - in nav bar */
+        .theme-toggle-desktop {
+            position: absolute !important;
+            right: 2rem !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            bottom: auto !important;
+            left: auto !important;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            margin-left: auto;
+        }
+
+        /* Mobile theme toggle - floating bottom left */
+        .theme-toggle-mobile {
+            position: fixed !important;
+            bottom: 1.2rem !important;
+            left: 2rem !important;
+            top: auto !important;
+            right: auto !important;
+        }
+
+        /* Hide mobile button on desktop */
+        @media (min-width: 769px) {
+            .theme-toggle-mobile {
+                display: none !important;
+            }
+        }
+
+        /* Hide desktop button on mobile */
+        @media (max-width: 768px) {
+            .theme-toggle-desktop {
+                display: none !important;
+            }
+        }
+
         .theme-toggle:hover {
             background: var(--gradient);
             border-color: transparent;
             transform: scale(1.1) rotate(15deg);
             box-shadow: var(--glow), var(--shadow-hover);
+        }
+
+        .theme-toggle-desktop:hover {
+            transform: translateY(-50%) scale(1.1) rotate(15deg) !important;
         }
 
         [data-theme="light"] .theme-toggle {
@@ -2384,12 +2420,30 @@
                 visibility: hidden;
                 transform: none;
                 display: none;
+                overflow: hidden;
             }
 
             .feature-subscreen.active {
                 opacity: 1;
                 visibility: visible;
                 display: grid;
+                overflow: visible;
+            }
+
+            /* Website and Mobile App features use vertical-scroll-container, need block display */
+            .feature-subscreen[data-feature="website"].active,
+            .feature-subscreen[data-feature="mobile-app"].active,
+            .feature-subscreen[data-feature="backoffice"].active {
+                display: block !important;
+                overflow: visible;
+            }
+
+            /* Ensure inactive subscreens don't take up space */
+            .feature-subscreen:not(.active) {
+                display: none !important;
+                height: 0 !important;
+                min-height: 0 !important;
+                overflow: hidden !important;
             }
 
             .hero-content {
@@ -2519,6 +2573,7 @@
                 background: transparent;
                 backdrop-filter: none;
                 flex-direction: row;
+                flex-wrap: nowrap;
                 justify-content: flex-start;
                 align-items: center;
                 gap: 0.5rem;
@@ -2571,7 +2626,7 @@
                 transform: translateY(-2px);
             }
 
-            .theme-toggle {
+            .theme-toggle-mobile {
                 position: fixed !important;
                 bottom: 1rem !important;
                 left: 1rem !important;
@@ -2768,6 +2823,14 @@
             /* Vertical scroll container on mobile */
             .vertical-scroll-container {
                 padding-right: 0.5rem;
+                height: auto;
+                min-height: 100vh;
+                position: relative;
+            }
+
+            /* Ensure vertical-scroll-container only exists in active subscreens */
+            .feature-subscreen:not(.active) .vertical-scroll-container {
+                display: none !important;
             }
 
             .vertical-screen {
@@ -2796,11 +2859,16 @@
             }
 
             .feature-info {
-                grid-column: 1;
+                grid-column: 1 !important;
                 grid-row: 2;
                 margin-top: 2rem;
                 padding: 0 1rem;
                 text-align: center;
+            }
+
+            /* Override inline grid-column styles on mobile - force all children to single column */
+            .vertical-screen > * {
+                grid-column: 1 !important;
             }
 
             .feature-info h3 {
@@ -2947,12 +3015,30 @@
                 visibility: hidden;
                 transform: none;
                 display: none;
+                overflow: hidden;
             }
 
             .feature-subscreen.active {
                 opacity: 1;
                 visibility: visible;
                 display: grid;
+                overflow: visible;
+            }
+
+            /* Website and Mobile App features use vertical-scroll-container, need block display */
+            .feature-subscreen[data-feature="website"].active,
+            .feature-subscreen[data-feature="mobile-app"].active,
+            .feature-subscreen[data-feature="backoffice"].active {
+                display: block !important;
+                overflow: visible;
+            }
+
+            /* Ensure inactive subscreens don't take up space */
+            .feature-subscreen:not(.active) {
+                display: none !important;
+                height: 0 !important;
+                min-height: 0 !important;
+                overflow: hidden !important;
             }
 
             /* Navigation - Horizontal scrollable bar */
@@ -2974,6 +3060,7 @@
                 background: transparent;
                 backdrop-filter: none;
                 flex-direction: row;
+                flex-wrap: nowrap;
                 justify-content: flex-start;
                 align-items: center;
                 gap: 0.4rem;
@@ -3032,7 +3119,7 @@
                 transform: translateY(-2px);
             }
 
-            .theme-toggle {
+            .theme-toggle-mobile {
                 position: fixed !important;
                 bottom: 1rem !important;
                 left: 1rem !important;
@@ -3547,7 +3634,7 @@
                 transform: translateY(-2px);
             }
 
-            .theme-toggle {
+            .theme-toggle-mobile {
                 position: fixed !important;
                 bottom: 1rem !important;
                 left: 1rem !important;

@@ -1,7 +1,7 @@
 // Theme Toggle Functionality
 (function() {
     const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle.querySelector('.theme-icon');
+    const themeToggleMobile = document.getElementById('themeToggleMobile');
     const html = document.documentElement;
 
     // Get saved theme or default to dark
@@ -10,21 +10,33 @@
         return savedTheme || 'dark';
     };
 
-    // Set theme
-    const setTheme = (theme) => {
-        html.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+    // Update icons for a specific button
+    const updateButtonIcons = (button) => {
+        if (!button) return;
+        const themeIcon = button.querySelector('.theme-icon');
+        if (!themeIcon) return;
         
-        // Update icon (show the theme you'll switch to, not current theme)
+        const currentTheme = html.getAttribute('data-theme') || getTheme();
         const sunIcon = themeIcon.querySelector('.icon-sun');
         const moonIcon = themeIcon.querySelector('.icon-moon');
-        if (theme === 'light') {
+        
+        if (currentTheme === 'light') {
             if (sunIcon) sunIcon.style.display = 'none';
             if (moonIcon) moonIcon.style.display = 'block';
         } else {
             if (sunIcon) sunIcon.style.display = 'block';
             if (moonIcon) moonIcon.style.display = 'none';
         }
+    };
+
+    // Set theme
+    const setTheme = (theme) => {
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        
+        // Update icons on both buttons
+        updateButtonIcons(themeToggle);
+        updateButtonIcons(themeToggleMobile);
     };
 
     // Toggle theme
@@ -40,9 +52,13 @@
         setTheme(savedTheme);
     };
 
-    // Event listener
+    // Event listeners for both buttons
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
+    }
+    
+    if (themeToggleMobile) {
+        themeToggleMobile.addEventListener('click', toggleTheme);
     }
 
     // Initialize on DOM load

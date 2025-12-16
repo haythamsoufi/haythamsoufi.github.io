@@ -27,10 +27,21 @@
             <li><a href="#" data-screen="projects">Projects</a></li>
             <li><a href="#" data-screen="contact">Contact</a></li>
         </ul>
+        <!-- Theme Toggle - Desktop only in nav -->
+        <button class="theme-toggle theme-toggle-desktop" id="themeToggle" aria-label="Toggle theme">
+            <span class="theme-icon">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364 6.364l-1.591 1.591M21 12h-2.25m-6.364 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                </svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; display: none;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                </svg>
+            </span>
+        </button>
     </nav>
 
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <!-- Theme Toggle - Mobile only floating -->
+    <button class="theme-toggle theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle theme">
         <span class="theme-icon">
             <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem;">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364 6.364l-1.591 1.591M21 12h-2.25m-6.364 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
@@ -95,813 +106,8 @@
         </div>
     </section>
 
-    <!-- Project Detail Section -->
-    <section id="databank-details" class="project-detail">
-        <div class="project-detail-content" style="width: 100%; height: 100%; max-width: 100%;">
-            <!-- Feature Subscreens -->
-            <div class="feature-subscreens" id="featureSubscreens">
-                <!-- Feature 0: Overview -->
-                <div class="feature-subscreen active" data-feature="overview">
-                    <div class="overview-screen">
-                        <h2 class="overview-title" style="font-size: 3rem; color: var(--text-color); margin-bottom: 0; margin-top: 1rem; text-shadow: 0 0 30px rgba(139, 92, 246, 0.4); text-align: left; width: 100%;">DataBank Ecosystem</h2>
-                        <div class="overview-intro">
-                            <p style="font-size: 1.3rem; line-height: 2; color: var(--text-secondary); margin-bottom: 2rem; margin-top: 0;">
-                                A comprehensive ecosystem designed to streamline data collection, management, and reporting 
-                                for humanitarian organizations. Built with the needs of NGOs, international organizations, and field teams 
-                                in mind, this ecosystem enables teams to work more efficiently, make data-driven decisions, and improve 
-                                collaboration across organizational levels.
-                            </p>
-                            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary);">
-                                The ecosystem consists of three main interfaces: a powerful backoffice for administrators, a public-facing 
-                                website for data submission, and native mobile applications for field teams working in remote locations.
-                            </p>
-                        </div>
-                        <div class="overview-mockups">
-                            <div class="laptop-mockup">
-                                <div class="laptop-mockup-3d">
-                                    <div class="laptop-frame">
-                                        <div class="laptop-screen">
-                                            <img src="/features/backoffice.jpg" alt="Backoffice" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5CYWNrb2ZmaWNlPC90ZXh0Pjx0ZXh0IHg9Ijk2MCIgeT0iNjIwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5Y2EzYWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlNjcmVlbnNob3QgcGxhY2Vob2xkZXI8L3RleHQ+PC9zdmc+';">
-                                        </div>
-                                    </div>
-                                    <div class="laptop-base"></div>
-                                </div>
-                            </div>
-                            <div class="laptop-mockup">
-                                <div class="laptop-mockup-3d">
-                                    <div class="laptop-frame">
-                                        <div class="laptop-screen">
-                                            <img src="/features/public-website.jpg" alt="Public Website" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5QdWJsaWMgV2Vic2l0ZTwvdGV4dD48dGV4dCB4PSI5NjAiIHk9IjYyMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TY3JlZW5zaG90IHBsYWNlaG9sZGVyPC90ZXh0Pjwvc3ZnPg==';">
-                                        </div>
-                                    </div>
-                                    <div class="laptop-base"></div>
-                                </div>
-                            </div>
-                            <div class="phone-mockup">
-                                <div class="phone-mockup-3d">
-                                    <div class="phone-frame">
-                                        <div class="phone-notch"></div>
-                                        <div class="phone-screen">
-                                            <img src="/features/mobile-app.jpg" alt="Mobile App" class="phone-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iMjMwMCIgZmlsbD0iIzI0MjQzMCIgcng9IjIwIi8+PHRleHQgeD0iNTQwIiB5PSIxMTgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Nb2JpbGUgQXBwPC90ZXh0Pjx0ZXh0IHg9IjU0MCIgeT0iMTI1MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TY3JlZW5zaG90IHBsYWNlaG9sZGVyPC90ZXh0Pjwvc3ZnPg==';">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Feature 1: Backoffice -->
-                <div class="feature-subscreen" data-feature="backoffice">
-                    <div class="vertical-scroll-container" id="backoffice-scroll">
-                        <div class="vertical-nav-indicator" id="backoffice-nav"></div>
-                        <!-- Screen 1: Dashboard -->
-                        <div class="vertical-screen">
-                            <div class="laptop-mockup">
-                                <div class="laptop-mockup-3d">
-                                    <div class="laptop-frame">
-                                        <div class="laptop-screen">
-                                            <img src="/features/backoffice.jpg" alt="Backoffice Dashboard" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5CYWNrb2ZmaWNlIERhc2hib2FyZDwvdGV4dD48L3N2Zz4=';">
-                                        </div>
-                                    </div>
-                                    <div class="laptop-base"></div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
-                                    <span>Dashboard Overview</span>
-                                </h3>
-                                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-left: 3px solid var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                    <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Comprehensive dashboard providing <strong style="color: var(--primary-color);">real-time insights</strong> into data collection activities, form submissions, and system analytics.</p>
-                                </div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span style="background: linear-gradient(135deg, #8b5cf6, #ec4899); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Real-Time Updates</span>
-                                    <span style="background: linear-gradient(135deg, #06b6d4, #3b82f6); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Live Analytics</span>
-                                    <span style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Activity Tracking</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Screen 2: Form Builder -->
-                        <div class="vertical-screen">
-                            <div style="display: flex; flex-direction: column; gap: 2rem; grid-column: 1;">
-                                <div>
-                                    <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; font-size: 1.75rem;">
-                                        <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.75rem; height: 1.75rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" /></svg>
-                                        <span>Powerful Form Builder</span>
-                                    </h3>
-                                    <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%); border: 2px solid #10b981; border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                                            <span style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.4rem 1rem; border-radius: 25px; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px;">✨ 100% NO-CODE</span>
-                                        </div>
-                                        <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Build sophisticated data collection forms with just <strong style="color: #10b981;">clicks and drags</strong>. No formulas, no programming, no writing required!</p>
-                                    </div>
-                                </div>
-                                <div class="laptop-mockup">
-                                    <div class="laptop-mockup-3d">
-                                        <div class="laptop-frame">
-                                            <div class="laptop-screen">
-                                                <img src="/features/form-builder.jpg" alt="Form Builder" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Gb3JtIEJ1aWxkZXI8L3RleHQ+PC9zdmc+';">
-                                            </div>
-                                        </div>
-                                        <div class="laptop-base"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feature-info" style="grid-column: 2;">
-                                
-                                <div style="margin-bottom: 1rem; background: rgba(139, 92, 246, 0.05); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #8b5cf6;">
-                                    <h4 style="color: var(--text-color); font-size: 1.05rem; margin-bottom: 0.3rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; line-height: 1.3;">
-                                        <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.1rem; height: 1.1rem; color: #8b5cf6;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h11.25c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" /></svg>
-                                        <span>Question & Item Types</span>
-                                    </h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 500; line-height: 1.4;">Add any of these field types with a simple <span style="color: #8b5cf6; font-weight: 700;">click</span>:</p>
-                                    <div style="display: grid; gap: 0.2rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 90px;">Indicators</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Select from the comprehensive indicator bank</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 90px;">Questions</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Text, number, date, single/multiple choice, checkbox</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 90px;">Document Fields</span><span style="color: var(--text-secondary); font-size: 0.85rem;">File uploads and document attachments</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 90px;">Matrix</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Grid-based questions for structured data</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 90px;">Plugin Fields</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Extensible custom field types</span></div>
-                                    </div>
-                                </div>
-
-                                <div style="margin-bottom: 1rem; background: rgba(236, 72, 153, 0.05); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #ec4899;">
-                                    <h4 style="color: var(--text-color); font-size: 1.05rem; margin-bottom: 0.3rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; line-height: 1.3;">
-                                        <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.1rem; height: 1.1rem; color: #ec4899;"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>
-                                        <span>Visual Condition Rules</span>
-                                    </h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 500; line-height: 1.4;">Build complex logic <span style="color: #ec4899; font-weight: 700;">visually</span> — no formulas needed:</p>
-                                    <div style="display: grid; gap: 0.2rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 130px;">Relevance Rules</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Show/hide fields based on other field values (skip logic)</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 130px;">Validation Rules</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Enforce data quality with custom validation messages</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 130px;">Visual Rule Builder</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Click to select fields, operators, and values</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 130px;">AND/OR Logic</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Combine multiple conditions with simple toggles</span></div>
-                                    </div>
-                                </div>
-
-                                <div style="background: rgba(16, 185, 129, 0.05); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #10b981;">
-                                    <h4 style="color: var(--text-color); font-size: 1.05rem; margin-bottom: 0.3rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; line-height: 1.3;">
-                                        <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.1rem; height: 1.1rem; color: #10b981;"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                                        <span>Excel Import/Export</span>
-                                    </h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 500; line-height: 1.4;">Seamless <span style="color: #10b981; font-weight: 700;">Excel integration</span> for offline work:</p>
-                                    <div style="display: grid; gap: 0.2rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 140px;">Export Forms</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Download form templates as Excel files</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 140px;">Import Data</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Bulk upload data from Excel with automatic validation</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 140px;">Export Submissions</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Export collected data with full disaggregation</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 140px;">Auto Mapping</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Automatic field matching and validation</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Screen 3: Analytics -->
-                        <div class="vertical-screen">
-                            <div style="display: flex; flex-direction: column; gap: 2rem; grid-column: 1;">
-                                <div>
-                                    <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; font-size: 1.75rem;">
-                                        <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.75rem; height: 1.75rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
-                                        <span>Advanced Analytics</span>
-                                    </h3>
-                                    <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-left: 3px solid var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                        <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Comprehensive analytics including <strong style="color: var(--primary-color);">disaggregation analysis</strong>, indicator tracking, and customizable reports for <strong style="color: #ec4899;">data-driven decision making</strong>.</p>
-                                    </div>
-                                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                        <span style="background: linear-gradient(135deg, #8b5cf6, #ec4899); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Disaggregation</span>
-                                        <span style="background: linear-gradient(135deg, #06b6d4, #3b82f6); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Indicator Tracking</span>
-                                        <span style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Custom Reports</span>
-                                    </div>
-                                </div>
-                                <div class="laptop-mockup">
-                                    <div class="laptop-mockup-3d">
-                                        <div class="laptop-frame">
-                                            <div class="laptop-screen">
-                                                <img src="/features/analytics.jpg" alt="Analytics" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5BbmFseXRpY3M8L3RleHQ+PC9zdmc+';">
-                                            </div>
-                                        </div>
-                                        <div class="laptop-base"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feature-info" style="grid-column: 2;">
-                            </div>
-                        </div>
-                        <!-- Screen 4: User & Assignment Management -->
-                        <div class="vertical-screen">
-                            <div class="laptop-mockup">
-                                <div class="laptop-mockup-3d">
-                                    <div class="laptop-frame">
-                                        <div class="laptop-screen">
-                                            <img src="/features/backoffice.jpg" alt="User & Assignment Management" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Vc2VyICYgQXNzaWdubWVudCBNYW5hZ2VtZW50PC90ZXh0Pjwvc3ZnPg==';">
-                                        </div>
-                                    </div>
-                                    <div class="laptop-base"></div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
-                                    <span>User & Assignment Management</span>
-                                </h3>
-                                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-left: 3px solid var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                    <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Comprehensive user management system with built-in registration and flexible authentication options including <strong style="color: #3b82f6;">SSO support</strong>.</p>
-                                </div>
-                                
-                                <div style="margin-bottom: 1rem; background: rgba(139, 92, 246, 0.05); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #8b5cf6;">
-                                    <h4 style="color: var(--text-color); font-size: 1.05rem; margin-bottom: 0.3rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; line-height: 1.3;">
-                                        <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.1rem; height: 1.1rem; color: #8b5cf6;"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
-                                        <span>Built-in User Management</span>
-                                    </h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 500; line-height: 1.4;">The system includes its own <span style="color: #8b5cf6; font-weight: 700;">complete user management</span> and registration system:</p>
-                                    <div style="display: grid; gap: 0.2rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 160px;">User Registration</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Self-service registration with email verification</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 160px;">User Profiles</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Complete user profiles with customizable information</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 160px;">Role Management</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Assign roles (admin, focal point, system manager, etc.)</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 160px;">Multi-Level Permissions</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Assign users to countries, NS branches, departments, and more</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 160px;">Status Control</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Activate, deactivate, and manage user accounts</span></div>
-                                    </div>
-                                </div>
-
-                                <div style="margin-bottom: 1rem; background: rgba(59, 130, 246, 0.05); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #3b82f6;">
-                                    <h4 style="color: var(--text-color); font-size: 1.05rem; margin-bottom: 0.3rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; line-height: 1.3;">
-                                        <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.1rem; height: 1.1rem; color: #3b82f6;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
-                                        <span>Single Sign-On (SSO) Support</span>
-                                        <span style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-left: auto;">Enterprise Ready</span>
-                                    </h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 500; line-height: 1.4;">Flexible authentication options for <span style="color: #3b82f6; font-weight: 700;">enterprise integration</span>:</p>
-                                    <div style="display: grid; gap: 0.2rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 150px;">Configurable SSO</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Can be configured to connect to SSO providers</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #0ea5e9; font-weight: 700; min-width: 150px;">Azure AD B2C</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Ready for Azure AD B2C integration</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 150px;">Federation Ready</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Support for enterprise federation accounts</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 150px;">Dual Authentication</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Use built-in registration or SSO, or both</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 150px;">Auto Mapping</span><span style="color: var(--text-secondary); font-size: 0.85rem;">SSO users automatically mapped to system roles</span></div>
-                                    </div>
-                                </div>
-
-                                <div style="background: rgba(236, 72, 153, 0.05); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #ec4899;">
-                                    <h4 style="color: var(--text-color); font-size: 1.05rem; margin-bottom: 0.3rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; line-height: 1.3;">
-                                        <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.1rem; height: 1.1rem; color: #ec4899;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h11.25c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" /></svg>
-                                        <span>Assignment Management</span>
-                                    </h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 500; line-height: 1.4;">Efficient <span style="color: #ec4899; font-weight: 700;">workflow management</span> for form assignments:</p>
-                                    <div style="display: grid; gap: 0.2rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 160px;">Form Assignments</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Assign forms to users, entities, or groups</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 160px;">Submission Tracking</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Monitor form submission status in real-time</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 160px;">Approval Workflows</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Multi-level approval processes</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 160px;">Due Date Management</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Set and track submission deadlines</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 160px;">Bulk Operations</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Assign multiple forms to multiple entities efficiently</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Screen 5: Plugins System -->
-                        <div class="vertical-screen">
-                            <div class="laptop-mockup">
-                                <div class="laptop-mockup-3d">
-                                    <div class="laptop-frame">
-                                        <div class="laptop-screen">
-                                            <img src="/features/backoffice.jpg" alt="Plugins System" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5QbHVnaW5zIFN5c3RlbTwvdGV4dD48L3N2Zz4=';">
-                                        </div>
-                                    </div>
-                                    <div class="laptop-base"></div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
-                                    <span>Extensible Plugins System</span>
-                                </h3>
-                                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-left: 3px solid var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                    <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Powerful plugin architecture that enables teams to develop <strong style="color: var(--primary-color);">custom form items</strong>, API integrations, and specialized functionality. Perfect for <strong style="color: #ec4899;">collaboration</strong> across different development teams.</p>
-                                </div>
-                                
-                                <div style="margin-bottom: 1rem; background: rgba(139, 92, 246, 0.05); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #8b5cf6;">
-                                    <h4 style="color: var(--text-color); font-size: 1.05rem; margin-bottom: 0.3rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; line-height: 1.3;">
-                                        <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.1rem; height: 1.1rem; color: #8b5cf6;"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                        <span>Collaborative Development</span>
-                                    </h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 500; line-height: 1.4;">Different teams can <span style="color: #8b5cf6; font-weight: 700;">independently develop</span> and integrate plugins:</p>
-                                    <div style="display: grid; gap: 0.2rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 160px;">Team Independence</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Teams develop plugins separately without affecting core system</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 160px;">Self-Contained</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Each plugin includes its own code, templates, and assets</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 160px;">Easy Integration</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Simple plugin installation and activation process</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 160px;">Version Control</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Plugins can be versioned and maintained independently</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 160px;">Plugin Marketplace</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Share plugins across teams and organizations</span></div>
-                                    </div>
-                                </div>
-
-                                <div style="margin-bottom: 1rem; background: rgba(236, 72, 153, 0.05); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #ec4899;">
-                                    <h4 style="color: var(--text-color); font-size: 1.05rem; margin-bottom: 0.3rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; line-height: 1.3;">
-                                        <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.1rem; height: 1.1rem; color: #ec4899;"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" /></svg>
-                                        <span>Custom Form Items</span>
-                                    </h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 500; line-height: 1.4;">Create <span style="color: #ec4899; font-weight: 700;">specialized form field types</span> for unique requirements:</p>
-                                    <div style="display: grid; gap: 0.2rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 150px;">Custom Fields</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Build completely new field types beyond standard options</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 150px;">Interactive Maps</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Geographic data collection and visualization</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 150px;">Specialized Widgets</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Domain-specific input components</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 150px;">Custom Validation</span><span style="color: var(--text-secondary); font-size: 0.85rem;">Plugin-specific validation logic</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 150px;">Rich UI Components</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Complex interfaces with JavaScript and CSS</span></div>
-                                    </div>
-                                </div>
-
-                                <div style="background: rgba(59, 130, 246, 0.05); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #3b82f6;">
-                                    <h4 style="color: var(--text-color); font-size: 1.05rem; margin-bottom: 0.3rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; line-height: 1.3;">
-                                        <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.1rem; height: 1.1rem; color: #3b82f6;"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>
-                                        <span>API Integration & Data Retrieval</span>
-                                    </h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 500; line-height: 1.4;">Connect to <span style="color: #3b82f6; font-weight: 700;">external APIs</span> and retrieve data for forms:</p>
-                                    <div style="display: grid; gap: 0.2rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 150px;">API Endpoints</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Plugins can expose custom API endpoints for data retrieval</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #0ea5e9; font-weight: 700; min-width: 150px;">External Sources</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Connect to third-party services and databases</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 150px;">Real-Time Data</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Fetch live data from external APIs during form entry</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 150px;">Data Transformation</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Process and format external data for form use</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 150px;">Form Integration</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Use API data to populate form fields dynamically</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Screen 6: Entities System & Data Governance -->
-                        <div class="vertical-screen">
-                            <div class="laptop-mockup">
-                                <div class="laptop-mockup-3d">
-                                    <div class="laptop-frame">
-                                        <div class="laptop-screen">
-                                            <img src="/features/backoffice.jpg" alt="Entities System & Data Governance" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5FbnRpdGllcyAmIERhdGEgR292ZXJuYW5jZTwvdGV4dD48L3N2Zz4=';">
-                                        </div>
-                                    </div>
-                                    <div class="laptop-base"></div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15m-15 18V9.75a3 3 0 013-3h1.5m13.5 12V9.75a3 3 0 00-3-3h-1.5M4.5 21V15m0-5.25h6m-6 0V6a3 3 0 013-3h1.5M13.5 15V9m6 6v6m-6-6h3.75M13.5 15h-3.75m0 0H9m3.75 0v6M9 21h3.75" /></svg>
-                                    <span>Multi-Level Entities & Data Governance</span>
-                                </h3>
-                                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-left: 3px solid var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                    <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Comprehensive organizational entity system supporting complex hierarchies with robust data governance. All data is <strong style="color: #3b82f6;">API-accessible</strong> and <strong style="color: #10b981;">AI-ready</strong> for modern analytics and intelligent automation.</p>
-                                </div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <span style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">API-First</span>
-                                    <span style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">AI-Ready</span>
-                                    <span style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">9 Entity Types</span>
-                                </div>
-                                
-                                <div style="margin-bottom: 1rem; background: rgba(139, 92, 246, 0.05); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #8b5cf6;">
-                                    <h4 style="color: var(--text-color); font-size: 1.05rem; margin-bottom: 0.3rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; line-height: 1.3;">
-                                        <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.1rem; height: 1.1rem; color: #8b5cf6;"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15m-15 18V9.75a3 3 0 013-3h1.5m13.5 12V9.75a3 3 0 00-3-3h-1.5M4.5 21V15m0-5.25h6m-6 0V6a3 3 0 013-3h1.5M13.5 15V9m6 6v6m-6-6h3.75M13.5 15h-3.75m0 0H9m3.75 0v6M9 21h3.75" /></svg>
-                                        <span>Multi-Level Entity System</span>
-                                        <span style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-left: auto;">9 Types</span>
-                                    </h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 500; line-height: 1.4;">Support for <span style="color: #8b5cf6; font-weight: 700;">9 different organizational entity types</span>:</p>
-                                    <div style="display: grid; gap: 0.2rem;">
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 200px;">Countries</span><span style="color: var(--text-secondary); font-size: 0.9rem;">National-level entities</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 200px;">National Societies</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Red Cross/Red Crescent national societies</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 200px;">NS Branches</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Regional branches within countries</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 200px;">NS Sub-Branches & Local Units</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Local organizational units</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 200px;">Secretariat Divisions & Departments</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Headquarter organizational units</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #0ea5e9; font-weight: 700; min-width: 200px;">Regional & Cluster Offices</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Regional coordination offices</span></div>
-                                        <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(255, 255, 255, 0.03); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 200px;">Polymorphic Design</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Flexible, scalable architecture for future entity types</span></div>
-                                    </div>
-                                </div>
-
-                                <div style="margin-bottom: 1rem;">
-                                    <h4 style="color: var(--text-color); font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600;"><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1rem; height: 1rem; vertical-align: middle; margin-right: 0.3rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>Data Governance</h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem;">Comprehensive data governance and management features:</p>
-                                    <ul style="color: var(--text-secondary); font-size: 0.9rem; margin-left: 1.5rem; line-height: 1.6;">
-                                        <li><strong>Entity-Based Permissions</strong> — Granular access control by organizational entity</li>
-                                        <li><strong>Data Quality Monitoring</strong> — Track data completeness and accuracy</li>
-                                        <li><strong>Audit Trails</strong> — Complete tracking of data changes and submissions</li>
-                                        <li><strong>Data Validation</strong> — Built-in validation rules and quality checks</li>
-                                        <li><strong>Approval Workflows</strong> — Multi-level data approval processes</li>
-                                        <li><strong>Data Retention Policies</strong> — Configurable data lifecycle management</li>
-                                    </ul>
-                                </div>
-
-                                <div style="margin-bottom: 1rem;">
-                                    <h4 style="color: var(--text-color); font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600;"><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1rem; height: 1rem; vertical-align: middle; margin-right: 0.3rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>API-First Architecture</h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem;">All collected data is accessible through comprehensive REST APIs:</p>
-                                    <ul style="color: var(--text-secondary); font-size: 0.9rem; margin-left: 1.5rem; line-height: 1.6;">
-                                        <li><strong>RESTful API</strong> — Complete REST API for all data and operations</li>
-                                        <li><strong>Dashboard Integration</strong> — Easy integration with Power BI, Tableau, and custom dashboards</li>
-                                        <li><strong>Real-Time Data Access</strong> — Live data access with filtering and pagination</li>
-                                        <li><strong>Structured JSON</strong> — Clean, well-structured JSON responses</li>
-                                        <li><strong>API Documentation</strong> — Comprehensive API documentation for developers</li>
-                                        <li><strong>Authentication & Security</strong> — Secure API access with API keys and role-based permissions</li>
-                                    </ul>
-                                </div>
-
-                                <div>
-                                    <h4 style="color: var(--text-color); font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600;"><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1rem; height: 1rem; vertical-align: middle; margin-right: 0.3rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>AI-Ready Data</h4>
-                                    <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem;">Data formatted and structured for AI consumption:</p>
-                                    <ul style="color: var(--text-secondary); font-size: 0.9rem; margin-left: 1.5rem; line-height: 1.6;">
-                                        <li><strong>Structured Format</strong> — Clean, consistent data structure optimized for AI processing</li>
-                                        <li><strong>AI Agent Integration</strong> — Ready for AI agents to query, analyze, and answer questions</li>
-                                        <li><strong>Metadata Rich</strong> — Comprehensive metadata for context-aware AI understanding</li>
-                                        <li><strong>Semantic Search</strong> — Data structured for semantic search and AI-powered queries</li>
-                                        <li><strong>Machine Learning Ready</strong> — Data format suitable for ML model training and inference</li>
-                                        <li><strong>Natural Language Interface</strong> — AI agents can interpret and respond using this data</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Feature 2: Website -->
-                <div class="feature-subscreen" data-feature="website">
-                    <div class="vertical-scroll-container" id="website-scroll">
-                        <div class="vertical-nav-indicator" id="website-nav"></div>
-                        <!-- Screen 1: Public Website -->
-                        <div class="vertical-screen">
-                            <div class="laptop-mockup">
-                                <div class="laptop-mockup-3d">
-                                    <div class="laptop-frame">
-                                        <div class="laptop-screen">
-                                            <img src="/features/public-website.jpg" alt="Public Website" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5QdWJsaWMgV2Vic2l0ZTwvdGV4dD48L3N2Zz4=';">
-                                        </div>
-                                    </div>
-                                    <div class="laptop-base"></div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.944 11.944 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
-                                    <span>Public Data Exploration Website</span>
-                                </h3>
-                                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-left: 3px solid var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                    <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Public-facing <strong style="color: #000; background: linear-gradient(135deg, #000 0%, #fff 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Next.js</strong> website for exploring, visualizing, and accessing collected data. Features interactive maps, country profiles, data visualizations, and comprehensive analytics. Accessible and responsive design for all devices.</p>
-                                </div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span style="background: linear-gradient(135deg, #000, #fff); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Next.js</span>
-                                    <span style="background: linear-gradient(135deg, #8b5cf6, #ec4899); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Interactive Maps</span>
-                                    <span style="background: linear-gradient(135deg, #06b6d4, #3b82f6); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Analytics</span>
-                                    <span style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Responsive</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Screen 2: Multi-Language -->
-                        <div class="vertical-screen">
-                            <div class="laptop-mockup">
-                                <div class="laptop-mockup-3d">
-                                    <div class="laptop-frame">
-                                        <div class="laptop-screen">
-                                            <img src="/features/multi-language.jpg" alt="Multi-Language Support" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5NdWx0aS1MYW5ndWFnZTwvdGV4dD48L3N2Zz4=';">
-                                        </div>
-                                    </div>
-                                    <div class="laptop-base"></div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.944 11.944 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
-                                    <span>Multi-Language Support</span>
-                                </h3>
-                                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-left: 3px solid var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                    <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Available in <strong style="color: var(--primary-color);">7 languages</strong> (English, French, Spanish, Arabic, Chinese, Russian, Hindi) with full <strong style="color: #ec4899;">RTL support</strong> for Arabic.</p>
-                                </div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                                    <span style="background: linear-gradient(135deg, #8b5cf6, #ec4899); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">7 Languages</span>
-                                    <span style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">RTL Support</span>
-                                    <span style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">i18n</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Screen 3: Data Visualization & Analytics Dashboard -->
-                        <div class="vertical-screen">
-                            <div class="laptop-mockup">
-                                <div class="laptop-mockup-3d">
-                                    <div class="laptop-frame">
-                                        <div class="laptop-screen">
-                                            <img src="/features/analytics.jpg" alt="Data Visualization & Analytics Dashboard" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5EYXRhIFZpc3VhbGl6YXRpb24gJiBBbmFseXRpY3M8L3RleHQ+PC9zdmc+';">
-                                        </div>
-                                    </div>
-                                    <div class="laptop-base"></div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>Data Visualization & Analytics Dashboard</h3>
-                                <p style="margin-bottom: 1rem;">Interactive dashboards with comprehensive data visualization and analytics capabilities for data-driven insights.</p>
-                                <ul style="color: var(--text-secondary); font-size: 0.95rem; margin-left: 1.5rem; line-height: 1.8;">
-                                    <li><strong>Interactive Charts & Graphs</strong> — Dynamic visualizations with filtering and drill-down capabilities</li>
-                                    <li><strong>Disaggregation Analysis</strong> — Deep dive into data by sex, age, and other dimensions</li>
-                                    <li><strong>Country Profiles</strong> — Comprehensive country-level data views with maps</li>
-                                    <li><strong>Indicator Tracking</strong> — Track indicators across multiple time periods</li>
-                                    <li><strong>People Reached Analysis</strong> — Analyze program reach and impact metrics</li>
-                                    <li><strong>Real-Time Updates</strong> — Live data updates as new submissions are received</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Screen 4: Indicator Bank Interface -->
-                        <div class="vertical-screen">
-                            <div class="laptop-mockup">
-                                <div class="laptop-mockup-3d">
-                                    <div class="laptop-frame">
-                                        <div class="laptop-screen">
-                                            <img src="/features/public-website.jpg" alt="Indicator Bank Interface" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5JbmRpY2F0b3IgQmFuazwvdGV4dD48L3N2Zz4=';">
-                                        </div>
-                                    </div>
-                                    <div class="laptop-base"></div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>Indicator Bank Interface</h3>
-                                <p style="margin-bottom: 1rem;">Comprehensive searchable library of indicators for easy discovery and selection.</p>
-                                <ul style="color: var(--text-secondary); font-size: 0.95rem; margin-left: 1.5rem; line-height: 1.8;">
-                                    <li><strong>Searchable Database</strong> — Quick search and filter by name, sector, or type</li>
-                                    <li><strong>Sector Organization</strong> — Browse indicators by sector and sub-sector</li>
-                                    <li><strong>Detailed Metadata</strong> — Complete indicator information including definitions and units</li>
-                                    <li><strong>Emergency Indicators</strong> — Highlighted emergency-specific indicators</li>
-                                    <li><strong>Individual Indicator Pages</strong> — Detailed pages with usage statistics and data</li>
-                                    <li><strong>SEO-Optimized</strong> — Public-facing pages optimized for search engines</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Screen 5: Resources Library -->
-                        <div class="vertical-screen">
-                            <div class="laptop-mockup">
-                                <div class="laptop-mockup-3d">
-                                    <div class="laptop-frame">
-                                        <div class="laptop-screen">
-                                            <img src="/features/public-website.jpg" alt="Resources Library" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5SZXNvdXJjZXMgTGlicmFyeTwvdGV4dD48L3N2Zz4=';">
-                                        </div>
-                                    </div>
-                                    <div class="laptop-base"></div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>Resources Library</h3>
-                                <p style="margin-bottom: 1rem;">Centralized resource and document management system for easy access to publications and materials.</p>
-                                <ul style="color: var(--text-secondary); font-size: 0.95rem; margin-left: 1.5rem; line-height: 1.8;">
-                                    <li><strong>Document Management</strong> — Upload, categorize, and organize documents and resources</li>
-                                    <li><strong>Publication Tracking</strong> — Track and manage publications with metadata</li>
-                                    <li><strong>Search & Filter</strong> — Easy discovery through search and filtering options</li>
-                                    <li><strong>Public Access</strong> — Public-facing resource library for external users</li>
-                                    <li><strong>File Organization</strong> — Structured organization by category, type, and date</li>
-                                    <li><strong>Download Tracking</strong> — Monitor resource access and downloads</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Screen 6: API Endpoint Builder -->
-                        <div class="vertical-screen">
-                            <div class="laptop-mockup">
-                                <div class="laptop-mockup-3d">
-                                    <div class="laptop-frame">
-                                        <div class="laptop-screen">
-                                            <img src="/features/public-website.jpg" alt="API Endpoint Builder" class="laptop-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMjAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjEwMCIgeT0iMTAwIiB3aWR0aD0iMTcyMCIgaGVpZ2h0PSIxMDAwIiBmaWxsPSIjMjQyNDMwIiByeD0iOCIvPjx0ZXh0IHg9Ijk2MCIgeT0iNTUwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5BUEnigJlzICYgRW5kcG9pbnQgQnVpbGRlcjwvdGV4dD48L3N2Zz4=';">
-                                        </div>
-                                    </div>
-                                    <div class="laptop-base"></div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>API Endpoint Builder</h3>
-                                <p style="margin-bottom: 1rem;"><strong style="color: var(--primary-color);">Direct Backend Connection</strong> — The website connects directly to the backend API with minimal configuration required.</p>
-                                <div style="margin-bottom: 1rem;">
-                                    <h4 style="color: var(--text-color); font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600;">Visual API Builder</h4>
-                                    <ul style="color: var(--text-secondary); font-size: 0.95rem; margin-left: 1.5rem; line-height: 1.8;">
-                                        <li><strong>Visual Interface</strong> — Build API queries through an intuitive visual interface</li>
-                                        <li><strong>Query Builder</strong> — Select filters, parameters, and data fields with clicks</li>
-                                        <li><strong>Real-Time Testing</strong> — Test API endpoints and preview results instantly</li>
-                                        <li><strong>URL Generation</strong> — Generate properly formatted API URLs automatically</li>
-                                        <li><strong>Code Snippets</strong> — Get ready-to-use code examples for different languages</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 style="color: var(--text-color); font-size: 1rem; margin-bottom: 0.5rem; font-weight: 600;">Easy Configuration</h4>
-                                    <ul style="color: var(--text-secondary); font-size: 0.95rem; margin-left: 1.5rem; line-height: 1.8;">
-                                        <li><strong>Direct Backend Connection</strong> — Website connects directly to backend APIs</li>
-                                        <li><strong>Minimal Setup</strong> — Only requires backend URL configuration</li>
-                                        <li><strong>No Middleware</strong> — No additional services or proxy servers needed</li>
-                                        <li><strong>Ready to Use</strong> — Works immediately once backend is configured</li>
-                                        <li><strong>Environment-Based</strong> — Simple configuration for different environments</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Feature 3: Mobile App -->
-                <div class="feature-subscreen" data-feature="mobile-app">
-                    <div class="vertical-scroll-container" id="mobile-app-scroll">
-                        <div class="vertical-nav-indicator" id="mobile-app-nav"></div>
-                        <!-- Screen 1: Mobile App Overview -->
-                        <div class="vertical-screen">
-                            <div class="phone-mockup">
-                                <div class="phone-mockup-3d">
-                                    <div class="phone-frame">
-                                        <div class="phone-notch"></div>
-                                        <div class="phone-screen">
-                                            <img src="/features/mobile-app.jpg" alt="Mobile App" class="phone-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iMjMwMCIgZmlsbD0iIzI0MjQzMCIgcng9IjIwIi8+PHRleHQgeD0iNTQwIiB5PSIxMTgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Nb2JpbGUgQXBwPC90ZXh0Pjwvc3ZnPg==';">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H5.625c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75m-7.5-6v6m-4.5-6v6m7.5-6v6m-4.5 0v6m-4.5 0v6m9-3.75H9" /></svg>
-                                    <span>Native Mobile Apps</span>
-                                </h3>
-                                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-left: 3px solid var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                    <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Native <strong style="color: #0ea5e9;">Flutter</strong> apps for <span style="display: inline-flex; align-items: center; gap: 0.3rem;"><strong style="color: #000; background: linear-gradient(135deg, #000 0%, #333 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">iOS</strong></span> and <span style="display: inline-flex; align-items: center; gap: 0.3rem;"><strong style="color: #3ddc84;">Android</strong></span> with comprehensive <strong style="color: var(--primary-color);">offline support</strong>, enabling field teams to work seamlessly even without internet connectivity.</p>
-                                </div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <span style="background: linear-gradient(135deg, #000, #333); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.3rem;">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                                        iOS
-                                    </span>
-                                    <span style="background: linear-gradient(135deg, #3ddc84, #34c759); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.3rem;">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
-                                        Android
-                                    </span>
-                                    <span style="background: linear-gradient(135deg, #0ea5e9, #0284c7); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Flutter</span>
-                                    <span style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">7 Languages</span>
-                                    <span style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Azure AD SSO</span>
-                                </div>
-                                <div style="display: grid; gap: 0.5rem;">
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #0ea5e9; font-weight: 700; min-width: 150px;">Cross-Platform</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Single codebase for both iOS and Android</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 150px;">Native Performance</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Fast, responsive native app experience</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Screen 2: Dashboard -->
-                        <div class="vertical-screen">
-                            <div class="phone-mockup">
-                                <div class="phone-mockup-3d">
-                                    <div class="phone-frame">
-                                        <div class="phone-notch"></div>
-                                        <div class="phone-screen">
-                                            <img src="/features/mobile-app.jpg" alt="Dashboard" class="phone-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iMjMwMCIgZmlsbD0iIzI0MjQzMCIgcng9IjIwIi8+PHRleHQgeD0iNTQwIiB5PSIxMTgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5EYXNoYm9hcmQ8L3RleHQ+PC9zdmc+';">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
-                                    <span>Dashboard</span>
-                                </h3>
-                                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-left: 3px solid var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                    <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Comprehensive dashboard providing <strong style="color: var(--primary-color);">quick access</strong> to assignments, entities, and recent activities.</p>
-                                </div>
-                                <div style="display: grid; gap: 0.5rem;">
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 150px;">My Assignments</span><span style="color: var(--text-secondary); font-size: 0.9rem;">View assigned forms and their status</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 150px;">Entity Overview</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Quick access to assigned entities</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 150px;">Recent Activities</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Track recent submissions and updates</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 150px;">Quick Actions</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Fast access to commonly used features</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 150px;">Offline Indicator</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Clear visual indication of connection status</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Screen 3: Notifications -->
-                        <div class="vertical-screen">
-                            <div class="phone-mockup">
-                                <div class="phone-mockup-3d">
-                                    <div class="phone-frame">
-                                        <div class="phone-notch"></div>
-                                        <div class="phone-screen">
-                                            <img src="/features/mobile-app.jpg" alt="Notifications" class="phone-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iMjMwMCIgZmlsbD0iIzI0MjQzMCIgcng9IjIwIi8+PHRleHQgeD0iNTQwIiB5PSIxMTgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Ob3RpZmljYXRpb25zPC90ZXh0Pjwvc3ZnPg==';">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" /></svg>
-                                    <span>Real-Time Notifications</span>
-                                </h3>
-                                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-left: 3px solid var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                    <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Stay informed with <strong style="color: #ec4899;">real-time notifications</strong> and push notifications powered by <strong style="color: #f59e0b;">Firebase Cloud Messaging</strong>.</p>
-                                </div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <span style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Firebase FCM</span>
-                                    <span style="background: linear-gradient(135deg, #ec4899, #db2777); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Real-Time</span>
-                                    <span style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Badge Counts</span>
-                                </div>
-                                <div style="display: grid; gap: 0.5rem;">
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 150px;">Push Notifications</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Firebase Cloud Messaging integration</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 150px;">Unread Counts</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Clear badge indicators for unread notifications</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 150px;">Real-Time Updates</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Instant notification delivery</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 150px;">Categories</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Organized by type and priority</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 150px;">Action Buttons</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Interactive notifications with quick actions</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Screen 4: WebView Integration -->
-                        <div class="vertical-screen">
-                            <div class="phone-mockup">
-                                <div class="phone-mockup-3d">
-                                    <div class="phone-frame">
-                                        <div class="phone-notch"></div>
-                                        <div class="phone-screen">
-                                            <img src="/features/mobile-app.jpg" alt="WebView Integration" class="phone-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iMjMwMCIgZmlsbD0iIzI0MjQzMCIgcng9IjIwIi8+PHRleHQgeD0iNTQwIiB5PSIxMTgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5XZWJWaWV3PC90ZXh0Pjwvc3ZnPg==';">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.944 11.944 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
-                                    <span>WebView Integration</span>
-                                </h3>
-                                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-left: 3px solid var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                    <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Seamless <strong style="color: var(--primary-color);">secure access</strong> to complex backend pages within the native app.</p>
-                                </div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <span style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Secure</span>
-                                    <span style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Session Management</span>
-                                    <span style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">CSP Protected</span>
-                                </div>
-                                <div style="display: grid; gap: 0.5rem;">
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 170px;">Template Management</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Access form builder and template management</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 170px;">Assignment Management</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Manage form assignments directly from mobile</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 170px;">Form Data Entry</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Full form entry capabilities in WebView</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 170px;">Secure Session</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Automatic session cookie injection</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 170px;">URL Whitelist</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Security validation for approved URLs only</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #0ea5e9; font-weight: 700; min-width: 170px;">CSP Protection</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Enhanced security with CSP enforcement</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Screen 5: Offline Support -->
-                        <div class="vertical-screen">
-                            <div class="phone-mockup">
-                                <div class="phone-mockup-3d">
-                                    <div class="phone-frame">
-                                        <div class="phone-notch"></div>
-                                        <div class="phone-screen">
-                                            <img src="/features/mobile-app.jpg" alt="Offline Support" class="phone-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iMjMwMCIgZmlsbD0iIzI0MjQzMCIgcng9IjIwIi8+PHRleHQgeD0iNTQwIiB5PSIxMTgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5PZmZsaW5lIFN1cHBvcnQ8L3RleHQ+PC9zdmc+';">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a3.75 3.75 0 01-2.94-1.288M15.47 18.22l.53.53.53-.53a3.75 3.75 0 012.94-1.288m-6 0a3.75 3.75 0 01-2.94 1.288M15.47 18.22l.53-.53a3.75 3.75 0 00-2.94-1.288m3.88 2.576a3.75 3.75 0 01-2.94 1.288" /></svg>
-                                    <span>Comprehensive Offline Support</span>
-                                </h3>
-                                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%); border: 2px solid #10b981; border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);">
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                                        <span style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.4rem 1rem; border-radius: 25px; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px;">📡 FULL OFFLINE MODE</span>
-                                    </div>
-                                    <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Full offline functionality for remote field work with <strong style="color: #10b981;">automatic synchronization</strong>.</p>
-                                </div>
-                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <span style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">SQLite Cache</span>
-                                    <span style="background: linear-gradient(135deg, #0ea5e9, #0284c7); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Auto Sync</span>
-                                    <span style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500;">Smart Retry</span>
-                                </div>
-                                <div style="display: grid; gap: 0.5rem;">
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(16, 185, 129, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 150px;">Request Queuing</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Failed requests automatically queued when offline</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(16, 185, 129, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #0ea5e9; font-weight: 700; min-width: 150px;">Response Caching</span><span style="color: var(--text-secondary); font-size: 0.9rem;">GET requests cached in SQLite for offline access</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(16, 185, 129, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 150px;">Automatic Sync</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Queued requests sync when connection restored</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(16, 185, 129, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 150px;">Network Monitoring</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Real-time network status detection</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(16, 185, 129, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 150px;">Retry Logic</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Exponential backoff with configurable retry counts</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(16, 185, 129, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 150px;">Sync Tracking</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Track when data was last synchronized</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Screen 6: Settings & Profile -->
-                        <div class="vertical-screen">
-                            <div class="phone-mockup">
-                                <div class="phone-mockup-3d">
-                                    <div class="phone-frame">
-                                        <div class="phone-notch"></div>
-                                        <div class="phone-screen">
-                                            <img src="/features/mobile-app.jpg" alt="Settings & Profile" class="phone-screen-content" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxYTFhMjQ7c3RvcC1vcGFjaXR5OjEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZjBmMTU7c3RvcC1vcGFjaXR5OjEiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTA4MCIgaGVpZ2h0PSIyMzQwIiBmaWxsPSJ1cmwoI2JnKSIvPjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjEwNDAiIGhlaWdodD0iMjMwMCIgZmlsbD0iIzI0MjQzMCIgcng9IjIwIi8+PHRleHQgeD0iNTQwIiB5PSIxMTgwIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNDgiIGZpbGw9IiM4YjVjZjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5TZXR0aW5nczwvdGV4dD48L3N2Zz4=';">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="feature-info">
-                                <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                                    <svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; color: var(--primary-color);"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                    <span>Settings & Profile Management</span>
-                                </h3>
-                                <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%); border-left: 3px solid var(--primary-color); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
-                                    <p style="margin: 0; font-size: 1rem; line-height: 1.7; color: var(--text-color);">Personalize your mobile app experience and manage your user profile with ease.</p>
-                                </div>
-                                <div style="display: grid; gap: 0.5rem;">
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #8b5cf6; font-weight: 700; min-width: 150px;">Profile Editing</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Update name, job title, and profile information</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #ec4899; font-weight: 700; min-width: 150px;">Profile Color</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Customize profile color for personalization</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #3b82f6; font-weight: 700; min-width: 150px;">Chatbot Toggle</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Toggle chatbot on/off</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #10b981; font-weight: 700; min-width: 150px;">Language Selection</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Choose from 7 supported languages</span></div>
-                                    <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.05); border-radius: 6px; line-height: 1.3;"><span style="color: #f59e0b; font-weight: 700; min-width: 150px;">Cache Management</span><span style="color: var(--text-secondary); font-size: 0.9rem;">Clear cache and manage offline data</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature Navigation -->
-            <div class="feature-nav" id="featureNav">
-                <button class="feature-nav-button active" data-feature-index="0">Overview</button>
-                <button class="feature-nav-button" data-feature-index="1">Backoffice</button>
-                <button class="feature-nav-button" data-feature-index="2">Website</button>
-                <button class="feature-nav-button" data-feature-index="3">Mobile App</button>
-            </div>
-        </div>
-    </section>
+    <!-- Project Detail Section - Loaded from partial -->
+    <div id="project-details-container"></div>
 
     <!-- About Section -->
     <section id="about" class="about">
@@ -1062,22 +268,73 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2 class="section-title fade-in">Get In Touch</h2>
-        <p class="fade-in" style="font-size: 1.2rem; margin-bottom: 3rem; color: var(--text-secondary);">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
-        <div class="social-links fade-in">
-            <a href="mailto:your.email@example.com" class="social-link"><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.25rem; height: 1.25rem; vertical-align: middle; margin-right: 0.5rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>Email</a>
-            <a href="https://linkedin.com/in/yourprofile" class="social-link"><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width: 1.25rem; height: 1.25rem; vertical-align: middle; margin-right: 0.5rem;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
-            <a href="https://github.com/haythamsoufi" class="social-link"><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width: 1.25rem; height: 1.25rem; vertical-align: middle; margin-right: 0.5rem;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>GitHub</a>
-            <a href="https://twitter.com/yourhandle" class="social-link"><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width: 1.25rem; height: 1.25rem; vertical-align: middle; margin-right: 0.5rem;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>Twitter</a>
-        </div>
-    </section>
+    <!-- Contact Section - Loaded from partial -->
+    <div id="contact-container"></div>
 
     </div>
     <!-- End Screens Container -->
 
     <!-- Screen Navigation & Animations -->
+    <!-- Load Partials -->
+    <script>
+        // Load project details partial
+        function loadProjectDetails() {
+            return fetch('/partials/project-details.html')
+                .then(response => response.text())
+                .then(html => {
+                    const container = document.getElementById('project-details-container');
+                    if (container) {
+                        container.innerHTML = html;
+                        // Re-initialize features after content loads
+                        // Trigger a custom event so features.js can re-initialize
+                        const event = new Event('projectDetailsLoaded');
+                        document.dispatchEvent(event);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading project details partial:', error);
+                });
+        }
+        
+        // Load contact partial
+        function loadContact() {
+            return fetch('/partials/contact.html')
+                .then(response => response.text())
+                .then(html => {
+                    const container = document.getElementById('contact-container');
+                    if (container) {
+                        container.innerHTML = html;
+                        // Trigger animations for loaded content
+                        const fadeElements = container.querySelectorAll('.fade-in');
+                        fadeElements.forEach(el => {
+                            setTimeout(() => el.classList.add('visible'), 100);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading contact partial:', error);
+                });
+        }
+        
+        // Load all partials when DOM is ready
+        function loadAllPartials() {
+            return Promise.all([
+                loadProjectDetails(),
+                loadContact()
+            ]).then(() => {
+                // Dispatch event when all partials are loaded
+                const event = new Event('allPartialsLoaded');
+                document.dispatchEvent(event);
+            });
+        }
+        
+        // Load immediately if DOM is ready, otherwise wait
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadAllPartials);
+        } else {
+            loadAllPartials();
+        }
+    </script>
     <script src="/js/theme.js"></script>
     <script src="/js/navigation.js"></script>
     <script src="/js/features.js"></script>

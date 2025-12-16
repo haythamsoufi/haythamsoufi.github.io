@@ -1,17 +1,23 @@
 # Partials Folder
 
-This folder contains HTML partials/components that were intended for a modular build system.
+This folder contains HTML partials/components for a modular build system.
 
-## Status: Currently Unused
+## Status: Active
 
-The partials system is not currently active. The main `index.html` file contains all content inline.
+The partials system is now active. Sections are loaded dynamically from partial files into `index.html` using JavaScript fetch.
 
-## Future Use
+## How It Works
 
-These partials can be used for:
-- Future refactoring to a component-based system
-- Build-time HTML generation
-- Template system integration
+Partials are loaded on page load using JavaScript:
+- `project-details.html` - Loaded into `#project-details-container`
+- `contact.html` - Loaded into `#contact-container`
+
+## Benefits
+
+- Modular code organization
+- Easier maintenance and updates
+- Reusable components
+- Cleaner main HTML file
 
 ## Files
 
@@ -24,4 +30,5 @@ These partials can be used for:
 - `projects.html` - Projects section
 - `contact.html` - Contact section
 - `mockup-modal.html` - Fullscreen mockup modal
+
 

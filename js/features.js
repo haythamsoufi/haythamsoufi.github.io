@@ -194,11 +194,14 @@ function getFeatureFromUrl() {
     return null;
 }
 
-// Feature navigation event listeners
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize features function
+function initializeFeatures() {
     // Feature nav buttons
     document.querySelectorAll('.feature-nav-button').forEach((btn, index) => {
-        btn.addEventListener('click', () => showFeature(index, true));
+        // Remove existing listeners to avoid duplicates
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+        newBtn.addEventListener('click', () => showFeature(index, true));
     });
     
     // Initialize feature from URL if on databank-details screen
@@ -216,7 +219,13 @@ document.addEventListener('DOMContentLoaded', () => {
             initializeVerticalNav(feature);
         }
     });
-});
+}
+
+// Feature navigation event listeners
+document.addEventListener('DOMContentLoaded', initializeFeatures);
+
+// Listen for dynamically loaded project details
+document.addEventListener('projectDetailsLoaded', initializeFeatures);
 
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {

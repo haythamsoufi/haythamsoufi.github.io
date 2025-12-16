@@ -440,9 +440,9 @@ window.addEventListener('popstate', (e) => {
     }
 });
 
-// Navigation event listeners
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('[DEBUG] DOMContentLoaded - Starting navigation setup');
+// Initialize navigation after partials are loaded
+function initializeNavigation() {
+    console.log('[DEBUG] Initializing navigation...');
     console.log('[DEBUG] Available screens:', screens);
     console.log('[DEBUG] All sections found:', Array.from(document.querySelectorAll('section')).map(s => ({
         id: s.id,
@@ -472,7 +472,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initialize from URL on page load
-    console.log('[DEBUG] Initializing navigation...');
     const initialIndex = getScreenFromUrl();
     console.log('[DEBUG] Initial index from URL:', initialIndex, 'Screen:', screens[initialIndex]);
     currentScreenIndex = initialIndex;
@@ -541,19 +540,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Show the correct screen (don't update URL since we just set it)
     console.log('[DEBUG] Calling showScreen with index:', initialIndex);
-    showScreen(initialIndex, false);
     
-    // If on databank-details screen, check for feature in URL
-    if (screens[initialIndex] === 'databank-details' && typeof getFeatureFromUrl === 'function') {
+    // Ensure the section exists before trying to show it
+    const targetSection = document.getElementById(screens[initialIndex]);
+    if (!targetSection) {
+        console.error(`[DEBUG] Section ${screens[initialIndex]} not found, retrying after delay...`);
         setTimeout(() => {
-            const featureIndex = getFeatureFromUrl();
-            if (featureIndex !== null && typeof showFeature === 'function') {
-                showFeature(featureIndex, false); // Don't update URL, we're initializing from it
+            const retrySection = document.getElementById(screens[initialIndex]);
+            if (retrySection) {
+                showScreen(initialIndex, false);
+                // If on databank-details screen, check for feature in URL
+                if (screens[initialIndex] === 'databank-details' && typeof getFeatureFromUrl === 'function') {
+                    setTimeout(() => {
+                        const featureIndex = getFeatureFromUrl();
+                        if (featureIndex !== null && typeof showFeature === 'function') {
+                            showFeature(featureIndex, false);
+                        }
+                    }, 150);
+                }
+            } else {
+                console.error(`[DEBUG] Section ${screens[initialIndex]} still not found after retry`);
             }
-        }, 150);
+        }, 100);
+    } else {
+        showScreen(initialIndex, false);
+        
+        // If on databank-details screen, check for feature in URL
+        if (screens[initialIndex] === 'databank-details' && typeof getFeatureFromUrl === 'function') {
+            setTimeout(() => {
+                const featureIndex = getFeatureFromUrl();
+                if (featureIndex !== null && typeof showFeature === 'function') {
+                    showFeature(featureIndex, false); // Don't update URL, we're initializing from it
+                }
+            }, 150);
+        }
     }
     
     console.log('[DEBUG] Navigation initialization complete');
+}
+
+// Navigation event listeners - wait for partials to load
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('[DEBUG] DOMContentLoaded - Waiting for partials to load');
+    
+    // Check if partials are already loaded (in case event fired before listener was added)
+    const projectDetailsContainer = document.getElementById('project-details-container');
+    const projectDetailsSection = document.getElementById('databank-details');
+    
+    // If the section already exists, partials are loaded
+    if (projectDetailsSection) {
+        console.log('[DEBUG] Partials already loaded, initializing navigation immediately');
+        initializeNavigation();
+    } else {
+        // Wait for partials to load
+        console.log('[DEBUG] Waiting for partials to load...');
+        document.addEventListener('allPartialsLoaded', () => {
+            console.log('[DEBUG] Partials loaded, initializing navigation');
+            initializeNavigation();
+        }, { once: true });
+        
+        // Fallback: if partials take too long, initialize anyway after a timeout
+        setTimeout(() => {
+            if (!document.getElementById('databank-details')) {
+                console.warn('[DEBUG] Partials loading timeout, initializing navigation anyway');
+                initializeNavigation();
+            }
+        }, 2000);
+    }
 });
 
 // Hamburger Menu Functionality
