@@ -36,7 +36,7 @@ You can also open `index.html` directly in your browser, but URL routing will us
 
 ```
 portfolio/
-├── index.html              # Main HTML file
+├── index.html              # Main HTML file (vanilla JS version)
 ├── styles/
 │   └── main.css            # All styles
 ├── js/
@@ -45,7 +45,12 @@ portfolio/
 │   ├── animations.js       # Animations
 │   ├── mockups.js          # Mockup modal
 │   └── main.js             # Main initialization
-├── partials/               # HTML partials/components
+├── src/                    # React version (optional migration)
+│   ├── components/         # React components
+│   ├── styles/             # React version styles
+│   └── main.jsx            # React entry point
+├── features/               # Project feature images
+├── partials/               # HTML partials (unused, kept for reference)
 └── server.js               # Simple local development server
 ```
 
@@ -76,13 +81,32 @@ The website supports the following routes:
 ### Features
 
 - ✅ Modular CSS and JavaScript
-- ✅ HTML partials for reusable components
 - ✅ URL routing with browser history support
 - ✅ Works with file:// protocol (hash-based routing)
 - ✅ Works with http/https (clean URL routing)
+- ✅ Dark/Light theme toggle
+- ✅ Responsive design
+- ✅ Keyboard navigation support
+
+## 📦 Deployment
+
+### Vercel (Recommended)
+
+The project includes `vercel.json` for easy deployment:
+1. Push to GitHub
+2. Connect your repo to Vercel
+3. Vercel will automatically detect and deploy
+
+### GitHub Pages
+
+1. Build the project (if using React version)
+2. Copy files to `docs/` folder or root
+3. Enable GitHub Pages in repo settings
 
 ## 📝 Notes
 
+- **Current Implementation**: Vanilla JavaScript/HTML (active)
+- **React Version**: Available in `src/` folder for future migration (see `README-REACT.md`)
 - When using `file://` protocol, URLs will use hash fragments (e.g., `#about`)
 - When using a local server, URLs will use clean paths (e.g., `/about`)
-- The server configuration files (`.htaccess`, `_redirects`, `vercel.json`) are included for deployment
+- The server configuration files (`_redirects`, `vercel.json`) are included for deployment
