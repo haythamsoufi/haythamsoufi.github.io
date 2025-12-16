@@ -65,11 +65,72 @@ function openMockupFullscreen(mockupElement) {
     // Show fullscreen
     fullscreen.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Add zoom click handler to screen content
+    if (screenContent) {
+        screenContent.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMockupZoom(screenContent, screen, e);
+        });
+    }
+    
+    // Also add handler to screen element
+    if (screen) {
+        screen.addEventListener('click', (e) => {
+            e.stopPropagation();
+            // If clicking on screen, use screenContent's position if available
+            if (screenContent) {
+                toggleMockupZoom(screenContent, screen, e);
+            }
+        });
+    }
+}
+
+function toggleMockupZoom(screenContent, screen, event) {
+    if (!screenContent || !screen) return;
+    
+    const isZoomed = screenContent.classList.contains('zoomed');
+    
+    if (isZoomed) {
+        // Zoom out - reset to center
+        screenContent.classList.remove('zoomed');
+        screen.classList.remove('zoomed');
+        screenContent.style.transformOrigin = 'center center';
+        screenContent.style.transform = 'scale(1)';
+    } else {
+        // Zoom in - use click position
+        if (event) {
+            const rect = screenContent.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 100;
+            const y = ((event.clientY - rect.top) / rect.height) * 100;
+            
+            screenContent.style.transformOrigin = `${x}% ${y}%`;
+            screenContent.style.transform = 'scale(2)';
+        } else {
+            screenContent.style.transformOrigin = 'center center';
+            screenContent.style.transform = 'scale(2)';
+        }
+        
+        screenContent.classList.add('zoomed');
+        screen.classList.add('zoomed');
+    }
 }
 
 function closeMockupFullscreen() {
     const fullscreen = document.getElementById('mockupFullscreen');
     if (!fullscreen) return;
+    
+    // Reset zoom state
+    const screenContent = fullscreen.querySelector('.laptop-screen-content.zoomed, .phone-screen-content.zoomed');
+    const screen = fullscreen.querySelector('.laptop-screen.zoomed, .phone-screen.zoomed');
+    if (screenContent) {
+        screenContent.classList.remove('zoomed');
+        screenContent.style.transform = 'scale(1)';
+        screenContent.style.transformOrigin = 'center center';
+    }
+    if (screen) {
+        screen.classList.remove('zoomed');
+    }
     
     fullscreen.classList.remove('active');
     document.body.style.overflow = '';

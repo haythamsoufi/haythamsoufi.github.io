@@ -495,6 +495,10 @@
         }
 
         /* Hero Project Styles */
+        .hero-main {
+            perspective: 1000px;
+        }
+
         .hero-project {
             background: rgba(26, 26, 36, 0.85);
             backdrop-filter: blur(30px) saturate(180%);
@@ -503,7 +507,34 @@
             border: 1px solid var(--border-color);
             box-shadow: var(--shadow), var(--glow);
             animation: fadeInUp 1.4s;
-            transition: background 0.5s ease, border-color 0.5s ease;
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            position: relative;
+        }
+
+        .hero-project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 32px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hero-project:hover {
+            transform: perspective(1000px) rotateX(1deg) rotateY(-1deg) translateZ(5px);
+            box-shadow: var(--shadow), var(--glow), 0 20px 60px rgba(139, 92, 246, 0.4);
+        }
+
+        .hero-project:hover::before {
+            opacity: 1;
         }
 
         [data-theme="light"] .hero-project {
@@ -1242,6 +1273,24 @@
             object-position: center;
             width: 100%;
             height: 100%;
+            cursor: zoom-in;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform-origin 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center center;
+        }
+
+        .mockup-fullscreen .laptop-screen-content.zoomed,
+        .mockup-fullscreen .phone-screen-content.zoomed {
+            cursor: zoom-out;
+        }
+
+        .mockup-fullscreen .laptop-screen,
+        .mockup-fullscreen .phone-screen {
+            cursor: zoom-in;
+        }
+
+        .mockup-fullscreen .laptop-screen.zoomed,
+        .mockup-fullscreen .phone-screen.zoomed {
+            cursor: zoom-out;
         }
 
         .mockup-close-button {
@@ -1669,11 +1718,84 @@
             margin-right: 0.5em;
         }
 
+        /* Match h3 size in first column to second column */
+        .vertical-screen > div:not(.feature-info) h3,
+        .vertical-screen > div[style*="grid-column: 1"] h3 {
+            font-size: 3.5rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .vertical-screen > div:not(.feature-info) h3 .inline-icon,
+        .vertical-screen > div[style*="grid-column: 1"] h3 .inline-icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+            margin-right: 0.5em;
+        }
+
         .feature-info p {
             font-size: 1.3rem;
             color: var(--text-secondary);
             line-height: 2;
             max-width: 600px;
+        }
+
+        /* Unified Feature Description Formatting */
+        .feature-description-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-left: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-list li strong {
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        .feature-item-grid {
+            display: grid;
+            gap: 0.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            line-height: 1.3;
+        }
+
+        .feature-item-label {
+            font-weight: 700;
+            min-width: 90px;
+            color: var(--text-color);
+        }
+
+        .feature-item-description {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            flex: 1;
         }
 
         /* Feature Navigation */
@@ -2353,7 +2475,7 @@
                 overflow-y: auto;
                 overflow-x: hidden;
                 display: none;
-                padding-top: 8rem;
+                padding-top: 10rem;
                 z-index: 1;
             }
 
@@ -2394,7 +2516,9 @@
                 overflow-x: hidden !important;
                 transform: none !important;
                 display: flex !important;
-                padding: 8rem 0 2rem !important;
+                align-items: flex-start !important;
+                justify-content: flex-start !important;
+                padding: 10rem 0 2rem !important;
             }
 
             .project-detail {
@@ -2403,7 +2527,7 @@
                 max-height: 100vh !important;
                 overflow-y: auto !important;
                 overflow-x: hidden !important;
-                padding-top: 8rem;
+                padding-top: 10rem;
             }
 
             .feature-subscreens {
@@ -2451,6 +2575,9 @@
                 gap: 2rem;
                 padding: 0 1.5rem;
                 text-align: center;
+                width: 100%;
+                max-width: 100%;
+                align-self: flex-start;
             }
 
             .hero-intro {
@@ -3009,7 +3136,9 @@
                 overflow-x: hidden !important;
                 transform: none !important;
                 display: flex !important;
-                padding: 8rem 0 2rem !important;
+                align-items: flex-start !important;
+                justify-content: flex-start !important;
+                padding: 10rem 0 2rem !important;
             }
 
             .project-detail {
@@ -3018,7 +3147,7 @@
                 max-height: 100vh !important;
                 overflow-y: auto !important;
                 overflow-x: hidden !important;
-                padding-top: 8rem;
+                padding-top: 10rem;
             }
 
             .feature-subscreens {
@@ -3174,6 +3303,9 @@
             .hero-content {
                 padding: 0 1rem;
                 gap: 1.5rem;
+                width: 100%;
+                max-width: 100%;
+                align-self: flex-start;
             }
 
             .hero-intro {
