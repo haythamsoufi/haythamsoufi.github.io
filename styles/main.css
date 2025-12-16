@@ -529,7 +529,7 @@
         }
 
         .hero-project:hover {
-            transform: perspective(1000px) rotateX(1deg) rotateY(-1deg) translateZ(5px);
+            transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) translateZ(15px);
             box-shadow: var(--shadow), var(--glow), 0 20px 60px rgba(139, 92, 246, 0.4);
         }
 

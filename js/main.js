@@ -189,10 +189,10 @@ window.addEventListener('load', () => {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             
-            const rotateX = (y - centerY) / 250;
-            const rotateY = (centerX - x) / 250;
+            const rotateX = (y - centerY) / 30;
+            const rotateY = (centerX - x) / 30;
             
-            heroProject.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(5px)`;
+            heroProject.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(15px)`;
         });
         
         heroProject.addEventListener('mouseleave', () => {
