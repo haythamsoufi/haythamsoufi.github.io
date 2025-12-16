@@ -56,6 +56,39 @@ function showScreen(index, updateUrl = true) {
             justifyContent: style.justifyContent
         };
     };
+
+    const logMockupDiagnostics = (phase) => {
+        if (screenName !== 'databank-details') {
+            return;
+        }
+
+        const mockups = currentScreen.querySelectorAll('.laptop-mockup, .phone-mockup');
+        console.log(`[Mockup Debug][${phase}] viewport=${window.innerWidth}, mockups=${mockups.length}`);
+
+        if (!mockups.length) {
+            console.log(`[Mockup Debug][${phase}] No mockup elements found inside databank-details`);
+        }
+
+        mockups.forEach((mockup, index) => {
+            const mockupRect = mockup.getBoundingClientRect();
+            const mockupStyles = window.getComputedStyle(mockup);
+            const media = mockup.querySelector('.laptop-screen-content, .phone-screen-content, img, video');
+            const mediaRect = media ? media.getBoundingClientRect() : null;
+            const mediaStyles = media ? window.getComputedStyle(media) : null;
+
+            console.log(`[Mockup Debug][${phase}] Mockup #${index}`, {
+                display: mockupStyles.display,
+                width: mockupRect.width,
+                height: mockupRect.height,
+                overflow: mockupStyles.overflow,
+                mediaFound: Boolean(media),
+                mediaDisplay: mediaStyles?.display,
+                mediaWidth: mediaRect?.width,
+                mediaHeight: mediaRect?.height,
+                mediaVisibility: mediaStyles?.visibility
+            });
+        });
+    };
     
     console.log(`[Navigation] Switching to screen: ${screenName} (index: ${index})`);
     
@@ -113,6 +146,7 @@ function showScreen(index, updateUrl = true) {
     currentScreen.classList.add('active');
     console.log(`[Navigation] Added 'active' class to ${screenName}`);
     console.log(`[DEBUG showScreen] Active class added. Classes:`, currentScreen.classList.toString());
+    logMockupDiagnostics('after-active-class');
 
     // On mobile, explicitly control visibility
     if (isMobile) {
@@ -141,6 +175,7 @@ function showScreen(index, updateUrl = true) {
             visibility: computedStyle.visibility,
             inlineDisplay: currentScreen.style.display
         });
+        logMockupDiagnostics('mobile-after-display');
         
         // Sections are fixed positioned, so just reset their internal scroll
         currentScreen.scrollTop = 0;
@@ -184,6 +219,7 @@ function showScreen(index, updateUrl = true) {
         if (firstChildRect) {
             console.log(`  FirstChild BoundingRect: top=${firstChildRect.top}, left=${firstChildRect.left}`);
         }
+        logMockupDiagnostics('after-raf-active');
     });
 
     // Reset scroll using requestAnimationFrame after class change
@@ -301,6 +337,7 @@ function showScreen(index, updateUrl = true) {
         }
         console.log(`  IsVisible: ${isVisible} (viewport height: ${window.innerHeight})`);
         console.log(`  Scroll events caught: ${scrollEventCount}`);
+        logMockupDiagnostics('final-state');
     }, 850);
 
     // If showing databank-details screen, initialize features

@@ -2719,10 +2719,16 @@
                 padding: 2rem 0;
             }
 
-            /* Hide 3D mockup frames but show images */
+            /* Simplify 3D mockups on mobile without hiding the content */
             .laptop-mockup-3d .laptop-frame,
+            .phone-mockup-3d .phone-frame {
+                padding: 0;
+                border: none;
+                background: transparent;
+                box-shadow: none;
+            }
+
             .laptop-mockup-3d .laptop-base,
-            .phone-mockup-3d .phone-frame,
             .phone-mockup-3d .phone-notch {
                 display: none !important;
             }
@@ -2797,7 +2803,8 @@
             }
 
             .feature-subscreen:not([data-feature="overview"]) .laptop-mockup-3d {
-                display: none !important;
+                display: block !important;
+                transform: none !important;
             }
 
             .feature-subscreen:not([data-feature="overview"]) .laptop-screen {
@@ -2820,6 +2827,13 @@
                 object-position: center;
             }
 
+            /* Mobile App tab: keep phone mockup from overwhelming tiny screens */
+            .feature-subscreen[data-feature="mobile-app"] .phone-mockup {
+                width: min(70vw, 230px);
+                margin: 0 auto 1.5rem;
+            }
+
+
             /* Vertical scroll container on mobile */
             .vertical-scroll-container {
                 padding-right: 0.5rem;
@@ -2834,12 +2848,18 @@
             }
 
             .vertical-screen {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto;
+                display: flex;
+                flex-direction: column;
                 gap: 2rem;
                 padding: 2rem 1rem;
                 padding-bottom: 6rem;
                 min-height: auto;
+            }
+
+            .vertical-screen .laptop-mockup,
+            .vertical-screen .phone-mockup {
+                order: 2;
+                margin-top: 1rem;
             }
 
             /* Vertical nav indicator on mobile */
@@ -2866,9 +2886,9 @@
                 text-align: center;
             }
 
-            /* Override inline grid-column styles on mobile - force all children to single column */
+            /* Ensure stacked layout items fill full width */
             .vertical-screen > * {
-                grid-column: 1 !important;
+                width: 100%;
             }
 
             .feature-info h3 {
@@ -3410,10 +3430,16 @@
                 padding: 1.5rem 0;
             }
 
-            /* Hide 3D mockup frames but show images */
+            /* Simplify 3D mockups but keep media visible */
             .laptop-mockup-3d .laptop-frame,
+            .phone-mockup-3d .phone-frame {
+                padding: 0;
+                border: none;
+                box-shadow: none;
+                background: transparent;
+            }
+
             .laptop-mockup-3d .laptop-base,
-            .phone-mockup-3d .phone-frame,
             .phone-mockup-3d .phone-notch {
                 display: none !important;
             }
@@ -3483,7 +3509,13 @@
                 display: block;
             }
 
-            .feature-subscreen:not([data-feature="overview"]) .laptop-mockup-3d .laptop-frame,
+            .feature-subscreen:not([data-feature="overview"]) .laptop-mockup-3d .laptop-frame {
+                padding: 0;
+                border: none;
+                box-shadow: none;
+                background: transparent;
+            }
+
             .feature-subscreen:not([data-feature="overview"]) .laptop-mockup-3d .laptop-base {
                 display: none !important;
             }
