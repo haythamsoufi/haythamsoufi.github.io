@@ -9,7 +9,7 @@ The partials system is now active. Sections are loaded dynamically from partial 
 ## How It Works
 
 Partials are loaded on page load using JavaScript:
-- `project-details.html` - Loaded into `#project-details-container`
+- `databank-details.html` - Loaded into `#project-details-container`
 - `contact.html` - Loaded into `#contact-container`
 
 ## Benefits
@@ -24,7 +24,7 @@ Partials are loaded on page load using JavaScript:
 - `background.html` - Animated background component
 - `navigation.html` - Navigation menu
 - `hero.html` - Hero section
-- `project-details.html` - Project details section
+- `databank-details.html` - Databank project details section
 - `about.html` - About section
 - `skills.html` - Skills section
 - `projects.html` - Projects section

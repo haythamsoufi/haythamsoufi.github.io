@@ -59,7 +59,7 @@ portfolio/
 The website supports the following routes:
 
 - `/` - Home
-- `/project` - NGO Databank Ecosystem
+- `/databank` - NGO Databank Ecosystem
 - `/about` - About
 - `/skills` - Skills
 - `/projects` - Projects

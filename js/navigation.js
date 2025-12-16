@@ -6,7 +6,7 @@ let currentScreenIndex = 0;
 // Map screen names to URL paths
 const screenToPath = {
     'home': '/',
-    'databank-details': '/project',
+    'databank-details': '/databank',
     'about': '/about',
     'skills': '/skills',
     'projects': '/projects',
@@ -16,7 +16,7 @@ const screenToPath = {
 // Map URL paths to screen names
 const pathToScreen = {
     '/': 'home',
-    '/project': 'databank-details',
+    '/databank': 'databank-details',
     '/about': 'about',
     '/skills': 'skills',
     '/projects': 'projects',
@@ -346,7 +346,7 @@ function showScreen(index, updateUrl = true) {
             if (typeof showFeature === 'function') {
                 // Check if URL has a specific feature path
                 const path = window.location.pathname;
-                const match = path.match(/^\/project\/(.+)$/);
+                const match = path.match(/^\/databank\/(.+)$/);
                 if (match && typeof getFeatureFromUrl === 'function') {
                     const featureIndex = getFeatureFromUrl();
                     if (featureIndex !== null) {
@@ -377,7 +377,7 @@ function showScreen(index, updateUrl = true) {
         // (but don't preserve if navigating away from it)
         if (screenName === 'databank-details' && currentScreenIndex === index) {
             const currentPath = window.location.pathname;
-            if (currentPath.startsWith('/project/') && currentPath !== '/project') {
+            if (currentPath.startsWith('/databank/') && currentPath !== '/databank') {
                 path = currentPath; // Preserve the feature path
             }
         }
@@ -424,8 +424,8 @@ function getScreenFromUrl() {
     // Use pathname for http/https protocols
     const path = window.location.pathname;
     
-    // Check if path matches /project/:feature pattern
-    if (path.startsWith('/project/')) {
+    // Check if path matches /databank/:feature pattern
+    if (path.startsWith('/databank/')) {
         return screens.indexOf('databank-details');
     }
     
@@ -519,8 +519,8 @@ function initializeNavigation() {
     let path = window.location.pathname;
     if (screenName === 'databank-details') {
         // If current path has a feature, keep it; otherwise use base path
-        if (!path.startsWith('/project/') || path === '/project') {
-            path = screenToPath[screenName] || '/project';
+        if (!path.startsWith('/databank/') || path === '/databank') {
+            path = screenToPath[screenName] || '/databank';
         }
     } else {
         path = screenToPath[screenName] || '/';

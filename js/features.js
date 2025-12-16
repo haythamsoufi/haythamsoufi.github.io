@@ -53,7 +53,7 @@ function showFeature(index, updateUrl = true) {
     // Update URL if requested
     if (updateUrl) {
         const featureName = features[index];
-        const path = `/project/${featureName}`;
+        const path = `/databank/${featureName}`;
         const title = document.querySelector(`.feature-nav-button[data-feature-index="${index}"]`)?.textContent || 'Project';
         document.title = `${title} - Haytham Alsoufi`;
         
@@ -178,8 +178,8 @@ function prevFeature() {
 // Get current feature from URL
 function getFeatureFromUrl() {
     const path = window.location.pathname;
-    // Check if path matches /project/:feature pattern
-    const match = path.match(/^\/project\/(.+)$/);
+    // Check if path matches /databank/:feature pattern
+    const match = path.match(/^\/databank\/(.+)$/);
     if (match) {
         const featureName = match[1];
         const index = features.indexOf(featureName);
@@ -187,8 +187,8 @@ function getFeatureFromUrl() {
             return index;
         }
     }
-    // Default to overview (index 0) if on /project without feature
-    if (path === '/project') {
+    // Default to overview (index 0) if on /databank without feature
+    if (path === '/databank') {
         return 0;
     }
     return null;
