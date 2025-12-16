@@ -1225,10 +1225,11 @@
             overflow: visible;
             padding: 2rem;
             box-sizing: border-box;
+            perspective: 1000px;
         }
 
         .mockup-fullscreen-content.has-phone-mockup {
-            max-width: 600px;
+            max-width: 400px;
         }
 
         .mockup-fullscreen.active .mockup-fullscreen-content {
@@ -1236,17 +1237,27 @@
         }
 
         .mockup-fullscreen .laptop-mockup-3d {
-            transform: rotateX(5deg) rotateY(8deg) rotateZ(0deg) scale(0.85);
+            transform: none;
             width: 100%;
             max-width: 100%;
             overflow: visible;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
         }
 
         .mockup-fullscreen .phone-mockup-3d {
-            transform: rotateX(5deg) rotateY(8deg) rotateZ(0deg) scale(0.6);
+            transform: none;
             width: 100%;
             max-width: 100%;
             overflow: visible;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+        
+        .mockup-fullscreen .phone-mockup {
+            max-width: 350px;
+            width: 100%;
+            margin: 0 auto;
         }
 
         .mockup-fullscreen .laptop-mockup,

@@ -189,8 +189,8 @@ window.addEventListener('load', () => {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             
-            const rotateX = (y - centerY) / 40;
-            const rotateY = (centerX - x) / 40;
+            const rotateX = (y - centerY) / 250;
+            const rotateY = (centerX - x) / 250;
             
             heroProject.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(5px)`;
         });

@@ -11,10 +11,10 @@ function openMockupFullscreen(mockupElement) {
     const laptop3d = clonedMockup.querySelector('.laptop-mockup-3d');
     const phone3d = clonedMockup.querySelector('.phone-mockup-3d');
     if (laptop3d) {
-        laptop3d.style.transform = 'rotateX(5deg) rotateY(8deg) rotateZ(0deg) scale(0.85)';
+        laptop3d.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
     }
     if (phone3d) {
-        phone3d.style.transform = 'rotateX(5deg) rotateY(8deg) rotateZ(0deg) scale(0.6)';
+        phone3d.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
     }
     
     // Find the image element
@@ -66,6 +66,65 @@ function openMockupFullscreen(mockupElement) {
     fullscreen.classList.add('active');
     document.body.style.overflow = 'hidden';
     
+    // Add 3D tilt effect similar to hero project card (only when not zoomed)
+    if (laptop3d) {
+        const laptopMockup = laptop3d.closest('.laptop-mockup');
+        const handleLaptopMove = (e) => {
+            // Don't apply tilt if zoomed
+            if (laptopMockup && laptopMockup.querySelector('.laptop-screen.zoomed')) return;
+            
+            const rect = laptop3d.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 250;
+            const rotateY = (centerX - x) / 250;
+            
+            laptop3d.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(5px)`;
+        };
+        
+        const handleLaptopLeave = () => {
+            // Don't reset if zoomed
+            if (laptopMockup && laptopMockup.querySelector('.laptop-screen.zoomed')) return;
+            laptop3d.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        };
+        
+        laptop3d.addEventListener('mousemove', handleLaptopMove);
+        laptop3d.addEventListener('mouseleave', handleLaptopLeave);
+    }
+    
+    if (phone3d) {
+        const phoneMockup = phone3d.closest('.phone-mockup');
+        const handlePhoneMove = (e) => {
+            // Don't apply tilt if zoomed (zoom uses scale on mockup3d)
+            if (phoneMockup && phoneMockup.querySelector('.phone-screen.zoomed')) return;
+            
+            const rect = phone3d.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 250;
+            const rotateY = (centerX - x) / 250;
+            
+            phone3d.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(5px)`;
+        };
+        
+        const handlePhoneLeave = () => {
+            // Don't reset if zoomed
+            if (phoneMockup && phoneMockup.querySelector('.phone-screen.zoomed')) return;
+            phone3d.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        };
+        
+        phone3d.addEventListener('mousemove', handlePhoneMove);
+        phone3d.addEventListener('mouseleave', handlePhoneLeave);
+    }
+    
     // Add zoom click handler to screen content
     if (screenContent) {
         screenContent.addEventListener('click', (e) => {
@@ -89,30 +148,42 @@ function openMockupFullscreen(mockupElement) {
 function toggleMockupZoom(screenContent, screen, event) {
     if (!screenContent || !screen) return;
     
+    // Find the mockup container
+    const mockup = screen.closest('.laptop-mockup, .phone-mockup');
+    const mockup3d = mockup ? mockup.querySelector('.laptop-mockup-3d, .phone-mockup-3d') : null;
+    
     const isZoomed = screenContent.classList.contains('zoomed');
     
     if (isZoomed) {
         // Zoom out - reset to center
         screenContent.classList.remove('zoomed');
         screen.classList.remove('zoomed');
-        screenContent.style.transformOrigin = 'center center';
-        screenContent.style.transform = 'scale(1)';
-    } else {
-        // Zoom in - use click position
-        if (event) {
-            const rect = screenContent.getBoundingClientRect();
-            const x = ((event.clientX - rect.left) / rect.width) * 100;
-            const y = ((event.clientY - rect.top) / rect.height) * 100;
-            
-            screenContent.style.transformOrigin = `${x}% ${y}%`;
-            screenContent.style.transform = 'scale(2)';
-        } else {
-            screenContent.style.transformOrigin = 'center center';
-            screenContent.style.transform = 'scale(2)';
-        }
         
-        screenContent.classList.add('zoomed');
-        screen.classList.add('zoomed');
+        if (mockup3d) {
+            // Reset the mockup container scale
+            mockup3d.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+            mockup3d.style.transformOrigin = 'center center';
+            screenContent.style.transform = '';
+            screenContent.style.transformOrigin = '';
+        }
+    } else {
+        // Zoom in - scale the entire mockup container
+        if (mockup3d) {
+            screenContent.classList.add('zoomed');
+            screen.classList.add('zoomed');
+            
+            // Calculate transform origin based on click position
+            if (event) {
+                const rect = mockup3d.getBoundingClientRect();
+                const x = ((event.clientX - rect.left) / rect.width) * 100;
+                const y = ((event.clientY - rect.top) / rect.height) * 100;
+                mockup3d.style.transformOrigin = `${x}% ${y}%`;
+            } else {
+                mockup3d.style.transformOrigin = 'center center';
+            }
+            
+            mockup3d.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale(2)';
+        }
     }
 }
 
@@ -123,13 +194,31 @@ function closeMockupFullscreen() {
     // Reset zoom state
     const screenContent = fullscreen.querySelector('.laptop-screen-content.zoomed, .phone-screen-content.zoomed');
     const screen = fullscreen.querySelector('.laptop-screen.zoomed, .phone-screen.zoomed');
-    if (screenContent) {
+    const isPhoneMockup = screen && screen.classList.contains('phone-screen');
+    
+    if (screenContent && screen) {
         screenContent.classList.remove('zoomed');
-        screenContent.style.transform = 'scale(1)';
-        screenContent.style.transformOrigin = 'center center';
-    }
-    if (screen) {
         screen.classList.remove('zoomed');
+        
+        if (isPhoneMockup) {
+            // For phone, the transform was applied to mockup3d, which will be reset below
+            screenContent.style.transform = '';
+            screenContent.style.transformOrigin = '';
+        } else {
+            // For laptop, reset the image scale
+            screenContent.style.transform = 'scale(1)';
+            screenContent.style.transformOrigin = 'center center';
+        }
+    }
+    
+    // Reset 3D tilt transform
+    const laptop3d = fullscreen.querySelector('.laptop-mockup-3d');
+    const phone3d = fullscreen.querySelector('.phone-mockup-3d');
+    if (laptop3d) {
+        laptop3d.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+    }
+    if (phone3d) {
+        phone3d.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
     }
     
     fullscreen.classList.remove('active');
