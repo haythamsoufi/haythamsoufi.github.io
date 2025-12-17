@@ -8,16 +8,18 @@
         // GitHub Pages SPA redirect for client-side routing
         // Get the current path and redirect to index.html with the path preserved
         var path = window.location.pathname;
-        var basePath = '';
+        var redirectPath = '/';
 
         // For GitHub Pages with custom domain, use root path
         // For username.github.io repos, the path structure is already correct
         if (path !== '/' && path !== '/404.html') {
-            basePath = path;
+            // Use the path directly (it already starts with /)
+            redirectPath = path;
         }
 
         // Redirect to index.html with the original path for SPA routing
-        window.location.href = '/' + basePath + window.location.search + window.location.hash;
+        // Use the full origin to ensure proper domain handling
+        window.location.href = window.location.origin + redirectPath + window.location.search + window.location.hash;
     </script>
 </head>
 <body>
