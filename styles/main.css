@@ -1508,6 +1508,11 @@
             margin-top: 2rem;
         }
 
+        /* Hide mockup titles on desktop */
+        .mockup-title-mobile {
+            display: none;
+        }
+
         .overview-mockups .laptop-mockup,
         .overview-mockups .phone-mockup {
             position: absolute;
@@ -2857,6 +2862,17 @@
                 padding: 2rem 0;
             }
 
+            /* Show mockup titles on mobile */
+            .mockup-title-mobile {
+                display: block;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: var(--text-color);
+                margin-bottom: 0.75rem;
+                text-align: center;
+                width: 100%;
+            }
+
             /* Simplify 3D mockups on mobile without hiding the content */
             .laptop-mockup-3d .laptop-frame,
             .phone-mockup-3d .phone-frame {
@@ -3573,6 +3589,17 @@
                 padding: 1.5rem 0;
             }
 
+            /* Show mockup titles on mobile */
+            .mockup-title-mobile {
+                display: block;
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--text-color);
+                margin-bottom: 0.5rem;
+                text-align: center;
+                width: 100%;
+            }
+
             /* Simplify 3D mockups but keep media visible */
             .laptop-mockup-3d .laptop-frame,
             .phone-mockup-3d .phone-frame {
@@ -3612,6 +3639,17 @@
             .overview-mockups .phone-mockup::before,
             .overview-mockups .phone-mockup::after {
                 display: none;
+            }
+
+            /* Show mockup titles on mobile */
+            .mockup-title-mobile {
+                display: block;
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--text-color);
+                margin-bottom: 0.5rem;
+                text-align: center;
+                width: 100%;
             }
 
             .laptop-mockup,
