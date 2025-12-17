@@ -6,20 +6,20 @@
     <title>Haytham Alsoufi - Portfolio</title>
     <script>
         // GitHub Pages SPA redirect for client-side routing
-        // Get the current path and redirect to index.html with the path preserved
+        // Prevent redirect loops by redirecting to root and storing the intended path
         var path = window.location.pathname;
-        var redirectPath = '/';
 
-        // For GitHub Pages with custom domain, use root path
-        // For username.github.io repos, the path structure is already correct
-        if (path !== '/' && path !== '/404.html') {
-            // Use the path directly (it already starts with /)
-            redirectPath = path;
+        // If we're on 404.html, we need to redirect to a page that exists
+        // Store the intended path and redirect to root, where index.html will handle routing
+        if (path !== '/' && path !== '/404.html' && path !== '/index.html') {
+            // Store the intended path in sessionStorage so the router can restore it
+            sessionStorage.setItem('redirectPath', path + window.location.search + window.location.hash);
+            // Redirect to root - index.html will be served and handle the routing
+            window.location.replace(window.location.origin + '/');
+        } else {
+            // If we're already at root or index.html, just go to root
+            window.location.replace(window.location.origin + '/');
         }
-
-        // Redirect to index.html with the original path for SPA routing
-        // Use the full origin to ensure proper domain handling
-        window.location.href = window.location.origin + redirectPath + window.location.search + window.location.hash;
     </script>
 </head>
 <body>

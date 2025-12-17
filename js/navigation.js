@@ -421,8 +421,21 @@ function goToScreenByName(screenName, updateUrl = true) {
 
 // Get current screen from URL
 function getScreenFromUrl() {
-    // Use pathname for http/https protocols
-    const path = window.location.pathname;
+    // Check sessionStorage for a redirect path (set by 404.html)
+    let path = window.location.pathname;
+    const redirectPath = sessionStorage.getItem('redirectPath');
+    
+    if (redirectPath) {
+        // Use the stored redirect path
+        // redirectPath includes pathname + search + hash (e.g., "/databank?query=1#hash")
+        // Extract just the pathname
+        const urlParts = redirectPath.split('?');
+        path = urlParts[0].split('#')[0]; // Get pathname without query or hash
+        // Clear the stored path
+        sessionStorage.removeItem('redirectPath');
+        // Update the URL using replaceState to preserve the full path with query and hash
+        window.history.replaceState({}, '', redirectPath);
+    }
     
     // Check if path matches /databank/:feature pattern
     if (path.startsWith('/databank/')) {
