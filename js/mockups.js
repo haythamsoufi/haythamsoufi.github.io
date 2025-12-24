@@ -66,6 +66,21 @@ function openMockupFullscreen(mockupElement) {
     fullscreen.classList.add('active');
     document.body.style.overflow = 'hidden';
     
+    // Ensure close button is clickable and has event listener
+    const closeButton = document.getElementById('mockupCloseButton');
+    if (closeButton) {
+        // Remove any existing listeners by cloning and replacing
+        const newCloseButton = closeButton.cloneNode(true);
+        closeButton.parentNode.replaceChild(newCloseButton, closeButton);
+        
+        // Add click handler
+        newCloseButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeMockupFullscreen();
+        });
+    }
+    
     // Add 3D tilt effect similar to hero project card (only when not zoomed)
     if (laptop3d) {
         const laptopMockup = laptop3d.closest('.laptop-mockup');
@@ -269,6 +284,39 @@ function attachMockupClickHandlers() {
         
         newMockup.addEventListener('click', (e) => {
             e.stopPropagation();
+            
+            // Check if this mockup is in the overview tab
+            const overviewScreen = newMockup.closest('.feature-subscreen[data-feature="overview"]');
+            if (overviewScreen) {
+                // Find the image to determine which feature to navigate to
+                const screenContent = newMockup.querySelector('.laptop-screen-content, .phone-screen-content');
+                if (screenContent) {
+                    const imgSrc = screenContent.src || screenContent.getAttribute('src') || '';
+                    let featureIndex = null;
+                    
+                    // Map image sources to feature indices
+                    if (imgSrc.includes('backoffice.jpg')) {
+                        featureIndex = 1; // backoffice
+                    } else if (imgSrc.includes('public-website.jpg')) {
+                        featureIndex = 2; // website
+                    } else if (imgSrc.includes('mobile-app.jpg')) {
+                        featureIndex = 3; // mobile-app
+                    }
+                    
+                    // Navigate to the feature if found
+                    if (featureIndex !== null) {
+                        if (typeof showFeature === 'function') {
+                            showFeature(featureIndex, true);
+                            return;
+                        } else if (typeof window.showFeature === 'function') {
+                            window.showFeature(featureIndex, true);
+                            return;
+                        }
+                    }
+                }
+            }
+            
+            // Default behavior: open fullscreen
             openMockupFullscreen(newMockup);
         });
     });

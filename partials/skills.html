@@ -1,36 +1,122 @@
 <!-- Skills Section -->
 <section id="skills">
     <h2 class="section-title fade-in">Skills & Technologies</h2>
-    <div class="skills-grid">
-        <div class="skill-card fade-in">
-            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">💜 Full Stack Vibe Code Developer</h3>
-            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem;">Building with passion and creativity</p>
-            <div class="skill-tags">
-                <span class="skill-tag" style="background: var(--gradient-3);">Python</span>
-                <span class="skill-tag" style="background: var(--gradient-2);">React</span>
-                <span class="skill-tag">Flutter</span>
-                <span class="skill-tag">Dart</span>
-                <span class="skill-tag">Python Flask</span>
-                <span class="skill-tag">PostgreSQL</span>
-                <span class="skill-tag">SQLite</span>
+    <div class="skills-container fade-in">
+        <div class="skill-category">
+            <h3 class="skill-category-title">Development</h3>
+            <div class="skill-tiles">
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="python" aria-label="Python"></div>
+                    <span class="skill-tile-name">Python</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="react" aria-label="React"></div>
+                    <span class="skill-tile-name">React</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="flutter" aria-label="Flutter"></div>
+                    <span class="skill-tile-name">Flutter</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="dart" aria-label="Dart"></div>
+                    <span class="skill-tile-name">Dart</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="flask" aria-label="Flask"></div>
+                    <span class="skill-tile-name">Flask</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="postgresql" aria-label="PostgreSQL"></div>
+                    <span class="skill-tile-name">PostgreSQL</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="sqlite" aria-label="SQLite"></div>
+                    <span class="skill-tile-name">SQLite</span>
+                </div>
             </div>
         </div>
-        <div class="skill-card fade-in">
-            <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;"><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; vertical-align: middle; margin-right: 0.5rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>Power Platform</h3>
-            <div class="skill-tags">
-                <span class="skill-tag" style="background: var(--gradient-3); box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);">Power BI</span>
-                <span class="skill-tag">Power Apps</span>
-                <span class="skill-tag">Power Automate</span>
+        <div class="skill-category">
+            <h3 class="skill-category-title">Tools</h3>
+            <div class="skill-tiles">
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="git" aria-label="Git"></div>
+                    <span class="skill-tile-name">Git</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="docker" aria-label="Docker"></div>
+                    <span class="skill-tile-name">Docker</span>
+                </div>
             </div>
         </div>
-        <div class="skill-card fade-in">
-            <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Tools & Others</h3>
-            <div class="skill-tags">
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">AWS</span>
-                <span class="skill-tag">Linux</span>
-                <span class="skill-tag">Figma</span>
+        <div class="skill-category">
+            <h3 class="skill-category-title">Power Platform</h3>
+            <div class="skill-tiles">
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="powerbi" aria-label="Power BI"></div>
+                    <span class="skill-tile-name">Power BI</span>
+                </div>
+                <div class="skill-tile">
+                    <img src="/assets/images/power-apps.svg" alt="Power Apps" class="skill-tile-logo-img" />
+                    <span class="skill-tile-name">Power Apps</span>
+                </div>
+                <div class="skill-tile">
+                    <img src="/assets/images/power-automate.svg" alt="Power Automate" class="skill-tile-logo-img" />
+                    <span class="skill-tile-name">Power Automate</span>
+                </div>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3 class="skill-category-title">Cybersecurity</h3>
+            <div class="skill-tiles">
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="shield" aria-label="Penetration Testing"></div>
+                    <span class="skill-tile-name">Penetration Testing</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="bug" aria-label="Vulnerability Assessment"></div>
+                    <span class="skill-tile-name">Vulnerability Assessment</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="code" aria-label="Web Security"></div>
+                    <span class="skill-tile-name">Web Security Testing</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="server" aria-label="Network Security"></div>
+                    <span class="skill-tile-name">Network Security</span>
+                </div>
+            </div>
+        </div>
+        <div class="skill-category skill-category-full">
+            <h3 class="skill-category-title">Design & Creative</h3>
+            <div class="skill-tiles">
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="indesign" aria-label="Adobe InDesign"></div>
+                    <span class="skill-tile-name">InDesign</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="illustrator" aria-label="Adobe Illustrator"></div>
+                    <span class="skill-tile-name">Illustrator</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="photoshop" aria-label="Adobe Photoshop"></div>
+                    <span class="skill-tile-name">Photoshop</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="aftereffects" aria-label="Adobe After Effects"></div>
+                    <span class="skill-tile-name">After Effects</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="premierepro" aria-label="Adobe Premiere Pro"></div>
+                    <span class="skill-tile-name">Premiere Pro</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="xd" aria-label="Adobe XD"></div>
+                    <span class="skill-tile-name">XD</span>
+                </div>
+                <div class="skill-tile">
+                    <div class="skill-tile-logo" data-icon="figma" aria-label="Figma"></div>
+                    <span class="skill-tile-name">Figma</span>
+                </div>
             </div>
         </div>
     </div>
