@@ -1,0 +1,903 @@
+### New console messages
+- [LOG] [Navigation] Transition ended for databank-details. Scroll events caught: 0 @ http://localhost...
+- [LOG] [Navigation] Final state for databank-details: @ http://localhost:3000/js/navigation.js:327
+- [LOG]   Scroll: section=0, window=0 @ http://localhost:3000/js/navigation.js:328
+- [LOG]   BoundingRect: top=0.019287109375, left=1.470703125, width=1535.92822265625, height=825.56134...
+- [LOG]   Transform: matrix(0.999953, 0, 0, 0.999953, 1.43482, 0) @ http://localhost:3000/js/navigatio...
+- [LOG]   Opacity: 0.996128 @ http://localhost:3000/js/navigation.js:331
+- [LOG]   PaddingTop: 96px @ http://localhost:3000/js/navigation.js:332
+- [LOG]   JustifyContent: flex-start @ http://localhost:3000/js/navigation.js:333
+- [LOG]   FirstChild BoundingRect: top=96.01480102539062, left=33.469207763671875, width=259.987854003...
+- [LOG]   IsVisible: true (viewport height: 826) @ http://localhost:3000/js/navigation.js:337
+- [LOG]   Scroll events caught: 0 @ http://localhost:3000/js/navigation.js:338
+- [LOG] [Mockup Debug][final-state] viewport=1536, mockups=0 @ http://localhost:3000/js/navigation.js:...
+- [LOG] [Mockup Debug][final-state] No mockup elements found inside databank-details @ http://localhos...
+
+### Page state
+- Page URL: http://localhost:3000/databank
+- Page Title: Haytham Alsoufi - Portfolio
+- Page Snapshot:
+```yaml
+- generic [active] [ref=e1]:
+  - navigation [ref=e4]:
+    - list [ref=e5]:
+      - listitem [ref=e6]:
+        - link "Home" [ref=e7] [cursor=pointer]:
+          - /url: /
+      - listitem [ref=e8]:
+        - link "NGO Databank Ecosystem" [ref=e9] [cursor=pointer]:
+          - /url: /databank
+      - listitem [ref=e10]:
+        - link "About" [ref=e11] [cursor=pointer]:
+          - /url: /about
+      - listitem [ref=e12]:
+        - link "Skills" [ref=e13] [cursor=pointer]:
+          - /url: /skills
+      - listitem [ref=e14]:
+        - link "Projects" [ref=e15] [cursor=pointer]:
+          - /url: /projects
+      - listitem [ref=e16]:
+        - link "Contact" [ref=e17] [cursor=pointer]:
+          - /url: /contact
+    - button "Toggle theme" [ref=e18] [cursor=pointer]:
+      - img [ref=e20]
+  - generic [ref=e22]:
+    - generic:
+      - region "Home":
+        - generic:
+          - generic:
+            - generic:
+              - generic: Hello, I'm
+              - heading "Haytham Alsoufi" [level=1]
+              - heading "Data Passionate & Humanitarian" [level=2]
+            - paragraph: Data Collection | Data Systems | Data Visualization | Vibe Coding|
+            - generic:
+              - paragraph: I'm a passionate data systems specialist and humanitarian professional who loves creating solutions that drive positive change. With expertise in data collection systems, information management, and humanitarian data analysis, I combine technical skills with field experience to support global humanitarian responses.
+              - paragraph: I believe in the power of data to drive positive change, especially in humanitarian contexts. Whether it's producing impactful reports for international organizations, ensuring data quality in conflict zones, or creating interactive dashboards that inform global decision-making, I approach every project with enthusiasm and attention to detail.
+          - generic:
+            - generic:
+              - generic: Featured Project
+              - heading "NGO Databank Ecosystem" [level=3]
+              - paragraph: A comprehensive ecosystem designed to streamline data collection, management, and reporting for humanitarian organizations. Built with the needs of NGOs, international organizations, and field teams in mind, this ecosystem enables teams to work more efficiently and make data-driven decisions.
+              - generic:
+                - generic: Form Builder
+                - generic: Multi-Language
+                - generic: Analytics
+                - generic: Mobile Apps
+              - link "Explore NGO Databank Ecosystem project":
+                - /url: /databank
+                - text: Explore Project
+                - img
+    - generic [ref=e24]:
+      - complementary [ref=e25]:
+        - heading "Navigation" [level=3] [ref=e27]
+        - list [ref=e28]:
+          - listitem [ref=e29]:
+            - link "Overview" [ref=e30] [cursor=pointer]:
+              - /url: "#db-overview"
+              - img [ref=e31]
+              - text: Overview
+          - listitem [ref=e34]:
+            - link "Backoffice" [ref=e35] [cursor=pointer]:
+              - /url: "#db-backoffice"
+              - img [ref=e36]
+              - text: Backoffice
+          - listitem [ref=e38]:
+            - link "Website" [ref=e39] [cursor=pointer]:
+              - /url: "#db-website"
+              - img [ref=e40]
+              - text: Website
+          - listitem [ref=e42]:
+            - link "Mobile App" [ref=e43] [cursor=pointer]:
+              - /url: "#db-mobile"
+              - img [ref=e44]
+              - text: Mobile App
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e48]:
+            - heading "NGO Databank Ecosystem" [level=1] [ref=e49]
+            - paragraph [ref=e50]: A comprehensive ecosystem for humanitarian data management
+          - generic [ref=e51]:
+            - generic [ref=e53]:
+              - paragraph [ref=e54]: A comprehensive ecosystem designed to streamline data collection, management, and reporting for humanitarian organizations. Built with the needs of NGOs, international organizations, and field teams in mind, this ecosystem enables teams to work more efficiently, make data-driven decisions, and improve collaboration across organizational levels.
+              - paragraph [ref=e55]: "The ecosystem consists of three main interfaces: a powerful backoffice for administrators, a public-facing website for data submission, and native mobile applications for field teams working in remote locations."
+            - generic [ref=e56]:
+              - heading "Technical Stack" [level=3] [ref=e58]
+              - generic [ref=e60]:
+                - generic [ref=e61]: Python
+                - generic [ref=e62]: Flask
+                - generic [ref=e63]: PostgreSQL
+                - generic [ref=e64]: Next.js
+                - generic [ref=e65]: React
+                - generic [ref=e66]: Tailwind CSS
+                - generic [ref=e67]: Flutter
+                - generic [ref=e68]: Dart
+            - generic [ref=e69]:
+              - heading "Key Metrics" [level=3] [ref=e71]
+              - generic [ref=e73]:
+                - generic [ref=e74]:
+                  - generic [ref=e75]: 134+
+                  - generic [ref=e76]: Admin Routes
+                - generic [ref=e77]:
+                  - generic [ref=e78]: 100+
+                  - generic [ref=e79]: Database Tables
+                - generic [ref=e80]:
+                  - generic [ref=e81]: "7"
+                  - generic [ref=e82]: Languages
+                - generic [ref=e83]:
+                  - generic [ref=e84]: "9"
+                  - generic [ref=e85]: Entity Types
+            - generic [ref=e86]:
+              - heading "Key Highlights" [level=3] [ref=e88]
+              - generic [ref=e90]:
+                - generic [ref=e91]:
+                  - img [ref=e92]
+                  - generic [ref=e94]:
+                    - strong [ref=e95]: Modular admin interface
+                    - generic [ref=e96]: 7 specialized blueprints for organized functionality
+                - generic [ref=e97]:
+                  - img [ref=e98]
+                  - generic [ref=e100]:
+                    - strong [ref=e101]: Dynamic indicators system
+                    - generic [ref=e102]: Kobo-style repeat groups for flexible data collection
+                - generic [ref=e103]:
+                  - img [ref=e104]
+                  - generic [ref=e106]:
+                    - strong [ref=e107]: Multi-level entity support
+                    - generic [ref=e108]: 9 organizational types for complex structures
+                - generic [ref=e109]:
+                  - img [ref=e110]
+                  - generic [ref=e112]:
+                    - strong [ref=e113]: Comprehensive offline capabilities
+                    - generic [ref=e114]: Mobile app works fully offline with smart sync
+                - generic [ref=e115]:
+                  - img [ref=e116]
+                  - generic [ref=e118]:
+                    - strong [ref=e119]: Enterprise-grade security
+                    - generic [ref=e120]: 2024 audit completed with best practices
+                - generic [ref=e121]:
+                  - img [ref=e122]
+                  - generic [ref=e124]:
+                    - strong [ref=e125]: API-first architecture
+                    - generic [ref=e126]: AI-ready data structure for future integration
+            - generic [ref=e127]:
+              - heading "Platform Interfaces" [level=3] [ref=e129]
+              - generic [ref=e131]:
+                - generic [ref=e132]:
+                  - img "Backoffice Interface" [ref=e133]
+                  - generic [ref=e134]: Backoffice
+                - generic [ref=e135]:
+                  - img "Public Website" [ref=e136]
+                  - generic [ref=e137]: Public Website
+                - generic [ref=e138]:
+                  - img "Mobile App" [ref=e139]
+                  - generic [ref=e140]: Mobile App
+        - generic [ref=e141]:
+          - generic [ref=e142]:
+            - heading "Backoffice Platform" [level=1] [ref=e143]
+            - paragraph [ref=e144]: Comprehensive admin interface for data management
+          - generic [ref=e145]:
+            - paragraph [ref=e148]: A powerful Flask-based backoffice platform that provides administrators with comprehensive tools for managing forms, users, data, and system configurations. Built with modularity and scalability in mind.
+            - generic [ref=e149]:
+              - heading "Dynamic Form Builder" [level=3] [ref=e151]:
+                - img [ref=e152]
+                - text: Dynamic Form Builder
+              - generic [ref=e154]:
+                - img "Form Builder" [ref=e155]
+                - list [ref=e156]:
+                  - listitem [ref=e157]:
+                    - strong [ref=e158]: Drag & Drop Interface
+                    - text: — Intuitive form creation with 25+ field types
+                  - listitem [ref=e159]:
+                    - strong [ref=e160]: Conditional Logic
+                    - text: — Show/hide fields based on user responses
+                  - listitem [ref=e161]:
+                    - strong [ref=e162]: Validation Rules
+                    - text: — Built-in and custom validation options
+                  - listitem [ref=e163]:
+                    - strong [ref=e164]: Multi-Language Support
+                    - text: — Forms in 7 languages
+                  - listitem [ref=e165]:
+                    - strong [ref=e166]: Repeat Groups
+                    - text: — Kobo-style dynamic repeating sections
+                  - listitem [ref=e167]:
+                    - strong [ref=e168]: File Uploads
+                    - text: — Support for documents, images, and media
+            - generic [ref=e169]:
+              - heading "User Management" [level=3] [ref=e171]:
+                - img [ref=e172]
+                - text: User Management
+              - list [ref=e175]:
+                - listitem [ref=e176]:
+                  - strong [ref=e177]: Role-Based Access Control
+                  - text: — Granular permissions system
+                - listitem [ref=e178]:
+                  - strong [ref=e179]: Multi-Entity Support
+                  - text: — 9 organizational entity types
+                - listitem [ref=e180]:
+                  - strong [ref=e181]: User Hierarchies
+                  - text: — Support for complex org structures
+                - listitem [ref=e182]:
+                  - strong [ref=e183]: Bulk Operations
+                  - text: — Import/export users efficiently
+                - listitem [ref=e184]:
+                  - strong [ref=e185]: Activity Tracking
+                  - text: — Comprehensive audit logs
+                - listitem [ref=e186]:
+                  - strong [ref=e187]: Profile Management
+                  - text: — Customizable user profiles
+            - generic [ref=e188]:
+              - heading "Data Management" [level=3] [ref=e190]:
+                - img [ref=e191]
+                - text: Data Management
+              - list [ref=e194]:
+                - listitem [ref=e195]:
+                  - strong [ref=e196]: Advanced Filtering
+                  - text: — Multi-criteria search and filtering
+                - listitem [ref=e197]:
+                  - strong [ref=e198]: Data Export
+                  - text: — Export to Excel, CSV, JSON formats
+                - listitem [ref=e199]:
+                  - strong [ref=e200]: Data Validation
+                  - text: — Automated quality checks
+                - listitem [ref=e201]:
+                  - strong [ref=e202]: Bulk Editing
+                  - text: — Edit multiple records at once
+                - listitem [ref=e203]:
+                  - strong [ref=e204]: Data Visualization
+                  - text: — Interactive charts and graphs
+                - listitem [ref=e205]:
+                  - strong [ref=e206]: Version History
+                  - text: — Track all data changes
+            - generic [ref=e207]:
+              - heading "Assignment Management" [level=3] [ref=e209]:
+                - img [ref=e210]
+                - text: Assignment Management
+              - list [ref=e213]:
+                - listitem [ref=e214]:
+                  - strong [ref=e215]: Form Assignment
+                  - text: — Assign forms to specific users/entities
+                - listitem [ref=e216]:
+                  - strong [ref=e217]: Deadline Management
+                  - text: — Set and track submission deadlines
+                - listitem [ref=e218]:
+                  - strong [ref=e219]: Progress Tracking
+                  - text: — Monitor completion status
+                - listitem [ref=e220]:
+                  - strong [ref=e221]: Notifications
+                  - text: — Automatic reminders and alerts
+                - listitem [ref=e222]:
+                  - strong [ref=e223]: Approval Workflows
+                  - text: — Multi-stage approval process
+                - listitem [ref=e224]:
+                  - strong [ref=e225]: Reporting
+                  - text: — Assignment completion reports
+            - generic [ref=e226]:
+              - heading "AI-Powered Chatbot" [level=3] [ref=e228]:
+                - img [ref=e229]
+                - text: AI-Powered Chatbot
+              - generic [ref=e231]:
+                - paragraph [ref=e233]:
+                  - strong [ref=e234]: Intelligent assistance powered by multiple AI providers
+                - list [ref=e235]:
+                  - listitem [ref=e236]:
+                    - strong [ref=e237]: Data Queries
+                    - text: — Natural language data retrieval
+                  - listitem [ref=e238]:
+                    - strong [ref=e239]: Form Assistance
+                    - text: — Help users complete forms
+                  - listitem [ref=e240]:
+                    - strong [ref=e241]: Multi-Provider Support
+                    - text: — OpenAI, Gemini, Azure OpenAI
+                  - listitem [ref=e242]:
+                    - strong [ref=e243]: Context-Aware
+                    - text: — Understands user roles and permissions
+                  - listitem [ref=e244]:
+                    - strong [ref=e245]: Intelligent Fallback
+                    - text: — Automatic provider switching
+                  - listitem [ref=e246]:
+                    - strong [ref=e247]: Conversation History
+                    - text: — Maintains context across sessions
+            - generic [ref=e248]:
+              - heading "Extensible Plugins System" [level=3] [ref=e250]:
+                - img [ref=e251]
+                - text: Extensible Plugins System
+              - generic [ref=e253]:
+                - paragraph [ref=e255]:
+                  - strong [ref=e256]: Powerful plugin architecture for custom development
+                - list [ref=e257]:
+                  - listitem [ref=e258]:
+                    - strong [ref=e259]: Custom Form Items
+                    - text: — Create specialized field types
+                  - listitem [ref=e260]:
+                    - strong [ref=e261]: API Integrations
+                    - text: — Connect to external services
+                  - listitem [ref=e262]:
+                    - strong [ref=e263]: Team Independence
+                    - text: — Separate development workflows
+                  - listitem [ref=e264]:
+                    - strong [ref=e265]: Self-Contained
+                    - text: — Plugins include code, templates, assets
+                  - listitem [ref=e266]:
+                    - strong [ref=e267]: Easy Integration
+                    - text: — Simple installation process
+                  - listitem [ref=e268]:
+                    - strong [ref=e269]: Version Control
+                    - text: — Independent versioning
+            - generic [ref=e270]:
+              - heading "API & Data Submission" [level=3] [ref=e272]:
+                - img [ref=e273]
+                - text: API & Data Submission
+              - list [ref=e276]:
+                - listitem [ref=e277]:
+                  - strong [ref=e278]: RESTful API
+                  - text: — Comprehensive API for all operations
+                - listitem [ref=e279]:
+                  - strong [ref=e280]: API Documentation
+                  - text: — Interactive API docs
+                - listitem [ref=e281]:
+                  - strong [ref=e282]: Authentication
+                  - text: — Secure token-based auth
+                - listitem [ref=e283]:
+                  - strong [ref=e284]: Rate Limiting
+                  - text: — Protection against abuse
+                - listitem [ref=e285]:
+                  - strong [ref=e286]: Webhooks
+                  - text: — Real-time event notifications
+                - listitem [ref=e287]:
+                  - strong [ref=e288]: API Versioning
+                  - text: — Backward compatibility
+            - generic [ref=e289]:
+              - heading "Reporting & Analytics" [level=3] [ref=e291]:
+                - img [ref=e292]
+                - text: Reporting & Analytics
+              - list [ref=e295]:
+                - listitem [ref=e296]:
+                  - strong [ref=e297]: Custom Reports
+                  - text: — Build custom report templates
+                - listitem [ref=e298]:
+                  - strong [ref=e299]: Data Visualization
+                  - text: — Interactive charts and dashboards
+                - listitem [ref=e300]:
+                  - strong [ref=e301]: Scheduled Reports
+                  - text: — Automatic report generation
+                - listitem [ref=e302]:
+                  - strong [ref=e303]: Export Options
+                  - text: — PDF, Excel, CSV formats
+                - listitem [ref=e304]:
+                  - strong [ref=e305]: Real-Time Analytics
+                  - text: — Live data updates
+                - listitem [ref=e306]:
+                  - strong [ref=e307]: Comparative Analysis
+                  - text: — Cross-entity comparisons
+        - generic [ref=e308]:
+          - generic [ref=e309]:
+            - heading "Public Website" [level=1] [ref=e310]
+            - paragraph [ref=e311]: Data visualization and public engagement platform
+          - generic [ref=e312]:
+            - paragraph [ref=e315]: A Next.js-powered public website that provides data visualization, interactive maps, and public access to humanitarian data. Built with performance and accessibility in mind.
+            - generic [ref=e316]:
+              - heading "Interactive Maps" [level=3] [ref=e318]:
+                - img [ref=e319]
+                - text: Interactive Maps
+              - generic [ref=e321]:
+                - img "Interactive Maps" [ref=e322]
+                - list [ref=e323]:
+                  - listitem [ref=e324]:
+                    - strong [ref=e325]: Country Profiles
+                    - text: — Detailed data for each country
+                  - listitem [ref=e326]:
+                    - strong [ref=e327]: Regional Views
+                    - text: — Aggregate regional data
+                  - listitem [ref=e328]:
+                    - strong [ref=e329]: Interactive Filtering
+                    - text: — Filter by sector, indicator, period
+                  - listitem [ref=e330]:
+                    - strong [ref=e331]: Geoboundaries
+                    - text: — Administrative boundary visualization
+                  - listitem [ref=e332]:
+                    - strong [ref=e333]: Mapbox Integration
+                    - text: — High-performance mapping
+                  - listitem [ref=e334]:
+                    - strong [ref=e335]: Data Layers
+                    - text: — Toggle multiple data layers
+            - generic [ref=e336]:
+              - heading "Data Visualization" [level=3] [ref=e338]:
+                - img [ref=e339]
+                - text: Data Visualization
+              - list [ref=e342]:
+                - listitem [ref=e343]:
+                  - strong [ref=e344]: Interactive Charts
+                  - text: — Multiple chart types (bar, line, pie)
+                - listitem [ref=e345]:
+                  - strong [ref=e346]: Time Series
+                  - text: — Trend analysis over time
+                - listitem [ref=e347]:
+                  - strong [ref=e348]: Comparative Views
+                  - text: — Compare countries/regions
+                - listitem [ref=e349]:
+                  - strong [ref=e350]: Custom Dashboards
+                  - text: — Build custom data views
+                - listitem [ref=e351]:
+                  - strong [ref=e352]: Export Capabilities
+                  - text: — Download charts and data
+                - listitem [ref=e353]:
+                  - strong [ref=e354]: Responsive Design
+                  - text: — Works on all devices
+            - generic [ref=e355]:
+              - heading "Indicator Bank" [level=3] [ref=e357]:
+                - img [ref=e358]
+                - text: Indicator Bank
+              - list [ref=e361]:
+                - listitem [ref=e362]:
+                  - strong [ref=e363]: Comprehensive Database
+                  - text: — 100+ humanitarian indicators
+                - listitem [ref=e364]:
+                  - strong [ref=e365]: Sector Organization
+                  - text: — Organized by sector and subsector
+                - listitem [ref=e366]:
+                  - strong [ref=e367]: Search & Filter
+                  - text: — Find indicators easily
+                - listitem [ref=e368]:
+                  - strong [ref=e369]: Detailed Metadata
+                  - text: — Full indicator documentation
+                - listitem [ref=e370]:
+                  - strong [ref=e371]: Data Sources
+                  - text: — Transparency in data origin
+                - listitem [ref=e372]:
+                  - strong [ref=e373]: Historical Trends
+                  - text: — View indicator evolution
+            - generic [ref=e374]:
+              - heading "Resources Library" [level=3] [ref=e376]:
+                - img [ref=e377]
+                - text: Resources Library
+              - list [ref=e380]:
+                - listitem [ref=e381]:
+                  - strong [ref=e382]: Document Management
+                  - text: — Centralized resource repository
+                - listitem [ref=e383]:
+                  - strong [ref=e384]: Multi-Format Support
+                  - text: — PDFs, docs, images, videos
+                - listitem [ref=e385]:
+                  - strong [ref=e386]: Categorization
+                  - text: — Organize by type and topic
+                - listitem [ref=e387]:
+                  - strong [ref=e388]: Search Functionality
+                  - text: — Full-text search
+                - listitem [ref=e389]:
+                  - strong [ref=e390]: Download Tracking
+                  - text: — Monitor resource usage
+                - listitem [ref=e391]:
+                  - strong [ref=e392]: Version Control
+                  - text: — Track document versions
+            - generic [ref=e393]:
+              - heading "Multilingual Support" [level=3] [ref=e395]:
+                - img [ref=e396]
+                - text: Multilingual Support
+              - generic [ref=e398]:
+                - paragraph [ref=e400]:
+                  - strong [ref=e401]: Available in 7 languages
+                - generic [ref=e402]:
+                  - generic [ref=e403]: English
+                  - generic [ref=e404]: French
+                  - generic [ref=e405]: Spanish
+                  - generic [ref=e406]: Arabic
+                  - generic [ref=e407]: Russian
+                  - generic [ref=e408]: Chinese
+                  - generic [ref=e409]: Hindi
+                - list [ref=e410]:
+                  - listitem [ref=e411]:
+                    - strong [ref=e412]: Dynamic Translation
+                    - text: — Real-time language switching
+                  - listitem [ref=e413]:
+                    - strong [ref=e414]: RTL Support
+                    - text: — Full right-to-left language support
+                  - listitem [ref=e415]:
+                    - strong [ref=e416]: Localized Content
+                    - text: — Culture-appropriate formatting
+            - generic [ref=e417]:
+              - heading "Performance & Optimization" [level=3] [ref=e419]:
+                - img [ref=e420]
+                - text: Performance & Optimization
+              - list [ref=e423]:
+                - listitem [ref=e424]:
+                  - strong [ref=e425]: Server-Side Rendering
+                  - text: — Fast initial page loads
+                - listitem [ref=e426]:
+                  - strong [ref=e427]: Static Generation
+                  - text: — Pre-render pages for speed
+                - listitem [ref=e428]:
+                  - strong [ref=e429]: Image Optimization
+                  - text: — Automatic image processing
+                - listitem [ref=e430]:
+                  - strong [ref=e431]: Lazy Loading
+                  - text: — Load content as needed
+                - listitem [ref=e432]:
+                  - strong [ref=e433]: CDN Integration
+                  - text: — Global content delivery
+                - listitem [ref=e434]:
+                  - strong [ref=e435]: Caching Strategy
+                  - text: — Smart caching for performance
+        - generic [ref=e436]:
+          - generic [ref=e437]:
+            - heading "Mobile App" [level=1] [ref=e438]
+            - paragraph [ref=e439]: Flutter-based cross-platform field data collection
+          - generic [ref=e440]:
+            - paragraph [ref=e443]: A powerful Flutter mobile app designed for field teams working in remote locations. Features comprehensive offline capabilities, intuitive forms, and automatic synchronization.
+            - generic [ref=e444]:
+              - heading "Comprehensive Offline Support" [level=3] [ref=e446]:
+                - img [ref=e447]
+                - text: Comprehensive Offline Support
+              - generic [ref=e449]:
+                - img "Mobile App" [ref=e450]
+                - paragraph [ref=e452]:
+                  - strong [ref=e453]: Full offline functionality with automatic sync
+                - list [ref=e454]:
+                  - listitem [ref=e455]:
+                    - strong [ref=e456]: Request Queuing
+                    - text: — Failed requests automatically queued
+                  - listitem [ref=e457]:
+                    - strong [ref=e458]: Response Caching
+                    - text: — GET requests cached in SQLite
+                  - listitem [ref=e459]:
+                    - strong [ref=e460]: Automatic Sync
+                    - text: — Syncs when connection restored
+                  - listitem [ref=e461]:
+                    - strong [ref=e462]: Network Monitoring
+                    - text: — Real-time network status
+                  - listitem [ref=e463]:
+                    - strong [ref=e464]: Retry Logic
+                    - text: — Exponential backoff with retry
+                  - listitem [ref=e465]:
+                    - strong [ref=e466]: Sync Tracking
+                    - text: — Track last sync time
+            - generic [ref=e467]:
+              - heading "Mobile Form Submission" [level=3] [ref=e469]:
+                - img [ref=e470]
+                - text: Mobile Form Submission
+              - list [ref=e473]:
+                - listitem [ref=e474]:
+                  - strong [ref=e475]: Dynamic Forms
+                  - text: — Support for all form field types
+                - listitem [ref=e476]:
+                  - strong [ref=e477]: Conditional Logic
+                  - text: — Show/hide fields dynamically
+                - listitem [ref=e478]:
+                  - strong [ref=e479]: Validation
+                  - text: — Client-side form validation
+                - listitem [ref=e480]:
+                  - strong [ref=e481]: Draft Saving
+                  - text: — Save forms as drafts
+                - listitem [ref=e482]:
+                  - strong [ref=e483]: File Uploads
+                  - text: — Capture photos, documents
+                - listitem [ref=e484]:
+                  - strong [ref=e485]: Location Data
+                  - text: — GPS coordinates capture
+            - generic [ref=e486]:
+              - heading "Data Management" [level=3] [ref=e488]:
+                - img [ref=e489]
+                - text: Data Management
+              - list [ref=e492]:
+                - listitem [ref=e493]:
+                  - strong [ref=e494]: Submission History
+                  - text: — View all submitted forms
+                - listitem [ref=e495]:
+                  - strong [ref=e496]: Edit Capabilities
+                  - text: — Edit draft submissions
+                - listitem [ref=e497]:
+                  - strong [ref=e498]: Search & Filter
+                  - text: — Find submissions quickly
+                - listitem [ref=e499]:
+                  - strong [ref=e500]: Export Options
+                  - text: — Export data locally
+                - listitem [ref=e501]:
+                  - strong [ref=e502]: Sync Status
+                  - text: — View sync status per submission
+                - listitem [ref=e503]:
+                  - strong [ref=e504]: Delete Drafts
+                  - text: — Manage draft submissions
+            - generic [ref=e505]:
+              - heading "Authentication & Security" [level=3] [ref=e507]:
+                - img [ref=e508]
+                - text: Authentication & Security
+              - list [ref=e511]:
+                - listitem [ref=e512]:
+                  - strong [ref=e513]: Secure Login
+                  - text: — Token-based authentication
+                - listitem [ref=e514]:
+                  - strong [ref=e515]: Biometric Auth
+                  - text: — Fingerprint/Face ID support
+                - listitem [ref=e516]:
+                  - strong [ref=e517]: Session Management
+                  - text: — Secure session handling
+                - listitem [ref=e518]:
+                  - strong [ref=e519]: Data Encryption
+                  - text: — Encrypted local storage
+                - listitem [ref=e520]:
+                  - strong [ref=e521]: Auto-Logout
+                  - text: — Timeout after inactivity
+                - listitem [ref=e522]:
+                  - strong [ref=e523]: Permission Controls
+                  - text: — Role-based access
+            - generic [ref=e524]:
+              - heading "Notifications & Alerts" [level=3] [ref=e526]:
+                - img [ref=e527]
+                - text: Notifications & Alerts
+              - list [ref=e530]:
+                - listitem [ref=e531]:
+                  - strong [ref=e532]: Push Notifications
+                  - text: — Real-time alerts
+                - listitem [ref=e533]:
+                  - strong [ref=e534]: Assignment Alerts
+                  - text: — New form assignments
+                - listitem [ref=e535]:
+                  - strong [ref=e536]: Deadline Reminders
+                  - text: — Submission deadlines
+                - listitem [ref=e537]:
+                  - strong [ref=e538]: Sync Notifications
+                  - text: — Data sync status
+                - listitem [ref=e539]:
+                  - strong [ref=e540]: System Updates
+                  - text: — App update notifications
+                - listitem [ref=e541]:
+                  - strong [ref=e542]: Custom Alerts
+                  - text: — Configurable notification preferences
+            - generic [ref=e543]:
+              - heading "Settings & Profile" [level=3] [ref=e545]:
+                - img [ref=e546]
+                - text: Settings & Profile
+              - list [ref=e550]:
+                - listitem [ref=e551]:
+                  - strong [ref=e552]: Profile Editing
+                  - text: — Update name and job title
+                - listitem [ref=e553]:
+                  - strong [ref=e554]: Profile Color
+                  - text: — Customize profile appearance
+                - listitem [ref=e555]:
+                  - strong [ref=e556]: Chatbot Toggle
+                  - text: — Enable/disable chatbot
+                - listitem [ref=e557]:
+                  - strong [ref=e558]: Language Selection
+                  - text: — Choose from 7 languages
+                - listitem [ref=e559]:
+                  - strong [ref=e560]: Cache Management
+                  - text: — Clear cache and offline data
+                - listitem [ref=e561]:
+                  - strong [ref=e562]: App Preferences
+                  - text: — Customize app behavior
+            - generic [ref=e563]:
+              - heading "Platform Support" [level=3] [ref=e565]:
+                - img [ref=e566]
+                - text: Platform Support
+              - generic [ref=e569]:
+                - generic [ref=e570]:
+                  - img [ref=e571]
+                  - generic [ref=e573]:
+                    - strong [ref=e574]: iOS
+                    - text: Native iOS app with TestFlight distribution
+                - generic [ref=e575]:
+                  - img [ref=e576]
+                  - generic [ref=e578]:
+                    - strong [ref=e579]: Android
+                    - text: Native Android app with APK distribution
+    - generic:
+      - generic:
+        - heading "About Me" [level=2]
+        - generic:
+          - paragraph: I'm a data systems professional and humanitarian worker with extensive experience in data collection, analysis, and visualization. Currently working as an Officer for Federation-wide Data Collection and Analysis at the International Federation of Red Cross and Red Crescent Societies (IFRC) in Geneva, Switzerland.
+          - paragraph: With a background in mechanical engineering and hands-on experience in information management, I bridge the gap between technical expertise and humanitarian needs. My work spans from field data collection in conflict zones to creating interactive dashboards that inform global humanitarian responses.
+        - generic:
+          - generic:
+            - heading "Core Expertise" [level=3]
+            - list:
+              - listitem:
+                - img
+                - text: Data Visualization & Analysis
+              - listitem:
+                - img
+                - text: Graphic Design & UI/UX
+              - listitem:
+                - img
+                - text: Information Management Systems
+              - listitem:
+                - img
+                - text: Geospatial Data Analysis
+              - listitem:
+                - img
+                - text: Ethical Hacking & Penetration Testing
+          - generic:
+            - heading "Professional Highlights" [level=3]
+            - generic:
+              - heading "Languages" [level=4]:
+                - img
+                - text: Languages
+              - list:
+                - listitem: • English (Professional)
+                - listitem: • Arabic (Native/Bilingual)
+                - listitem: • French (A2)
+            - generic:
+              - heading "Cybersecurity Expertise" [level=4]:
+                - img
+                - text: Cybersecurity Expertise
+              - list:
+                - listitem: • Web Application Penetration Testing (SQL Injection, XSS, CSRF)
+                - listitem: • Network Security Assessment & Server Hardening
+                - listitem: • Authentication & Authorization Testing (Brute Force, Session Management)
+                - listitem: • Security Tool Development & Malware Analysis
+                - listitem: • Red Team Exercises & Post-Exploitation Techniques
+          - generic:
+            - heading "Professional Experience" [level=3]
+            - generic:
+              - generic:
+                - heading "International Federation of Red Cross and Red Crescent Societies" [level=4]
+                - generic:
+                  - generic: Officer, Federation-wide Data Collection and Analysis
+                  - generic: July 2023 - Present • Geneva, Switzerland
+                - generic:
+                  - generic: Data Analyst Intern
+                  - generic: January 2022 - June 2023 • Geneva, Switzerland
+              - generic:
+                - heading "Syrian Arab Red Crescent (SARC)" [level=4]
+                - generic:
+                  - generic: Information Management Assistant
+                  - generic: November 2018 - January 2022 • Syria
+                  - generic: Leading field evacuations, convoys, wildfires responses, and data collections
+                - generic:
+                  - generic: Nutrition Assistant
+                  - generic: June 2017 - November 2018 • Syria
+              - generic:
+                - heading "Self Employed / Freelancer on Graphic Design, Visual Identities, Motion Graphic" [level=4]
+                - generic:
+                  - generic: Freelancing Platforms & Direct Consulting
+                  - generic: May 2016 - December 2021 • Syria
+                  - generic: Working through various freelancing platforms and direct consulting with stakeholders
+          - generic:
+            - paragraph: "\"I believe in the power of data to drive positive change, especially in humanitarian contexts.\""
+    - generic:
+      - generic:
+        - heading "Skills & Technologies" [level=2]
+        - generic:
+          - generic:
+            - heading "Development" [level=3]
+            - generic:
+              - generic:
+                - generic "Python"
+                - generic: Python
+              - generic:
+                - generic "React"
+                - generic: React
+              - generic:
+                - generic "Flutter"
+                - generic: Flutter
+              - generic:
+                - generic "Dart"
+                - generic: Dart
+              - generic:
+                - generic "Flask"
+                - generic: Flask
+              - generic:
+                - generic "PostgreSQL"
+                - generic: PostgreSQL
+              - generic:
+                - generic "SQLite"
+                - generic: SQLite
+          - generic:
+            - heading "Tools" [level=3]
+            - generic:
+              - generic:
+                - generic "Git"
+                - generic: Git
+              - generic:
+                - generic "Docker"
+                - generic: Docker
+          - generic:
+            - heading "Power Platform" [level=3]
+            - generic:
+              - generic:
+                - generic "Power BI"
+                - generic: Power BI
+              - generic:
+                - img "Power Apps"
+                - generic: Power Apps
+              - generic:
+                - img "Power Automate"
+                - generic: Power Automate
+          - generic:
+            - heading "Cybersecurity" [level=3]
+            - generic:
+              - generic:
+                - generic "Penetration Testing"
+                - generic: Penetration Testing
+              - generic:
+                - generic "Vulnerability Assessment"
+                - generic: Vulnerability Assessment
+              - generic:
+                - generic "Web Security"
+                - generic: Web Security Testing
+              - generic:
+                - generic "Network Security"
+                - generic: Network Security
+          - generic:
+            - heading "Design & Creative" [level=3]
+            - generic:
+              - generic:
+                - generic "Adobe InDesign"
+                - generic: InDesign
+              - generic:
+                - generic "Adobe Illustrator"
+                - generic: Illustrator
+              - generic:
+                - generic "Adobe Photoshop"
+                - generic: Photoshop
+              - generic:
+                - generic "Adobe After Effects"
+                - generic: After Effects
+              - generic:
+                - generic "Adobe Premiere Pro"
+                - generic: Premiere Pro
+              - generic:
+                - generic "Adobe XD"
+                - generic: XD
+              - generic:
+                - generic "Figma"
+                - generic: Figma
+    - generic:
+      - generic:
+        - heading "Featured Projects" [level=2]
+        - generic:
+          - generic:
+            - generic:
+              - img
+            - generic:
+              - heading "NGO Databank Ecosystem" [level=3]
+              - paragraph: A comprehensive ecosystem for humanitarian data management with form builder, analytics, and multi-language support.
+              - generic:
+                - link "GitHub":
+                  - /url: https://github.com/haythamsoufi/databank
+          - generic:
+            - generic:
+              - img
+            - generic:
+              - heading "Tableau PDF/PNG Export Tool" [level=3]
+              - paragraph: A desktop application with GUI that automates bulk export of Tableau Server/Cloud views to PDF or PNG format, with Excel-driven automation, filtering, and parameterization.
+              - generic:
+                - link "GitHub":
+                  - /url: https://github.com/haythamsoufi/TableauPDF
+          - generic:
+            - generic:
+              - img
+            - generic:
+              - heading "KoboPDF Tool" [level=3]
+              - paragraph: A desktop application that allows users to export Kobo form submissions to PDF format. Features include user-friendly interface, credential management, date range filtering, and status-based export options.
+              - generic:
+                - link "GitHub":
+                  - /url: https://github.com/haythamsoufi/KoboPDF
+          - generic:
+            - generic:
+              - img
+            - generic:
+              - heading "FDS Docs - RAG System" [level=3]
+              - paragraph: An advanced RAG (Retrieval-Augmented Generation) system with FastAPI backend, React UI, and Docker deployment. Features hybrid search, cross-encoder reranking, document processing with OCR, Prometheus metrics, Grafana dashboards, and comprehensive monitoring.
+              - generic:
+                - link "GitHub":
+                  - /url: https://github.com/haythamsoufi/fds-docs
+    - generic:
+      - generic:
+        - heading "Get In Touch" [level=2]
+        - paragraph: I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+        - generic:
+          - link "Email":
+            - /url: mailto:haythamsoufi@outlook.com
+            - img
+            - text: Email
+          - link "LinkedIn":
+            - /url: https://www.linkedin.com/in/haythamalsoufi/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BcVklLtAGQUSgU40rKcYcBw%3D%3D
+            - img
+            - text: LinkedIn
+          - link "GitHub":
+            - /url: https://github.com/haythamsoufi
+            - img
+            - text: GitHub
+  - button "Close fullscreen" [ref=e580] [cursor=pointer]: ×
+```

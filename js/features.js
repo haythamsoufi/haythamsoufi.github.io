@@ -2,6 +2,163 @@
 const features = ['overview', 'backoffice', 'website', 'mobile-app'];
 let currentFeatureIndex = 0;
 
+// Initialize in-page sidebar navigation on the databank-details screen.
+// Note: Hash changes can trigger the app's router (popstate) which resets scroll.
+// We prevent default and scroll programmatically instead.
+function initializeDatabankDetailsSidebar() {
+    const databankScreen = document.getElementById('databank-details');
+    if (!databankScreen) return;
+
+    const links = Array.from(databankScreen.querySelectorAll('.sidebar-link[href^="#db-"]'));
+    if (!links.length) return;
+
+    const getTopNavOffset = () => {
+        // Main site navbar (fixed at top)
+        const topNav = document.querySelector('nav');
+        if (!topNav) return 0;
+        const rect = topNav.getBoundingClientRect();
+        // Small extra breathing room so headings never touch the nav
+        return Math.ceil(rect.height + 12);
+    };
+
+    const scrollToTarget = (targetEl, behavior = 'smooth') => {
+        if (!targetEl) return;
+
+        // We scroll the databank screen itself (it is the scroll container)
+        const container = databankScreen;
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = targetEl.getBoundingClientRect();
+
+        const targetTopInContainer = (targetRect.top - containerRect.top) + container.scrollTop;
+        const offset = getTopNavOffset();
+        const nextTop = Math.max(0, targetTopInContainer - offset);
+
+        container.scrollTo({ top: nextTop, behavior });
+    };
+
+    // Replace nodes to remove any existing listeners (mirrors feature button init strategy)
+    links.forEach((link) => {
+        const newLink = link.cloneNode(true);
+        link.parentNode.replaceChild(newLink, link);
+    });
+
+    const refreshedLinks = Array.from(databankScreen.querySelectorAll('.sidebar-link[href^="#db-"]'));
+
+    const setActive = (activeLink) => {
+        refreshedLinks.forEach((l) => l.classList.toggle('active', l === activeLink));
+    };
+
+    // Scrollspy: update active tile while scrolling inside databank-details
+    if (databankScreen.dataset.dbScrollSpyInit !== '1') {
+        databankScreen.dataset.dbScrollSpyInit = '1';
+
+        const sectionIds = ['db-overview', 'db-backoffice', 'db-website', 'db-mobile'];
+
+        const getSections = () =>
+            sectionIds
+                .map((id) => databankScreen.querySelector(`#${CSS.escape(id)}`))
+                .filter(Boolean);
+
+        let rafPending = false;
+
+        const updateActiveFromScroll = () => {
+            rafPending = false;
+            if (!databankScreen.classList.contains('active')) return;
+
+            const offset = getTopNavOffset();
+            const containerRect = databankScreen.getBoundingClientRect();
+            const sections = getSections();
+            if (!sections.length) return;
+
+            // Pick the last section whose top is above the navbar offset line
+            let bestSection = sections[0];
+            let bestTop = -Infinity;
+
+            for (const section of sections) {
+                const r = section.getBoundingClientRect();
+                const topInContainer = (r.top - containerRect.top) + databankScreen.scrollTop;
+                const delta = topInContainer - databankScreen.scrollTop - offset;
+                if (delta <= 12 && topInContainer > bestTop) {
+                    bestTop = topInContainer;
+                    bestSection = section;
+                }
+            }
+
+            const activeHref = `#${bestSection.id}`;
+            const activeLink = refreshedLinks.find((l) => l.getAttribute('href') === activeHref);
+            if (activeLink) setActive(activeLink);
+        };
+
+        const onScroll = () => {
+            if (rafPending) return;
+            rafPending = true;
+            requestAnimationFrame(updateActiveFromScroll);
+        };
+
+        databankScreen.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+
+        // Initial sync (after transition)
+        setTimeout(onScroll, 900);
+    }
+
+    refreshedLinks.forEach((link) => {
+        const href = link.getAttribute('href') || '';
+        const targetId = href.startsWith('#') ? href.slice(1) : null;
+        if (!targetId) return;
+
+        const target = databankScreen.querySelector(`#${CSS.escape(targetId)}`);
+        if (!target) return;
+
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            setActive(link);
+            scrollToTarget(target, 'smooth');
+        });
+    });
+
+    const deferScroll = (targetEl, activeHref) => {
+        if (!targetEl) return;
+        // Only perform once per initialization cycle
+        if (databankScreen.dataset.dbDeferredScrollDone === '1') return;
+        databankScreen.dataset.dbDeferredScrollDone = '1';
+
+        setTimeout(() => {
+            // The databank screen may not have become active yet when we init
+            if (!databankScreen.classList.contains('active')) return;
+            if (activeHref) {
+                const activeLink = refreshedLinks.find((l) => l.getAttribute('href') === activeHref);
+                if (activeLink) setActive(activeLink);
+            }
+            scrollToTarget(targetEl, 'smooth');
+        }, 900);
+    };
+
+    // If user lands with a hash, scroll after the section transition completes.
+    if (location.hash && location.hash.startsWith('#db-')) {
+        const target = databankScreen.querySelector(location.hash);
+        deferScroll(target, location.hash);
+        return;
+    }
+
+    // Support deep links like /databank/backoffice by scrolling to the matching section.
+    const match = window.location.pathname.match(/^\/databank\/(.+)$/);
+    if (match) {
+        const featureName = match[1];
+        const featureToSectionId = {
+            overview: 'db-overview',
+            backoffice: 'db-backoffice',
+            website: 'db-website',
+            'mobile-app': 'db-mobile'
+        };
+        const sectionId = featureToSectionId[featureName];
+        if (sectionId) {
+            const target = databankScreen.querySelector(`#${CSS.escape(sectionId)}`);
+            deferScroll(target, `#${sectionId}`);
+        }
+    }
+}
+
 function showFeature(index, updateUrl = true) {
     if (index < 0 || index >= features.length) return;
 
@@ -219,6 +376,9 @@ function initializeFeatures() {
             initializeVerticalNav(feature);
         }
     });
+
+    // Initialize databank in-page sidebar navigation (if present)
+    initializeDatabankDetailsSidebar();
 }
 
 // Feature navigation event listeners
